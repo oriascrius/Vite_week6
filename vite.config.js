@@ -11,7 +11,7 @@ export default defineConfig({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue'],
     }),
   ],
-  base: '/Hex-all_practice/',
+  base: '/Vite_week6/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
