@@ -1,158 +1,198 @@
 <template>
   <div>
-    <h1>This is 產品列表頁面</h1>
-    <Loading :active="isLoading"></Loading>
-    <table class="table align-middle">
-      <thead>
-        <tr>
-          <th>圖片</th>
-          <th>商品名稱</th>
-          <th>價格</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="item in products"
-          :key="item.id"
-        >
-          <td style="width: 200px">
+    <!-- <Loading :active="isLoading"></Loading> -->
+    <!-- 1. Nav -->
+    <CommonNav></CommonNav>
+    <!-- 2. header -->
+    <header class="banner_block"></header>
+    <!-- 3. 商品分類 -->
+     <ul
+        class="nav nav-tabs m-5 p-5 justify-content-center flex-nowrap text-nowrap"
+      >
+        <li class="nav-item" v-for="tabItem in productsTab" :key="tabItem">
+          <a
+            href="#"
+            class="nav-link"
+            :class="{'active': isActive === tabItem}"
+            @click.prevent="isActive = tabItem"
+            >{{ tabItem }}</a
+          >
+        </li>
+      </ul>
+    <!-- 4. 商品列表 -->
+    <div class="container">
+      <div class="mt-4">
+        <!-- 商品列表 -->
+        <div class="container">
+          <div class="row">
             <div
-              style="
-                            height: 100px;
-                            background-size: cover;
-                            background-position: center;
-                          "
-              :style="{ backgroundImage: `url(${item.imageUrl})` }"
-            ></div>
-          </td>
-          <td>
-            {{ item.title }}
-          </td>
-          <td>
-            <div
-              class="h5"
-              v-if="!item.price"
-            >{{ item.origin_price }} 元</div>
-            <del
-              class="h6"
-              v-if="item.price"
-            >原價 {{ item.origin_price }} 元</del>
-            <div
-              class="h5"
-              v-if="item.price"
-            >現在只要 {{ item.price }} 元</div>
-          </td>
-          <td>
-            <div class="btn-group btn-group-sm">
-              <button
-                type="button"
-                class="btn btn-outline-secondary"
-                @click="getProduct(item.id)"
-                :disabled="loadingStatus.loadingItem === item.id"
-              >
-                <i
-                  class="fas fa-spinner fa-pulse"
-                  v-if="loadingStatus.loadingItem === item.id"
-                ></i>
-                查看更多
-              </button>
-              <button
-                type="button"
-                class="btn btn-outline-danger"
-                @click="addToCart(item.id)"
-                :disabled="loadingStatus.loadingItem === item.id"
-              >
-                <i
-                  class="fas fa-spinner fa-pulse"
-                  v-if="loadingStatus.loadingItem === item.id"
-                ></i>
-                加到購物車
-              </button>
+              class="col-md-4 g-4"
+              v-for="productsItem in productsFiltered"
+              :key="productsItem.id"
+            >
+              <div class="card">
+                <img
+                  :src="productsItem.imageUrl"
+                  class="card-img-top"
+                  :alt="productsItem.title"
+                  width="00"
+                  height="200"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">{{ productsItem.title }}</h5>
+                  <p class="card-text">{{ productsItem.price }}</p>
+                </div>
+                <div class="card-footer text-center">
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    @click="openModal(productsItem.id)"
+                  >
+                    查看更多
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger"
+                    @click="addToCart(productsItem.id)"
+                    :disabled="productsItem.id === loadingItem"
+                  >
+                    加到購物車
+                  </button>
+                </div>
+              </div>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+        </div>
+        <!-- 分頁元件 -->
+        <PaginationModal :pages="page" @change-page="getProducts"></PaginationModal>
+      </div>
+      <CommonFooter></CommonFooter>
+    </div>
+    <!-- 詳細商品 -->
     <UserProductModal
-      ref="userProductModal"
-      :product="product"
-      @add-to-cart="addToCart"
-    ></UserProductModal>
+      :id="productId"
+      :add-to-cart="addToCart"
+      ref="productModal"
+      :open-modal="openModal"
+      :clear-qty="addToCart">
+    </UserProductModal>
   </div>
 </template>
 
 <script>
 import UserProductModal from '@/components/UserProductModal.vue';
+import PaginationModal from '@/components/PaginationModal.vue';
+import CommonNav from '@/components/CommonNav.vue';
+import CommonFooter from '@/components/CommonFooter.vue';
 
 export default {
   name: 'ProductsView',
   data() {
     return {
+      // 取得 遠端 API 商品資料
       products: [],
-      loadingStatus: {
-        loadingItem: '',
+      // 存放 詳細商品頁面 Modal 開啟用的 ID
+      productId: '',
+      // 存放 遠端 API 購物車資料
+      cart: {},
+      // 分頁
+      page: {},
+      // 防止一直觸發請求 API，給予 loading 緩衝，判斷有 id 時，先禁止按鈕
+      loadingItem: '',
+      // 存放使用者輸入資料
+      form: {
+        user: {
+          name: '',
+          email: '',
+          tel: '',
+          address: '',
+        },
+        message: '',
       },
-      isLoading: false,
-      product: {},
+      // 商品品項種類
+      productsTab: ['全部', '主食', '早午餐', '漢堡', '炸物', '甜點', '沙拉', '飲料'],
+      // 預設頁籤在全部
+      isActive: '全部',
     };
   },
+  methods: {
+    // 商品列表 - 取得商品列表 API
+    // background-image: url(""../src/assets/loading.png")
+    getProducts(page = 1) {
+      // VueLoading
+      const loader = this.$loading.show();
+      this.$http
+        .get(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/products?page=${page}`)
+        .then((res) => {
+          this.products = res.data.products;
+          this.page = res.data.pagination;
+          loader.hide();
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+          loader.hide();
+        });
+    },
+    // 單一商品細節 - HTML 上 拿到 id，從這接收後在 props 到 modal 子元件裡面 :id = productId
+    openModal(id) {
+      this.productId = id;
+    },
+    // 加入購物車 - 將 商品 ID、數量 加入到購物車
+    // eslint-disable-next-line camelcase
+    addToCart(product_id, qty = 1) {
+      const data = {
+        // eslint-disable-next-line camelcase
+        product_id,
+        qty,
+      };
+      // 按下加入購物車時取得 id -> 先禁用按鈕點擊 -> 等待下方請求 API 完成
+      // 對應 商品列表中，:disabled="product.id === loadingItem"
+      // eslint-disable-next-line camelcase
+      this.loadingItem = product_id;
+      this.$http
+        .post(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart`, { data })
+        .then(() => {
+          // 最後重置存放 id 為空
+          this.loadingItem = '';
+          // 控制 當進入詳細商品頁面，按下加入購物車後，關閉 Modal（從內層拿到方法關閉）
+          this.$refs.productModal.hideModal();
+          this.$swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: '加入商品成功',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          // 按下加入購物車後 -> 取得購物車資料呈現
+          // this.getCarts();
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
+    },
+  },
+  computed: {
+    // 篩選商品分類
+    productsFiltered() {
+      if (this.isActive === '全部') {
+        return this.products;
+      }
+      return this.products.filter((item) => item.category === this.isActive);
+    },
+  },
   components: {
+    // 詳細商品 modal
     UserProductModal,
+    // 分頁 元件
+    PaginationModal,
+    // Nav 元件
+    CommonNav,
+    // Footer 元件
+    CommonFooter,
   },
   mounted() {
     this.getProducts();
-  },
-  methods: {
-    addToCart(id, qty = 1) {
-      this.isLoading = true;
-      const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart`;
-      this.loadingStatus.loadingItem = id;
-      const cart = {
-        product_id: id,
-        qty,
-      };
-      this.$http
-        .post(url, { data: cart })
-        .then((response) => {
-          alert(response.data.message);
-          this.loadingStatus.loadingItem = '';
-          this.$refs.userProductModal.hideModal();
-          this.isLoading = false;
-        })
-        .catch((err) => {
-          alert(err.response.data.message);
-        });
-    },
-    getProducts() {
-      this.isLoading = true;
-      const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/products`;
-      this.$http
-        .get(url)
-        .then((response) => {
-          this.products = response.data.products;
-          this.isLoading = false;
-        })
-        .catch((err) => {
-          alert(err.response.data.message);
-        });
-    },
-    getProduct(id) {
-      this.isLoading = true;
-      const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/product/${id}`;
-      this.loadingStatus.loadingItem = id;
-      this.$http
-        .get(url)
-        .then((response) => {
-          this.loadingStatus.loadingItem = '';
-          this.product = response.data.product;
-          this.isLoading = false;
-          this.$refs.userProductModal.openModal();
-        })
-        .catch((err) => {
-          alert(err.response.data.message);
-        });
-    },
   },
 };
 </script>

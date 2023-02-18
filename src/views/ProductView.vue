@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is 單一產品頁面</h1>
+    <h2 class="h1">This is 單一產品頁面</h2>
     {{ product.title }}
   </div>
 </template>
@@ -15,7 +15,9 @@ export default {
   },
   mounted() {
     const { id } = this.$route.params;
-    const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/product/${id}`;
+    const url = `${import.meta.env.VITE_API}api/${
+      import.meta.env.VITE_PATH
+    }/product/${id}`;
     this.$http
       .get(url)
       .then((res) => {

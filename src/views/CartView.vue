@@ -1,7 +1,6 @@
 <template>
   <div class="about">
     <Loading :active="isLoading"></Loading>
-    <h1>This is 購物車頁面</h1>
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-6">
@@ -16,10 +15,7 @@
             </thead>
             <tbody>
               <template v-if="cart.carts">
-                <tr
-                  v-for="item in cart.carts"
-                  :key="item.id"
-                >
+                <tr v-for="item in cart.carts" :key="item.id">
                   <td>
                     <button
                       type="button"
@@ -36,10 +32,7 @@
                   </td>
                   <td>
                     {{ item.product.title }}
-                    <div
-                      class="text-success"
-                      v-if="item.coupon"
-                    >
+                    <div class="text-success" v-if="item.coupon">
                       已套用優惠券
                     </div>
                   </td>
@@ -52,7 +45,8 @@
                     <small
                       v-if="cart.final_total !== cart.total"
                       class="text-success"
-                    >折扣價：</small>
+                      >折扣價：</small
+                    >
                     {{ item.final_total }}
                   </td>
                 </tr>
@@ -60,17 +54,11 @@
             </tbody>
             <tfoot>
               <tr>
-                <td
-                  colspan="3"
-                  class="text-end"
-                >總計</td>
+                <td colspan="3" class="text-end">總計</td>
                 <td class="text-end">{{ cart.total }}</td>
               </tr>
               <tr v-if="cart.final_total !== cart.total">
-                <td
-                  colspan="3"
-                  class="text-end text-success"
-                >折扣價</td>
+                <td colspan="3" class="text-end text-success">折扣價</td>
                 <td class="text-end text-success">{{ cart.final_total }}</td>
               </tr>
             </tfoot>
@@ -85,10 +73,7 @@
           @submit="createOrder"
         >
           <div class="mb-3">
-            <label
-              for="email"
-              class="form-label"
-            >Email</label>
+            <label for="email" class="form-label">Email</label>
             <Field
               id="email"
               name="email"
@@ -99,17 +84,11 @@
               rules="email|required"
               v-model="form.user.email"
             ></Field>
-            <ErrorMessage
-              name="email"
-              class="invalid-feedback"
-            ></ErrorMessage>
+            <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
           </div>
 
           <div class="mb-3">
-            <label
-              for="name"
-              class="form-label"
-            >收件人姓名</label>
+            <label for="name" class="form-label">收件人姓名</label>
             <Field
               id="name"
               name="姓名"
@@ -120,17 +99,11 @@
               rules="required"
               v-model="form.user.name"
             ></Field>
-            <ErrorMessage
-              name="姓名"
-              class="invalid-feedback"
-            ></ErrorMessage>
+            <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
           </div>
 
           <div class="mb-3">
-            <label
-              for="tel"
-              class="form-label"
-            >收件人電話</label>
+            <label for="tel" class="form-label">收件人電話</label>
             <Field
               id="tel"
               name="電話"
@@ -141,17 +114,11 @@
               rules="required"
               v-model="form.user.tel"
             ></Field>
-            <ErrorMessage
-              name="電話"
-              class="invalid-feedback"
-            ></ErrorMessage>
+            <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
           </div>
 
           <div class="mb-3">
-            <label
-              for="address"
-              class="form-label"
-            >收件人地址</label>
+            <label for="address" class="form-label">收件人地址</label>
             <Field
               id="address"
               name="地址"
@@ -162,17 +129,11 @@
               rules="required"
               v-model="form.user.address"
             ></Field>
-            <ErrorMessage
-              name="地址"
-              class="invalid-feedback"
-            ></ErrorMessage>
+            <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
           </div>
 
           <div class="mb-3">
-            <label
-              for="message"
-              class="form-label"
-            >留言</label>
+            <label for="message" class="form-label">留言</label>
             <textarea
               name=""
               id="message"
@@ -183,10 +144,7 @@
             ></textarea>
           </div>
           <div class="text-end">
-            <button
-              type="submit"
-              class="btn btn-danger"
-            >送出訂單</button>
+            <button type="submit" class="btn btn-danger">送出訂單</button>
           </div>
         </Form>
       </div>
@@ -222,7 +180,9 @@ export default {
   methods: {
     getCart() {
       this.isLoading = true;
-      const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart`;
+      const url = `${import.meta.env.VITE_API}api/${
+        import.meta.env.VITE_PATH
+      }/cart`;
       this.$http.get(url).then((response) => {
         if (response.data.success) {
           this.cart = response.data.data;
@@ -234,7 +194,9 @@ export default {
     },
     removeCartItem(id) {
       this.isLoading = true;
-      const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart/${id}`;
+      const url = `${import.meta.env.VITE_API}api/${
+        import.meta.env.VITE_PATH
+      }/cart/${id}`;
       this.loadingStatus.loadingItem = id;
       this.$http
         .delete(url)
@@ -250,7 +212,9 @@ export default {
     },
     createOrder() {
       this.isLoading = true;
-      const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/order`;
+      const url = `${import.meta.env.VITE_API}api/${
+        import.meta.env.VITE_PATH
+      }/order`;
       const order = this.form;
       this.$http
         .post(url, { data: order })

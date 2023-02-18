@@ -1,0 +1,160 @@
+   /* 解決 -> 畫面重整時會出現未編譯的資料 */
+   [v-cloak] {
+       display: none;
+   }
+
+   /* 全域 寬高、底色 設定 */
+   body {
+       box-sizing: border-box;
+       background: #fef5f2;
+   }
+
+   /* 全域 img 設定 */
+   img {
+       object-fit: cover;
+   }
+
+   /* 全域 li 設定 */
+   li {
+       list-style: none;
+   }
+
+   /* 全域 a 設定 */
+   a {
+       text-decoration: none;
+   }
+
+   /* 1. nav 設定 */
+   nav {
+       height: 85px;
+       color: #747d54;
+   }
+
+   #navbarNav a {
+       color: #747d54;
+   }
+
+   #navbarNav a:hover {
+       color: #9ca57c;
+   }
+
+   h1 {
+       background-image: url(../images/Logo.png);
+       background-size: cover;
+       background-position: center;
+       height: 62.12px;
+       width: 297px;
+   }
+
+   .cart_icon {
+       position: relative;
+   }
+
+   .badge {
+       position: absolute;
+       top: -5px;
+       left: 30px;
+   }
+
+   /* 2. banner 設定 */
+   .banner_block {
+       height: 768px;
+       background-image: url(../images/AboutUs_Banner_005.png);
+       background-size: cover;
+       background-position: center;
+   }
+
+   /* 3. 關於我們 設定 */
+   .aboutAs_card {
+    position: relative;
+    height: 342px;
+    width: 612px;
+    background: rgba(116, 125, 84, 0.8);
+  }
+  .aboutAs_card img {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+  }
+  /* 4. 主打推薦 設定 */
+  .menu_recommend {
+    height: 954px;
+    background: rgba(116, 125, 84, 0.8);
+    color: #ffffff;
+  }
+  .menu_recommend_img {
+    position: relative;
+    height: 648px;
+    width: 486px;
+  }
+  .menu_recommend_card {
+    position: absolute;
+    top: 411px;
+    left: 280px;
+    color: #747d54;
+    width: 368px;
+    height: 150px;
+    background-color: #ffffff;
+  }
+  /* 5. 熱門餐點 設定 */
+  .hot_menu li {
+    height: 514px;
+    width: 416px;
+  }
+  .hot_menu img {
+    height: 416px;
+    width: 416px;
+  }
+  /* 6. 訂閲 設定 */
+  .subscribe_image {
+    position: relative;
+    height: 378px;
+    width: 100%;
+    /* 設定背景圖片 */
+    background-image: url(../images/Subscribe_Banner.png);
+    /* 讓圖片不重覆排列 */
+    background-repeat: no-repeat;
+    /* 固定背景圖片位置 */
+    background-attachment: fixed;
+    background-position: right;
+    /* cover 可以讓背景圖片自動縮放到覆蓋內容區域的最小尺寸 */
+    background-size: cover;
+  }
+  .subscribe_block {
+    position: absolute;
+    top: 100px;
+    left: 900px;
+    width: 416px;
+    height: 188px;
+    border: 2px solid #747d54;
+    background-color: rgba(255, 255, 255, 0.87);
+    color: #747d54;
+  }
+   /* 7. footer 設定 */
+   footer {
+       height: 357px;
+       color: rgba(255, 255, 255, 0.87);
+       background: #4e4d3c;
+       font-size: 24px;
+       font-weight: 700;
+   }
+
+   footer a {
+       color: rgba(255, 255, 255, 0.87);
+   }
+
+   footer span {
+       font-size: 16px;
+   }
+
+   .footer_top {
+       height: 86px;
+   }
+
+   .footer_top a {
+       line-height: 86px;
+   }
+
+   .footer_bottom {
+       height: 86px;
+   }

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <h1>你現在在前台頁面</h1>
-    <div id="nav">
+    <h2 class="text-center h2">現在在前台頁面</h2>
+    <div id="nav" class="text-center">
       <router-link to="/">首頁</router-link> |
       <router-link to="/products">前台商品列表</router-link> |
       <router-link to="/cart">前台購物車</router-link> |

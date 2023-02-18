@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>錯誤畫面</h1>
+    <h2>錯誤畫面</h2>
   </div>
 </template>
 

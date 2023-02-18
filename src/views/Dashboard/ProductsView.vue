@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import Pagination from '@/components/PaginationModal.vue';
+import Pagination from '../components/PaginationModal.vue';
 
 export default {
   name: 'ProductsView',
