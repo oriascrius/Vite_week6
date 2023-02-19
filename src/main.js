@@ -3,8 +3,10 @@ import { createApp } from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-import { LoadingPlugin } from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/css/index.css';
+// import { LoadingPlugin } from 'vue-loading-overlay';
+// import 'vue-loading-overlay/dist/css/index.css';
+import Loading from 'vue3-loading-overlay';
+import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 
 import {
   Form, Field, ErrorMessage, defineRule, configure,
@@ -39,8 +41,8 @@ createApp(App)
   .use(router)
   .use(VueAxios, axios)
   .use(VueSweetalert2)
-  .use(LoadingPlugin)
-  // .component('Loading', Loading)
+  // .use(LoadingPlugin)
+  .component('Loading', Loading)
   .component('Form', Form)
   .component('Field', Field)
   .component('ErrorMessage', ErrorMessage)

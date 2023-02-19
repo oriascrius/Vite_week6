@@ -1,24 +1,27 @@
 <template>
   <div>
-    <!-- <Loading :active="isLoading"></Loading> -->
+    <Loading v-model:active="isLoading" :is-full-page="fullPage">
+      <template v-slot:default>
+        <img src="../assets/images/loading_icon.png" alt="" />
+      </template>
+    </Loading>
+    <!-- <Loading :active="isLoading"></Loading>-->
     <!-- 1. Nav -->
     <CommonNav></CommonNav>
     <!-- 2. header -->
     <header class="banner_block"></header>
     <!-- 3. 商品分類 -->
-     <ul
-        class="nav nav-tabs m-5 p-5 justify-content-center flex-nowrap text-nowrap"
-      >
-        <li class="nav-item" v-for="tabItem in productsTab" :key="tabItem">
-          <a
-            href="#"
-            class="nav-link"
-            :class="{'active': isActive === tabItem}"
-            @click.prevent="isActive = tabItem"
-            >{{ tabItem }}</a
-          >
-        </li>
-      </ul>
+    <ul class="nav nav-tabs m-5 p-5 justify-content-center flex-nowrap text-nowrap">
+      <li class="nav-item" v-for="tabItem in productsTab" :key="tabItem">
+        <a
+          href="#"
+          class="nav-link"
+          :class="{ active: isActive === tabItem }"
+          @click.prevent="isActive = tabItem"
+          >{{ tabItem }}</a
+        >
+      </li>
+    </ul>
     <!-- 4. 商品列表 -->
     <div class="container">
       <div class="mt-4">
@@ -74,7 +77,8 @@
       :add-to-cart="addToCart"
       ref="productModal"
       :open-modal="openModal"
-      :clear-qty="addToCart">
+      :clear-qty="addToCart"
+    >
     </UserProductModal>
   </div>
 </template>
@@ -84,6 +88,7 @@ import UserProductModal from '@/components/UserProductModal.vue';
 // import PaginationModal from '@/components/PaginationModal.vue';
 import CommonNav from '@/components/CommonNav.vue';
 import CommonFooter from '@/components/CommonFooter.vue';
+import CustomIcon from '@/assets/images/loading_icon.png';
 
 export default {
   name: 'ProductsView',
@@ -99,6 +104,7 @@ export default {
       page: {},
       // 防止一直觸發請求 API，給予 loading 緩衝，判斷有 id 時，先禁止按鈕
       loadingItem: '',
+      isLoading: false,
       // 存放使用者輸入資料
       form: {
         user: {
@@ -113,24 +119,27 @@ export default {
       productsTab: ['全部', '主食', '早午餐', '漢堡', '炸物', '甜點', '沙拉', '飲料'],
       // 預設頁籤在全部
       isActive: '全部',
+      customIcon: CustomIcon,
     };
   },
   methods: {
     // 商品列表 - 取得商品列表 API
-    // background-image: url(""../src/assets/loading.png")
     getProducts(page = 1) {
       // VueLoading
-      const loader = this.$loading.show();
+      // const loader = this.$loading.show();
+      this.isLoading = true;
       this.$http
         .get(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/products?page=${page}`)
         .then((res) => {
           this.products = res.data.products;
           this.page = res.data.pagination;
-          loader.hide();
+          // loader.hide();
+          this.isLoading = false;
         })
         .catch((err) => {
           alert(err.response.data.message);
-          loader.hide();
+          // loader.hide();
+          this.isLoading = false;
         });
     },
     // 單一商品細節 - HTML 上 拿到 id，從這接收後在 props 到 modal 子元件裡面 :id = productId
