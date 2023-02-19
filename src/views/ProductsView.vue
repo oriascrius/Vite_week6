@@ -26,7 +26,7 @@
         <div class="container">
           <div class="row">
             <div
-              class="col-md-4 g-4"
+              class="col-md-4 g-5"
               v-for="productsItem in productsFiltered"
               :key="productsItem.id"
             >
@@ -35,8 +35,8 @@
                   :src="productsItem.imageUrl"
                   class="card-img-top"
                   :alt="productsItem.title"
-                  width="00"
-                  height="200"
+                  width="500"
+                  height="300"
                 />
                 <div class="card-body">
                   <h5 class="card-title">{{ productsItem.title }}</h5>
@@ -81,7 +81,7 @@
 
 <script>
 import UserProductModal from '@/components/UserProductModal.vue';
-import PaginationModal from '@/components/PaginationModal.vue';
+// import PaginationModal from '@/components/PaginationModal.vue';
 import CommonNav from '@/components/CommonNav.vue';
 import CommonFooter from '@/components/CommonFooter.vue';
 
@@ -185,7 +185,7 @@ export default {
     // 詳細商品 modal
     UserProductModal,
     // 分頁 元件
-    PaginationModal,
+    // PaginationModal,
     // Nav 元件
     CommonNav,
     // Footer 元件

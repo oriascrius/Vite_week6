@@ -3,8 +3,6 @@ import { createApp } from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-// import Loading from 'vue3-loading-overlay';
-// import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 import { LoadingPlugin } from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 
@@ -15,10 +13,10 @@ import AllRules from '@vee-validate/rules';
 import { localize, setLocale } from '@vee-validate/i18n';
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 
-// import Swal from 'sweetalert2';
-// import 'sweetalert2/dist/sweetalert2.min.css';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import './assets/css/base.css';
 

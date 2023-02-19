@@ -5,7 +5,6 @@
 
    /* 全域 寬高、底色 設定 */
    body {
-       box-sizing: border-box;
        background: #fef5f2;
    }
 
