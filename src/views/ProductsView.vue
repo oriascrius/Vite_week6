@@ -7,7 +7,8 @@
       <template v-slot:default>
         <img
           src="../assets/images/loading_icon.png"
-          alt=""
+          alt="loading圖"
+          class="loadingIcon"
         />
       </template>
     </Loading>

@@ -2,7 +2,35 @@
    [v-cloak] {
        display: none;
    }
+   /* 控制 loading 呼吸感的動畫 */
+   .loadingIcon{
+    /* animation: breathe 3s ease-in-out infinite; */
+    animation: wobble 1s ease-in-out infinite;
+   }
+   /* @keyframes breathe {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  } */
 
+  @keyframes wobble {
+    0% {
+      transform: rotateZ(-10deg);
+    }
+    50% {
+      transform: rotateZ(10deg);
+    }
+    100% {
+      transform: rotateZ(-10deg);
+    }
+  }
+  
    /* 全域 寬高、底色 設定 */
    body {
        background: #fef5f2;
