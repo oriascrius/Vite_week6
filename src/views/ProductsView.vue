@@ -1,8 +1,14 @@
 <template>
   <div>
-    <Loading v-model:active="isLoading" :is-full-page="fullPage">
+    <Loading
+      v-model:active="isLoading"
+      :is-full-page="fullPage"
+    >
       <template v-slot:default>
-        <img src="../assets/images/loading_icon.png" alt="" />
+        <img
+          src="../assets/images/loading_icon.png"
+          alt=""
+        />
       </template>
     </Loading>
     <!-- <Loading :active="isLoading"></Loading>-->
@@ -12,14 +18,17 @@
     <header class="banner_block"></header>
     <!-- 3. 商品分類 -->
     <ul class="nav nav-tabs m-5 p-5 justify-content-center flex-nowrap text-nowrap">
-      <li class="nav-item" v-for="tabItem in productsTab" :key="tabItem">
+      <li
+        class="nav-item"
+        v-for="tabItem in productsTab"
+        :key="tabItem"
+      >
         <a
           href="#"
           class="nav-link"
           :class="{ active: isActive === tabItem }"
           @click.prevent="isActive = tabItem"
-          >{{ tabItem }}</a
-        >
+        >{{ tabItem }}</a>
       </li>
     </ul>
     <!-- 4. 商品列表 -->
@@ -67,7 +76,10 @@
           </div>
         </div>
         <!-- 分頁元件 -->
-        <PaginationModal :pages="page" @change-page="getProducts"></PaginationModal>
+        <PaginationModal
+          :pages="page"
+          @change-page="getProducts"
+        ></PaginationModal>
       </div>
       <CommonFooter></CommonFooter>
     </div>
@@ -88,7 +100,6 @@ import UserProductModal from '@/components/UserProductModal.vue';
 // import PaginationModal from '@/components/PaginationModal.vue';
 import CommonNav from '@/components/CommonNav.vue';
 import CommonFooter from '@/components/CommonFooter.vue';
-import CustomIcon from '@/assets/images/loading_icon.png';
 
 export default {
   name: 'ProductsView',
@@ -98,28 +109,16 @@ export default {
       products: [],
       // 存放 詳細商品頁面 Modal 開啟用的 ID
       productId: '',
-      // 存放 遠端 API 購物車資料
-      cart: {},
       // 分頁
       page: {},
       // 防止一直觸發請求 API，給予 loading 緩衝，判斷有 id 時，先禁止按鈕
       loadingItem: '',
+      // loading 圖示判斷
       isLoading: false,
-      // 存放使用者輸入資料
-      form: {
-        user: {
-          name: '',
-          email: '',
-          tel: '',
-          address: '',
-        },
-        message: '',
-      },
       // 商品品項種類
       productsTab: ['全部', '主食', '早午餐', '漢堡', '炸物', '甜點', '沙拉', '飲料'],
       // 預設頁籤在全部
       isActive: '全部',
-      customIcon: CustomIcon,
     };
   },
   methods: {

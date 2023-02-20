@@ -11,12 +11,12 @@ const routes = [
       },
       {
         path: '/products',
-        name: '產品列表',
+        name: '商品列表',
         component: () => import('../views/ProductsView.vue'),
       },
       {
         path: '/product/:id',
-        name: '產品頁面',
+        name: '商品頁面',
         component: () => import('../views/ProductView.vue'),
       },
       {

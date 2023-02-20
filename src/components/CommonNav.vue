@@ -1,6 +1,5 @@
 <!-- eslint-disable max-len -->
-<template>
-  <!-- 1. nav -->
+<template><!-- 1. nav -->
   <nav class="navbar navbar-expand-md">
     <div class="container">
       <!-- Logo -->
@@ -19,20 +18,36 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+      >
         <ul class="navbar-nav ms-auto me-5 h5">
           <li class="nav-item">
-            <a class="nav-link" href="#">關於我們</a>
+            <a
+              class="nav-link"
+              href="#"
+            >關於我們</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">美味餐點</a>
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="#"
+            >美味餐點</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">聯絡我們</a>
+            <a
+              class="nav-link"
+              href="#"
+            >聯絡我們</a>
           </li>
         </ul>
         <!-- 購物車 icon -->
-        <a href="#" class="cart_icon">
+        <a
+          href="#"
+          class="cart_icon"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
