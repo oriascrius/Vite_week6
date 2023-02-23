@@ -1,7 +1,6 @@
 <template>
   <header
     class="container-fluid"
-    style="background-image: url('../src/assets/images/Home_Banner.png')"
   >
     <div class="row header_block">
       <div class="col-5"></div>
