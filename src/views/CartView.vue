@@ -1,15 +1,8 @@
 <template>
   <div class="container">
-    <Loading
-      v-model:active="isLoading"
-      :is-full-page="fullPage"
-    >
+    <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
       <template v-slot:default>
-        <img
-          src="../assets/images/loading_icon.png"
-          alt="loading圖"
-          class="loadingIcon"
-        />
+        <img src="../assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
       </template>
     </Loading>
     <!-- 購物車 -->
@@ -37,10 +30,7 @@
           </thead>
           <tbody>
             <!-- 當 cart 有內容才呈現購物車 -->
-            <tr
-              v-for="cartItem in cart.carts"
-              :key="cartItem.id"
-            >
+            <tr v-for="cartItem in cart.carts" :key="cartItem.id">
               <td style="width: 100px">
                 <button
                   type="button"
@@ -61,11 +51,7 @@
                     @change="updateCartItem(cartItem)"
                     :disabled="cartItem.id === loadingItem"
                   >
-                    <option
-                      :value="i"
-                      v-for="i in 20"
-                      :key="i + '1233'"
-                    >
+                    <option :value="i" v-for="i in 20" :key="i + '1233'">
                       {{ i }}
                     </option>
                   </select>
@@ -96,18 +82,11 @@
       </div>
     </div>
     <!-- 表單驗證 -->
+    <!-- is-invalid 是 bootstrap 中，Forms validation 顯示紅框 -->
     <div class="my-5 row justify-content-center">
-      <Form
-        ref="form"
-        class="col-md-6"
-        v-slot="{ errors }"
-        @submit="createOrder"
-      >
+      <Form ref="form" class="col-md-6" v-slot="{ errors }" @submit="sendOrder">
         <div class="mb-3">
-          <label
-            for="email"
-            class="form-label"
-          >Email</label>
+          <label for="email" class="form-label">Email</label>
           <Field
             id="email"
             name="email"
@@ -118,17 +97,11 @@
             rules="email|required"
             v-model="form.user.email"
           ></Field>
-          <ErrorMessage
-            name="email"
-            class="invalid-feedback"
-          ></ErrorMessage>
+          <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label
-            for="name"
-            class="form-label"
-          >收件人姓名</label>
+          <label for="name" class="form-label">收件人姓名</label>
           <Field
             id="name"
             name="姓名"
@@ -139,17 +112,11 @@
             rules="required"
             v-model="form.user.name"
           ></Field>
-          <ErrorMessage
-            name="姓名"
-            class="invalid-feedback"
-          ></ErrorMessage>
+          <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label
-            for="tel"
-            class="form-label"
-          >收件人電話</label>
+          <label for="tel" class="form-label">收件人電話</label>
           <Field
             id="tel"
             name="電話"
@@ -160,17 +127,11 @@
             rules="required"
             v-model="form.user.tel"
           ></Field>
-          <ErrorMessage
-            name="電話"
-            class="invalid-feedback"
-          ></ErrorMessage>
+          <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label
-            for="address"
-            class="form-label"
-          >收件人地址</label>
+          <label for="address" class="form-label">收件人地址</label>
           <Field
             id="address"
             name="地址"
@@ -181,17 +142,11 @@
             rules="required"
             v-model="form.user.address"
           ></Field>
-          <ErrorMessage
-            name="地址"
-            class="invalid-feedback"
-          ></ErrorMessage>
+          <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label
-            for="message"
-            class="form-label"
-          >留言</label>
+          <label for="message" class="form-label">留言</label>
           <textarea
             name=""
             id="message"
@@ -202,10 +157,7 @@
           ></textarea>
         </div>
         <div class="text-end">
-          <button
-            type="submit"
-            class="btn btn-danger"
-          >送出訂單</button>
+          <button type="submit" class="btn btn-danger">送出訂單</button>
         </div>
       </Form>
     </div>
@@ -220,7 +172,11 @@ export default {
       // 存放 遠端 API 購物車資料
       cart: {},
       // loading 圖示判斷
-      isLoading: false,
+      states: {
+        isLoading: false,
+        fullPage: false,
+      },
+      loadingItem: '',
       // 存放使用者輸入資料
       form: {
         user: {
@@ -241,19 +197,16 @@ export default {
     getCarts() {
       // 這裡可作區塊 or 全畫面 loading
       // 目前做全畫面
-      // let loader = this.$loading.show();
-      this.isLoading = true;
+      this.states = { isLoading: true, fullPage: true };
       this.$http
         .get(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart`)
         .then((res) => {
           this.cart = res.data.data;
-          this.isLoading = false;
-          // loader.hide();
+          this.states = { isLoading: false, fullPage: false };
         })
         .catch((err) => {
           alert(err.response.data.message);
-          this.isLoading = false;
-          // loader.hide();
+          this.states = { isLoading: false, fullPage: false };
         });
     },
     // 更改購物車中的數量 -> 連動價格
@@ -343,7 +296,7 @@ export default {
           this.$swal.fire({
             toast: true,
             position: 'top-end',
-            type: 'success',
+            icon: 'success',
             title: '送出訂單成功',
             showConfirmButton: false,
             timer: 1500,
@@ -355,11 +308,10 @@ export default {
           this.getCarts();
         })
         .catch(() => {
-          // alert(err.response.data.message);
           this.$swal.fire({
             toast: true,
             position: 'center',
-            type: 'error',
+            icon: 'error',
             title: '購物車沒東西唷!',
             showConfirmButton: false,
             timer: 1500,

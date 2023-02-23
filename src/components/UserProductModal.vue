@@ -120,9 +120,9 @@ export default {
     });
   },
   methods: {
-    // openModal() {
-    //   this.modal.show();
-    // },
+    openModal() {
+      this.modal.show();
+    },
     hideModal() {
       this.modal.hide();
       // 詳細商品頁面選擇數量加入購物車後，要重置數量變回 1
@@ -131,5 +131,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

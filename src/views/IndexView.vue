@@ -1,5 +1,10 @@
 <template>
   <div>
+    <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
+      <template v-slot:default>
+        <img src="../assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
+      </template>
+    </Loading>
     <!-- 1. nav -->
     <nav class="navbar navbar-expand-md">
       <div class="container">
@@ -19,43 +24,33 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div
-          class="collapse navbar-collapse"
-          id="navbarNav"
-        >
+        <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto me-5 h5">
             <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#"
-              >關於我們</a>
+              <a class="nav-link" href="#">關於我們</a>
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="#"
-              >美味餐點</a>
+              <a class="nav-link active" aria-current="page" href="#">美味餐點</a>
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#"
-              >聯絡我們</a>
+              <a class="nav-link" href="#">聯絡我們</a>
             </li>
           </ul>
           <!-- 購物車 icon -->
-          <a
-            href="#"
-            class="cart_icon"
-          >
+          <a href="#" class="cart_icon">
             <i class="bi bi-cart2"></i>
           </a>
         </div>
       </div>
     </nav>
     <!-- 2. header -->
-    <header class="banner_block"></header>
+    <header class="banner_block text-center">
+      <div class="banner-text">
+        <h2 class="mt-4">“Light tomorrow with today.”</h2>
+        <h3 class="mt-4">松柏食光</h3>
+        <button type="button" class="btn btn-outline-light mt-4">Learn More</button>
+      </div>
+    </header>
     <!-- 3. 關於我們 -->
     <main class="container mt-5 py-5">
       <div class="row">
@@ -77,10 +72,7 @@
                 Brunch & Cafe。
               </p>
             </li>
-            <button
-              type="button"
-              class="btn btn-success mt-4"
-            >查看更多</button>
+            <button type="button" class="btn btn-success mt-4">查看更多</button>
           </ul>
         </div>
         <div class="col">
@@ -102,10 +94,7 @@
                 從香煎鮭魚的誘人香氣到背景中咖啡豆研磨機的嗡嗡聲，再到每天準備的<br />西式風格輕食菜單的迷人香味，我們不僅僅是間普通的早午餐店。
               </p>
             </li>
-            <button
-              type="button"
-              class="btn btn-success mt-4"
-            >查看更多</button>
+            <button type="button" class="btn btn-success mt-4">查看更多</button>
           </ul>
         </div>
         <div class="col">
@@ -128,10 +117,7 @@
                 您的歸宿，您可以在這裡為自己充電，並在咖啡、美食和熟悉的面孔中尋<br />求安慰。
               </p>
             </li>
-            <button
-              type="button"
-              class="btn btn-success mt-4"
-            >查看更多</button>
+            <button type="button" class="btn btn-success mt-4">查看更多</button>
           </ul>
         </div>
         <div class="col">
@@ -152,35 +138,23 @@
       <h2 class="h1 ms-5 ps-5">松柏主打推薦</h2>
       <ul class="row mt-5 pt-5">
         <li class="col menu_recommend_img">
-          <img
-            src="../assets/images/menu_001.png.png"
-            alt="主打推薦"
-          />
+          <img src="../assets/images/menu_001.png.png" alt="主打推薦" />
           <ul class="menu_recommend_card border border-2 border-success p-3">
             <li>
               <h4>＂鮭魚班尼迪克蛋＂</h4>
             </li>
             <p>每一個早睡早起的日子都值得吃班尼迪克蛋！</p>
-            <button
-              type="button"
-              class="btn btn-outline-success"
-            >餐點詳情</button>
+            <button type="button" class="btn btn-outline-success">餐點詳情</button>
           </ul>
         </li>
         <li class="col menu_recommend_img">
-          <img
-            src="../assets/images/menu_002.png.png"
-            alt="主打推薦"
-          />
+          <img src="../assets/images/menu_002.png.png" alt="主打推薦" />
           <ul class="menu_recommend_card border border-2 border-success p-3">
             <li>
               <h4>＂鮭魚班尼迪克蛋＂</h4>
             </li>
             <p>每一個早睡早起的日子都值得吃班尼迪克蛋！</p>
-            <button
-              type="button"
-              class="btn btn-outline-success"
-            >餐點詳情</button>
+            <button type="button" class="btn btn-outline-success">餐點詳情</button>
           </ul>
         </li>
       </ul>
@@ -191,45 +165,24 @@
       <h2 class="h1 ms-5 ps-5">熱門餐點</h2>
       <ul class="row mt-5 pt-5">
         <li class="col border border-1 border-succsss">
-          <img
-            src="../assets/images/menu_001.png.png"
-            class=""
-            alt="熱門餐點"
-          />
+          <img src="../assets/images/menu_001.png.png" class="" alt="熱門餐點" />
           <div class="card-body">
             <h5 class="card-title">鮭魚班尼迪克蛋</h5>
-            <button
-              type="button"
-              class="btn btn-success"
-            >查看更多</button>
+            <button type="button" class="btn btn-success">查看更多</button>
           </div>
         </li>
         <li class="col border border-1 border-succsss">
-          <img
-            src="../assets/images/menu_002.png.png"
-            class=""
-            alt="熱門餐點"
-          />
+          <img src="../assets/images/menu_002.png.png" class="" alt="熱門餐點" />
           <div class="card-body">
             <h5 class="card-title">水果鮮奶油鬆餅</h5>
-            <button
-              type="button"
-              class="btn btn-success"
-            >查看更多</button>
+            <button type="button" class="btn btn-success">查看更多</button>
           </div>
         </li>
         <li class="col border border-1 border-succsss">
-          <img
-            src="../assets/images/menu_003.png.png"
-            class=""
-            alt="熱門餐點"
-          />
+          <img src="../assets/images/menu_003.png.png" class="" alt="熱門餐點" />
           <div class="card-body">
             <h5 class="card-title">香烤酪梨蛋</h5>
-            <button
-              type="button"
-              class="btn btn-success"
-            >查看更多</button>
+            <button type="button" class="btn btn-success">查看更多</button>
           </div>
         </li>
       </ul>
@@ -256,10 +209,7 @@
                   placeholder="請輸入信箱取得信箱"
                   aria-label="Search"
                 />
-                <button
-                  class="btn btn-success"
-                  type="button"
-                >Subscribe</button>
+                <button class="btn btn-success" type="button">Subscribe</button>
               </form>
             </nav>
           </li>
@@ -271,18 +221,9 @@
       <div class="container text-center pt-5">
         <div class="row border border-1 footer_top align-items-center">
           <div class="col-md-4">
-            <a
-              href="#"
-              class="p-2"
-            >關於我們</a>
-            <a
-              href="#"
-              class="p-2"
-            >美味餐點</a>
-            <a
-              href="#"
-              class="p-2"
-            >聯絡我們</a>
+            <a href="#" class="p-2">關於我們</a>
+            <a href="#" class="p-2">美味餐點</a>
+            <a href="#" class="p-2">聯絡我們</a>
           </div>
           <div class="col-md-4 ms-auto">
             <a href="#"><i class="bi bi-facebook ms-4 p-3"></i></a>
@@ -303,7 +244,18 @@
 export default {
   name: 'IndexView',
   data() {
-    return {};
+    return {
+      // loading 圖示判斷
+      states: {
+        isLoading: true,
+        fullPage: true,
+      },
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.states = { isLoading: false, fullPage: false };
+    }, 500);
   },
 };
 </script>

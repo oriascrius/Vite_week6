@@ -1,6 +1,5 @@
 <template>
-  <!-- 主要畫面 -->
-  <div class="container">
+  <div class="container-fluid">
     <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
       <template v-slot:default>
         <img src="@/assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
@@ -8,49 +7,43 @@
     </Loading>
     <div class="text-end mt-4 me-5">
       <button type="button" class="btn btn-custom_addBtn text-white" @click="openModal('new')">
-        增加新商品
+        增加新優惠券
       </button>
     </div>
     <table class="table mt-4">
       <thead>
         <tr>
-          <th>分類</th>
-          <th>商品名稱</th>
-          <th class="text-center">商品圖片</th>
-          <th>原價</th>
-          <th>售價</th>
+          <th>優惠券名稱</th>
+          <th>折扣百分比</th>
+          <th>到期日</th>
+          <th>優惠卷碼</th>
           <th>是否啟用</th>
           <th class="text-center">編輯</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="product in products" :key="product.id" class="align-middle">
-          <td>{{ product.category }}</td>
-          <td>{{ product.title }}</td>
-          <td class="text-center">
-            <button type="button" class="btn btn-light" @click="openModal('lightbox', product)">
-              <img :src="product.imageUrl" alt="商品圖" class="rounded productImages" />
-            </button>
-          </td>
-          <td>{{ product.origin_price }}</td>
-          <td >{{ product.price }}</td>
-          <td >
-            <span v-if="product.is_enabled" class="text-success">啟用</span>
+        <tr v-for="coupon in coupons" :key="coupon.id">
+          <td>{{ coupon.title }}</td>
+          <td>{{ coupon.percent }} %</td>
+          <td>{{ coupon.due_date }}</td>
+          <td>{{ coupon.code }}</td>
+          <td>
+            <span v-if="coupon.is_enabled" class="text-success">已啟用</span>
             <span v-else class="text-danger">未啟用</span>
           </td>
           <td class="text-center">
             <div class="btn-group">
               <button
                 type="button"
-                class="btn btn-sm btn-outline-custom_linkColor"
-                @click="openModal('edit', product)"
+                class="btn btn-sm btn-outline-success"
+                @click="openModal('edit', coupon)"
               >
                 編輯
               </button>
               <button
                 type="button"
                 class="btn btn-sm btn-outline-danger ms-md-2"
-                @click="openModal('delete', product)"
+                @click="openModal('delete', coupon)"
               >
                 刪除
               </button>
@@ -59,40 +52,36 @@
         </tr>
       </tbody>
     </table>
-    <!-- 分頁元件 -->
-    <!-- props 寫法 -> :get-data="getData" -->
-    <!-- emit 寫法 -> @change-page="getData" -->
-    <pagination :pages="page" @change-page="getData"></pagination>
-  </div>
-  <!-- 新增、編輯 Modal -->
-  <div
-    id="productModal"
-    ref="productModal"
-    class="modal fade"
-    tabindex="-1"
-    aria-labelledby="productModalLabel"
-    aria-hidden="true"
-  >
-    <!-- 新增、編輯商品 Modal 元件 -->
-    <!-- :temp-product="tempProduct" -> 讀取 modal 內資料 -->
-    <!--  :upload-images="updateProduct" -> 上傳本地圖片 -->
-    <MealModal
-      :temp-product="tempProduct"
-      :is-new="isNew"
-      @create-images="createImages"
-      @update-meals="updateProduct"
-    ></MealModal>
-  </div>
-  <!-- 刪除 Modal -->
-  <div
-    id="delProductModal"
-    ref="delProductModal"
-    class="modal fade"
-    tabindex="-1"
-    aria-labelledby="delProductModalLabel"
-    aria-hidden="true"
-  >
-    <DelmealModal :temp-product="tempProduct" @del-meals="delProduct"></DelmealModal>
+    <!-- 優惠券分頁 -->
+    <Pagination :pages="page" @change-page="getData"></Pagination>
+    <!-- 新增、編輯 Modal -->
+    <div
+      id="couponsModal"
+      ref="couponsModal"
+      class="modal fade"
+      tabindex="-1"
+      aria-labelledby="couponsModalLabel"
+      aria-hidden="true"
+    >
+      <!-- 新建、編輯優惠券 Modal 元件  -->
+      <MealModal
+        :temp-coupons="tempCoupons"
+        :is-new="isNew"
+        @update-coupons="updateCoupons"
+      ></MealModal>
+    </div>
+    <!-- 刪除 Modal -->
+    <div
+      id="delCouponsModal"
+      ref="delCouponsModal"
+      class="modal fade"
+      tabindex="-1"
+      aria-labelledby="delCouponsModalLabel"
+      aria-hidden="true"
+    >
+      <!-- 刪除優惠券 Modal 元件 -->
+      <DelmealModal :temp-coupons="tempCoupons" @del-coupons="delCoupons"></DelmealModal>
+    </div>
   </div>
 </template>
 
@@ -100,26 +89,22 @@
 import Modal from 'bootstrap/js/dist/modal';
 import Pagination from '@/components/PaginationModal.vue';
 // 引入 新增、編輯商品 Modal 元件
-import MealModal from '@/components/MealModal.vue';
+import MealModal from '@/components/CouponModal.vue';
 // 引入 刪除商品 Modal 元件
-import DelmealModal from '@/components/DelmealModal.vue';
+import DelmealModal from '@/components/DelCouponModal.vue';
 
 export default {
-  name: 'ProductsView',
+  name: 'CouponView',
   props: ['token'],
   data() {
     return {
-      modal: {},
       // 裝 API 傳來的資料
-      products: [],
+      coupons: [],
       // 裝 modal 視窗的資料
-      tempProduct: {
-        imagesUrl: [],
-      },
-      productId: '',
+      tempCoupons: {},
       // 方便判斷是 新增 or 編輯 -> 可以根據 true、false 動態變更 API 動作，post or put
       isNew: false,
-      // 商品分頁
+      // 優惠券分頁
       page: {},
       // loading 圖示判斷
       states: {
@@ -129,6 +114,7 @@ export default {
     };
   },
   components: {
+    // 分頁元件
     Pagination,
     MealModal,
     DelmealModal,
@@ -140,12 +126,12 @@ export default {
       this.states = { isLoading: true, fullPage: true };
       const url = `${import.meta.env.VITE_API}api/${
         import.meta.env.VITE_PATH
-      }/admin/products?page=${page}`;
+      }/admin/coupons?page=${page}`;
       this.$http
         .get(url)
         .then((response) => {
           this.states = { isLoading: false, fullPage: false };
-          this.products = response.data.products;
+          this.coupons = response.data.coupons;
           this.page = response.data.pagination;
         })
         .catch((err) => {
@@ -159,64 +145,54 @@ export default {
     openModal(isNew, item) {
       if (isNew === 'new') {
         // 新增時重置裝 modal 的容器 -> 重置 modal 輸入框
-        this.tempProduct = {
-          imagesUrl: [],
-        };
+        this.tempCoupons = {};
         // 方便 API 動態判斷
         this.isNew = true;
         // 跳出視窗
-        this.modal = new Modal(this.$refs.productModal, {
-          keyboard: false,
-          backdrop: 'static',
+        this.modal = new Modal(this.$refs.couponsModal, {
+          keyboard: true,
+          backdrop: 'true',
         });
         this.modal.show();
       } else if (isNew === 'edit') {
         // 編輯時 -> 拿到參數 item -> 代表拿到原有資料
-        this.tempProduct = { ...item };
+        this.tempCoupons = { ...item };
         // 方便 API 動態判斷
         this.isNew = false;
         // 跳出視窗
-        this.modal = new Modal(this.$refs.productModal, {
-          keyboard: false,
-          backdrop: 'static',
+        this.modal = new Modal(this.$refs.couponsModal, {
+          keyboard: true,
+          backdrop: 'true',
         });
         this.modal.show();
       } else if (isNew === 'delete') {
         // 刪除時 -> 拿到參數 item -> 代表拿到原有資料 -> 開啟刪除 modal 視窗
-        this.tempProduct = { ...item };
+        this.tempCoupons = { ...item };
         // 跳出視窗
-        this.modal = new Modal(this.$refs.delProductModal, {
-          keyboard: false,
-          backdrop: 'static',
-        });
-        this.modal.show();
-      } else if (isNew === 'lightbox') {
-        this.tempProduct = { ...item };
-        // 跳出視窗
-        this.modal = new Modal(this.$refs.productModal, {
-          keyboard: false,
-          backdrop: 'static',
+        this.modal = new Modal(this.$refs.delCouponsModal, {
+          keyboard: true,
+          backdrop: 'true',
         });
         this.modal.show();
       }
     },
     // 新建、編輯 API 動作
-    updateProduct() {
+    updateCoupons() {
       // 新建 API
-      let url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/product`;
+      let url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/coupon`;
       let http = 'post';
 
       //  編輯 API
       // !this.isNew -> 判斷邏輯 -> 因為 if(這裡要true) 後續才會執行，而裡面要做編輯動作
       // 所以 if(!false) -> 可以接下去執行也可以接續 -> false = 做編輯動作
       if (!this.isNew) {
-        url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/product/${
-          this.tempProduct.id
+        url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/coupon/${
+          this.tempCoupons.id
         }`;
         http = 'put';
       }
       // 要夾帶更改的資料
-      this.$http[http](url, { data: this.tempProduct })
+      this.$http[http](url, { data: this.tempCoupons })
         // 成功
         .then(() => {
           if (!this.isNew) {
@@ -224,7 +200,7 @@ export default {
               toast: true,
               position: 'top-end',
               icon: 'success',
-              title: '修改商品成功',
+              title: '修改優惠券成功',
               showConfirmButton: false,
               timer: 1500,
             });
@@ -233,7 +209,7 @@ export default {
               toast: true,
               position: 'top-end',
               icon: 'success',
-              title: '新建一個新商品成功',
+              title: '新建一個新優惠券成功',
               showConfirmButton: false,
               timer: 1500,
             });
@@ -250,9 +226,9 @@ export default {
         });
     },
     // 刪除 API 動作
-    delProduct() {
-      const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/product/${
-        this.tempProduct.id
+    delCoupons() {
+      const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/coupon/${
+        this.tempCoupons.id
       }`;
       this.$http
         .delete(url)
@@ -262,7 +238,7 @@ export default {
             toast: true,
             position: 'top-end',
             icon: 'success',
-            title: '刪除商品成功',
+            title: '刪除優惠券成功',
             showConfirmButton: false,
             timer: 1500,
           });
@@ -276,11 +252,6 @@ export default {
           // 跳出 response.data.message 提醒框
           alert(err.data.message);
         });
-    },
-    // 圖片
-    createImages() {
-      this.tempProduct.imagesUrl = [];
-      this.tempProduct.imagesUrl.push('');
     },
   },
   mounted() {

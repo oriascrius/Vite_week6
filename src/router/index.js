@@ -27,12 +27,16 @@ const routes = [
     ],
   },
   {
+    path: '/admin/:pathMatch(.*)*',
+    redirect: { name: 'Login' },
+  },
+  {
     path: '/:pathMatch(.*)*',
     component: () => import('../views/ErrorView.vue'),
   },
-  // 巢狀路由
   {
     path: '/login',
+    name: 'Login',
     component: () => import('../views/LoginView.vue'),
   },
   {
@@ -46,6 +50,10 @@ const routes = [
       {
         path: 'orders',
         component: () => import('../views/Dashboard/OrdersView.vue'),
+      },
+      {
+        path: 'coupons',
+        component: () => import('../views/Dashboard/CouponsView.vue'),
       },
     ],
   },

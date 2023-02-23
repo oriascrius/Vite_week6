@@ -1,15 +1,8 @@
 <template>
   <div>
-    <Loading
-      v-model:active="isLoading"
-      :is-full-page="fullPage"
-    >
+    <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
       <template v-slot:default>
-        <img
-          src="../assets/images/loading_icon.png"
-          alt="loading圖"
-          class="loadingIcon"
-        />
+        <img src="../assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
       </template>
     </Loading>
     <!-- <Loading :active="isLoading"></Loading>-->
@@ -19,17 +12,14 @@
     <header class="banner_block"></header>
     <!-- 3. 商品分類 -->
     <ul class="nav nav-tabs m-5 p-5 justify-content-center flex-nowrap text-nowrap">
-      <li
-        class="nav-item"
-        v-for="tabItem in productsTab"
-        :key="tabItem"
-      >
+      <li class="nav-item" v-for="tabItem in productsTab" :key="tabItem">
         <a
           href="#"
           class="nav-link"
           :class="{ active: isActive === tabItem }"
           @click.prevent="isActive = tabItem"
-        >{{ tabItem }}</a>
+          >{{ tabItem }}</a
+        >
       </li>
     </ul>
     <!-- 4. 商品列表 -->
@@ -77,10 +67,7 @@
           </div>
         </div>
         <!-- 分頁元件 -->
-        <PaginationModal
-          :pages="page"
-          @change-page="getProducts"
-        ></PaginationModal>
+        <PaginationModal :pages="page" @change-page="getProducts"></PaginationModal>
       </div>
       <CommonFooter></CommonFooter>
     </div>
@@ -98,7 +85,7 @@
 
 <script>
 import UserProductModal from '@/components/UserProductModal.vue';
-// import PaginationModal from '@/components/PaginationModal.vue';
+import PaginationModal from '@/components/PaginationModal.vue';
 import CommonNav from '@/components/CommonNav.vue';
 import CommonFooter from '@/components/CommonFooter.vue';
 
@@ -115,7 +102,10 @@ export default {
       // 防止一直觸發請求 API，給予 loading 緩衝，判斷有 id 時，先禁止按鈕
       loadingItem: '',
       // loading 圖示判斷
-      isLoading: false,
+      states: {
+        isLoading: false,
+        fullPage: false,
+      },
       // 商品品項種類
       productsTab: ['全部', '主食', '早午餐', '漢堡', '炸物', '甜點', '沙拉', '飲料'],
       // 預設頁籤在全部
@@ -125,21 +115,17 @@ export default {
   methods: {
     // 商品列表 - 取得商品列表 API
     getProducts(page = 1) {
-      // VueLoading
-      // const loader = this.$loading.show();
-      this.isLoading = true;
+      this.states = { isLoading: true, fullPage: true };
       this.$http
         .get(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/products?page=${page}`)
         .then((res) => {
           this.products = res.data.products;
           this.page = res.data.pagination;
-          // loader.hide();
-          this.isLoading = false;
+          this.states = { isLoading: false, fullPage: false };
         })
         .catch((err) => {
           alert(err.response.data.message);
-          // loader.hide();
-          this.isLoading = false;
+          this.states = { isLoading: false, fullPage: false };
         });
     },
     // 單一商品細節 - HTML 上 拿到 id，從這接收後在 props 到 modal 子元件裡面 :id = productId
@@ -194,7 +180,7 @@ export default {
     // 詳細商品 modal
     UserProductModal,
     // 分頁 元件
-    // PaginationModal,
+    PaginationModal,
     // Nav 元件
     CommonNav,
     // Footer 元件

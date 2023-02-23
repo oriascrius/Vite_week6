@@ -20,8 +20,6 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-import './assets/css/base.css';
-
 import App from './App.vue';
 import router from './router';
 
@@ -33,7 +31,6 @@ configure({
   generateMessage: localize({ zh_TW: zhTW }), // 載入繁體中文語系
   validateOnInput: true, // 當輸入任何內容直接進行驗證
 });
-
 // 設定預設語系
 setLocale('zh_TW');
 
@@ -41,7 +38,6 @@ createApp(App)
   .use(router)
   .use(VueAxios, axios)
   .use(VueSweetalert2)
-  // .use(LoadingPlugin)
   .component('Loading', Loading)
   .component('Form', Form)
   .component('Field', Field)
