@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="subscribe_card mt-6"
-    style="background-image: url('../src/assets/images/Subscribe_Banner.png')"
-  >
+  <div class="subscribe_card mt-6">
     <div class="container">
       <div class="row">
         <div class="col-lg-4 offset-lg-7 mt-8 text-custom_btn-color subscribe_block">

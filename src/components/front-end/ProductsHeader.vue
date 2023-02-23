@@ -1,8 +1,5 @@
 <template>
-  <header
-    class="container-fluid"
-    style="background-image: url('../src/assets/images/ProductsHeader_banner.png')"
-  >
+  <header class="container-fluid products-header">
     <div class="row header_block">
       <div class="col-5"></div>
       <div class="col-7 align-self-end">

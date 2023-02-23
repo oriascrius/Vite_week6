@@ -1,6 +1,6 @@
 <template>
   <header
-    class="container-fluid"
+    class="container-fluid index-header"
   >
     <div class="row header_block">
       <div class="col-5"></div>
