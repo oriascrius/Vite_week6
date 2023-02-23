@@ -181,7 +181,7 @@
         </button>
         <button
           type="button"
-          class="btn btn-success"
+          class="btn btn-custom_medium-green text-white"
           @click="$emit('updateMeals', this.$props.isNew)"
         >
           確認
@@ -195,12 +195,14 @@
 export default {
   props: {
     tempProduct: {
-      // type: Object,
-      // default: () => ({}),
-      // required: true,
-      type: String,
-      default: '',
+      type: Object,
+      default() {
+        return {};
+      },
       required: true,
+      // type: String,
+      // default: '',
+      // required: true,
     },
     isNew: {
       type: Boolean,

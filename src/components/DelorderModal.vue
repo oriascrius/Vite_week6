@@ -9,8 +9,28 @@
       </div>
       <div class="modal-body">
         是否刪除
-        <strong class="text-danger">{{ this.$props.tempOrders.user?.email }}</strong>
+        <strong class="text-danger">{{ this.$props.tempOrders?.id }}</strong>
         訂單(刪除後將無法恢復)。
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <span class="ms-2">訂購商品</span>
+            <table class="table">
+              <tbody>
+                <tr v-for="item in this.$props.tempOrders.products" :key="item.id">
+                  <th>
+                    {{ item.product.title }}
+                  </th>
+                  <td>{{ item.qty }} / {{ item.product.unit }}</td>
+                  <td class="text-end">
+                   $ {{ item.final_total }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">

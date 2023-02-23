@@ -7,7 +7,11 @@
       </template>
     </Loading>
     <div class="text-end mt-4 me-5">
-      <button type="button" class="btn btn-custom_addBtn text-white" @click="openModal('new')">
+      <button
+        type="button"
+        class="btn btn-custom_btn-color text-white"
+        @click="openModal('new')"
+      >
         增加新商品
       </button>
     </div>
@@ -33,8 +37,8 @@
             </button>
           </td>
           <td>{{ product.origin_price }}</td>
-          <td >{{ product.price }}</td>
-          <td >
+          <td>{{ product.price }}</td>
+          <td>
             <span v-if="product.is_enabled" class="text-success">啟用</span>
             <span v-else class="text-danger">未啟用</span>
           </td>
@@ -42,14 +46,14 @@
             <div class="btn-group">
               <button
                 type="button"
-                class="btn btn-sm btn-outline-custom_linkColor"
+                class="btn btn-sm btn-outline-custom_dark-green"
                 @click="openModal('edit', product)"
               >
                 編輯
               </button>
               <button
                 type="button"
-                class="btn btn-sm btn-outline-danger ms-md-2"
+                class="btn btn-sm btn-outline-custom_red ms-md-2"
                 @click="openModal('delete', product)"
               >
                 刪除

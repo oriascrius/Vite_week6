@@ -6,7 +6,7 @@
       </template>
     </Loading>
     <div class="text-end mt-4 me-5">
-      <button type="button" class="btn btn-custom_addBtn text-white" @click="openModal('new')">
+      <button type="button" class="btn btn-custom_btn-color text-white" @click="openModal('new')">
         增加新優惠券
       </button>
     </div>
@@ -14,9 +14,9 @@
       <thead>
         <tr>
           <th>優惠券名稱</th>
+          <th>優惠卷碼</th>
           <th>折扣百分比</th>
           <th>到期日</th>
-          <th>優惠卷碼</th>
           <th>是否啟用</th>
           <th class="text-center">編輯</th>
         </tr>
@@ -24,9 +24,11 @@
       <tbody>
         <tr v-for="coupon in coupons" :key="coupon.id">
           <td>{{ coupon.title }}</td>
-          <td>{{ coupon.percent }} %</td>
-          <td>{{ coupon.due_date }}</td>
           <td>{{ coupon.code }}</td>
+          <td>{{ coupon.percent }} %</td>
+          <td>
+            {{ new Date(coupon.due_date * 1000).toLocaleDateString() }}
+          </td>
           <td>
             <span v-if="coupon.is_enabled" class="text-success">已啟用</span>
             <span v-else class="text-danger">未啟用</span>
@@ -35,14 +37,14 @@
             <div class="btn-group">
               <button
                 type="button"
-                class="btn btn-sm btn-outline-success"
+                class="btn btn-sm btn-outline-custom_dark-green"
                 @click="openModal('edit', coupon)"
               >
                 編輯
               </button>
               <button
                 type="button"
-                class="btn btn-sm btn-outline-danger ms-md-2"
+                class="btn btn-sm btn-outline-custom_red ms-md-2"
                 @click="openModal('delete', coupon)"
               >
                 刪除
@@ -145,7 +147,10 @@ export default {
     openModal(isNew, item) {
       if (isNew === 'new') {
         // 新增時重置裝 modal 的容器 -> 重置 modal 輸入框
-        this.tempCoupons = {};
+        this.tempCoupons = {
+          due_date: new Date().getTime() / 1000,
+          is_enabled: 0,
+        };
         // 方便 API 動態判斷
         this.isNew = true;
         // 跳出視窗

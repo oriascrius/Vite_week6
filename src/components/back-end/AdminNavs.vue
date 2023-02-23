@@ -3,7 +3,10 @@
     <nav class="navbar navbar-expand-md">
       <router-link to="/" class="navbar-brand"><h1></h1></router-link>
       <div class="ms-auto me-5">
-        <button class="btn btn-custom_signout btn-sm rounded text-white" @click.prevent="signout">
+        <button
+          class="btn btn-custom_medium-green btn-sm rounded text-white"
+          @click.prevent="signout"
+        >
           登出
         </button>
       </div>

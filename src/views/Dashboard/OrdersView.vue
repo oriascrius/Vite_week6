@@ -9,7 +9,7 @@
       <thead>
         <tr>
           <th>購買時間</th>
-          <th>Email</th>
+          <th>訂單編號</th>
           <th class="text-center">購買款項</th>
           <th>應付金額</th>
           <th>是否付款</th>
@@ -18,8 +18,8 @@
       </thead>
       <tbody>
         <tr v-for="order in orders" :key="order.id">
-          <td>{{ order.create_at }}</td>
-          <td>{{ order.user.email }}</td>
+          <td>{{ new Date(order.create_at * 1000).toLocaleDateString() }}</td>
+          <td>{{ order.id }}</td>
           <td class="text-center pe-4">
             <ul>
               <li v-for="item in order.products" :key="item.id">
@@ -28,41 +28,23 @@
               </li>
             </ul>
           </td>
-          <td>{{ order.total }}</td>
+          <td>$ {{ order.total }}</td>
           <td>
-            <!-- <span v-if="order.is_paid" class="text-success">已付款</span>
-            <span v-else class="text-danger">未付款</span> -->
-            <div class="form-check form-switch">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                v-model="order.is_paid"
-                :id="order.id"
-              />
-              <label class="form-check-label" :for="order.id">
-                <span
-                  v-if="order.is_paid"
-                  :class="{
-                    'text-success': order.is_paid,
-                    'font-weight-bold': order.is_paid,
-                  }"
-                  >{{ order.is_paid ? '已付款' : '尚未付款' }}</span
-                ></label
-              >
-            </div>
+            <span v-if="order.is_paid" class="text-success">已付款</span>
+            <span v-else class="text-danger">未付款</span>
           </td>
-          <td  class="text-center">
+          <td class="text-center">
             <div class="btn-group">
               <button
                 type="button"
-                class="btn btn-sm btn-outline-custom_linkColor"
+                class="btn btn-sm btn-outline-custom_dark-green"
                 @click="openModal('edit', order)"
               >
                 編輯
               </button>
               <button
                 type="button"
-                class="btn btn-sm btn-outline-danger ms-md-2"
+                class="btn btn-sm btn-outline-custom_red ms-md-2"
                 @click="openModal('delete', order)"
               >
                 刪除
@@ -159,11 +141,10 @@ export default {
     // 按下按鈕後的動作（渲染，不是 API 動作）
     // isNew -> 在 HTML 標籤寫上判斷 新增、編輯、刪除
     // item -> 編輯的話根據 item 帶入舊資料、刪除的話根據該 item 刪除該筆資料
-    openModal(isNew, item, id) {
+    openModal(isNew, item) {
       if (isNew === 'edit') {
         // 編輯時 -> 拿到參數 item -> 代表拿到原有資料
         this.tempOrders = { ...item };
-        this.orderId = id;
         // 跳出視窗
         this.modal = new Modal(this.$refs.ordersModal, {
           keyboard: false,
@@ -182,8 +163,7 @@ export default {
       }
     },
     // 編輯 API 動作
-    updateOrders(newProps) {
-      this.tempOrders = newProps;
+    updateOrders() {
       const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/order/${
         this.tempOrders.id
       }`;

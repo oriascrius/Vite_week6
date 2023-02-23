@@ -34,7 +34,13 @@
         </div>
 
         <div class="mt-5">
-          <button class="btn btn-success col-3" type="button" @click.prevent="login">登入</button>
+          <button
+            class="btn btn-custom_medium-green col-3 text-white"
+            type="button"
+            @click.prevent="login"
+          >
+            登入
+          </button>
         </div>
       </div>
     </form>
@@ -65,7 +71,7 @@ export default {
           // 存取登入的 token、expired
           const { token, expired } = response.data;
           // cookie 存取 token、expired、存取資料後方便不用二次取資料
-          document.cookie = `qoqVueDemo=${token};expires=${new Date(expired)};`;
+          document.cookie = `qoqVueDemo=${token};expires=${new Date(expired)}; path=/`;
           this.$swal.fire({
             toast: true,
             position: 'center',

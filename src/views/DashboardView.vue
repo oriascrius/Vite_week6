@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import AdminNavs from '../components/backstage/AdminNavs.vue';
-import AdminTabs from '../components/backstage/AdminTabs.vue';
+import AdminNavs from '../components/back-end/AdminNavs.vue';
+import AdminTabs from '../components/back-end/AdminTabs.vue';
 
 // 驗證可以寫這邊
 export default {

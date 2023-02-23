@@ -35,15 +35,9 @@ ul {
 /* 1. nav 設定 */
 nav {
   height: 85px;
-  color: #747d54;
 }
-
-#navbarNav a {
-  color: #747d54;
-}
-
-#navbarNav a:hover {
-  color: #9ca57c;
+.navbar{
+  background-color: #FEF5F2;
 }
 
 h1 {

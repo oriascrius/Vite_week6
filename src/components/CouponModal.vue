@@ -9,69 +9,56 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="row justify-content-center">
-          <div class="col">
-            <div class="mb-3">
-              <label for="title" class="form-label">優惠券名稱</label>
-              <input
-                id="title"
-                v-model.trim="this.$props.tempCoupons.title"
-                type="text"
-                class="form-control"
-                placeholder="請輸入優惠券名稱"
-              />
-            </div>
+        <div class="mb-3">
+          <label for="title" class="form-label">優惠券名稱</label>
+          <input
+            id="title"
+            v-model.trim="tempCoupon.title"
+            type="text"
+            class="form-control"
+            placeholder="請輸入優惠券名稱"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="code" class="form-label">優惠券碼</label>
+          <input
+            id="code"
+            v-model.trim="tempCoupon.code"
+            type="text"
+            class="form-control"
+            placeholder="請輸入優惠券碼"
+            oninput="value=value.replace('-', '')"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="category" class="form-label">折扣百分比</label>
+          <input
+            id="category"
+            v-model.number="tempCoupon.percent"
+            type="number"
+            class="form-control"
+            min="0"
+            max="100"
+            placeholder="請輸入折扣百分比"
+            oninput="value=value.replace('-', '')"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="due_date">到期日</label>
+          <input type="date" class="form-control" id="due_date" v-model="due_date" />
+        </div>
 
-            <div class="row">
-              <div class="mb-3 col-md-6">
-                <label for="category" class="form-label">折扣百分比</label>
-                <!-- oninput="value=value.replace('-', '')" -> 禁止輸入負 -->
-                <input
-                  id="category"
-                  v-model.number="this.$props.tempCoupons.percent"
-                  type="number"
-                  class="form-control"
-                  min="0"
-                  placeholder="請輸入折扣百分比"
-                  oninput="value=value.replace('-', '')"
-                />
-              </div>
-              <div class="mb-3 col-md-6">
-                <label for="price" class="form-label">到期日</label>
-                <input
-                  id="unit"
-                  v-model.number="this.$props.tempCoupons.due_date"
-                  type="number"
-                  class="form-control"
-                  placeholder="請輸入到期日"
-                  oninput="value=value.replace('-', '')"
-                />
-              </div>
-              <div class="mb-3 col-md-6">
-                <label for="price" class="form-label">優惠券碼</label>
-                <input
-                  id="unit"
-                  v-model.trim="this.$props.tempCoupons.code"
-                  type="text"
-                  class="form-control"
-                  placeholder="請輸入優惠券碼"
-                  oninput="value=value.replace('-', '')"
-                />
-              </div>
-            </div>
-            <div class="mb-3">
-              <div class="form-check">
-                <input
-                  id="is_enabled"
-                  v-model="this.$props.tempCoupons.is_enabled"
-                  class="form-check-input"
-                  type="checkbox"
-                  :true-value="1"
-                  :false-value="0"
-                />
-                <label class="form-check-label" for="is_enabled">是否啟用</label>
-              </div>
-            </div>
+        <div class="mt-3">
+          <div class="form-check d-flex justify-content-end">
+            <input
+              id="is_enabled"
+              v-model="tempCoupon.is_enabled"
+              class="form-check-input"
+              type="checkbox"
+              :true-value="1"
+              :false-value="0"
+            />
+            <label class="form-check-label px-3" for="is_enabled">是否啟用</label>
           </div>
         </div>
       </div>
@@ -81,7 +68,7 @@
         </button>
         <button
           type="button"
-          class="btn btn-success"
+          class="btn btn-custom_medium-green text-white"
           @click="$emit('updateCoupons', this.$props.isNew)"
         >
           確認
@@ -94,25 +81,33 @@
 export default {
   props: {
     tempCoupons: {
-      // type: Object,
-      // default: () => {},
-      // required: true,
-      type: String,
-      default: '',
+      type: Object,
+      default() {
+        return {};
+      },
       required: true,
     },
     isNew: {
-      // type: Object,
-      // default: () => ({}),
-      isNew: {
-        type: Boolean,
-        default: false,
-      },
+      type: Boolean,
+      default: false,
     },
   },
-  mounted() {
-    // 将 tempCoupons 转换为字符串类型
-    this.$props.tempCoupons = JSON.stringify(this.$props.tempCoupons);
+  data() {
+    return {
+      tempCoupon: {},
+      due_date: '',
+    };
+  },
+
+  watch: {
+    tempCoupons() {
+      this.tempCoupon = this.tempCoupons;
+      const dateAndTime = new Date(this.tempCoupon.due_date * 1000).toISOString().split('T');
+      [this.due_date] = dateAndTime;
+    },
+    due_date() {
+      this.tempCoupon.due_date = Math.floor(new Date(this.due_date) / 1000);
+    },
   },
 };
 </script>
