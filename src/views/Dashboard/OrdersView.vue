@@ -21,7 +21,7 @@
           <td>{{ new Date(order.create_at * 1000).toLocaleDateString() }}</td>
           <td>{{ order.id }}</td>
           <td class="text-center pe-4">
-            <ul>
+            <ul class="list-unstyled">
               <li v-for="item in order.products" :key="item.id">
                 {{ item.product.title }} ： {{ item.qty }}
                 {{ item.product.unit }}
@@ -191,34 +191,6 @@ export default {
           // 跳出提醒視窗
           alert(err.response.data.message);
         });
-      // if (!this.isNew) {
-      //   const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/order/${
-      //     this.tempOrders.id
-      //   }`;
-      //   // 要夾帶更改的資料
-      //   this.$http
-      //     .put(url, { data: this.tempOrders })
-      //     // 成功
-      //     .then(() => {
-      //       this.$swal.fire({
-      //         toast: true,
-      //         position: 'top-end',
-      //         icon: 'success',
-      //         title: '修改優惠券成功',
-      //         showConfirmButton: false,
-      //         timer: 1500,
-      //       });
-
-      //       // 關閉視窗
-      //       this.modal.hide();
-      //       // 重新取得資料
-      //       this.getData();
-      //     })
-      //     // 失敗
-      //     .catch((err) => {
-      //       // 跳出提醒視窗
-      //       alert(err.response.data.message);
-      //     });
     },
     // 刪除 API 動作
     delOrders() {

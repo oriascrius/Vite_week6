@@ -396,6 +396,10 @@ $spacers: (
   3: $spacer,
   4: $spacer * 1.5,
   5: $spacer * 3,
+  // 自訂
+  6: $spacer * 4,
+  7: $spacer * 5,
+  8: $spacer * 6,
 ) !default;
 // scss-docs-end spacer-variables-maps
 
@@ -502,7 +506,9 @@ $border-widths: (
 ) !default;
 
 $border-style: solid !default;
-$border-color: $gray-300 !default;
+// $border-color: $gray-300 !default;
+// 自訂
+$border-color: #656a44 !default;
 $border-color-translucent: rgba($black, 0.175) !default;
 // scss-docs-end border-variables
 

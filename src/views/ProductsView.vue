@@ -5,11 +5,8 @@
         <img src="../assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
       </template>
     </Loading>
-    <!-- <Loading :active="isLoading"></Loading>-->
-    <!-- 1. Nav -->
-    <CommonNav></CommonNav>
-    <!-- 2. header -->
-    <header class="banner_block"></header>
+    <UserNav></UserNav>
+    <ProductsHeader></ProductsHeader>
     <!-- 3. 商品分類 -->
     <ul class="nav nav-tabs m-5 p-5 justify-content-center flex-nowrap text-nowrap">
       <li class="nav-item" v-for="tabItem in productsTab" :key="tabItem">
@@ -69,7 +66,7 @@
         <!-- 分頁元件 -->
         <PaginationModal :pages="page" @change-page="getProducts"></PaginationModal>
       </div>
-      <CommonFooter></CommonFooter>
+      <UserFooter></UserFooter>
     </div>
     <!-- 詳細商品 -->
     <UserProductModal
@@ -84,10 +81,11 @@
 </template>
 
 <script>
+import UserNav from '@/components/front-end/UserNav.vue';
+import ProductsHeader from '@/components/front-end/ProductsHeader.vue';
+import UserFooter from '@/components/front-end/UserFooter.vue';
 import UserProductModal from '@/components/UserProductModal.vue';
 import PaginationModal from '@/components/PaginationModal.vue';
-import CommonNav from '@/components/CommonNav.vue';
-import CommonFooter from '@/components/CommonFooter.vue';
 
 export default {
   name: 'ProductsView',
@@ -182,9 +180,10 @@ export default {
     // 分頁 元件
     PaginationModal,
     // Nav 元件
-    CommonNav,
+    UserNav,
     // Footer 元件
-    CommonFooter,
+    UserFooter,
+    ProductsHeader,
   },
   mounted() {
     this.getProducts();

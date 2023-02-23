@@ -1,7 +1,3 @@
-/* 解決 -> 畫面重整時會出現未編譯的資料 */
-[v-cloak] {
-  display: none;
-}
 /* 控制 loading 不倒翁感覺的動畫 */
 .loadingIcon {
   /* animation: breathe 3s ease-in-out infinite; */
@@ -23,8 +19,9 @@ body {
   font-family: 'Noto Serif TC', serif, 'Dancing Script', cursive !important;
   /* , 'Dancing Script', cursive */
 }
-ul {
-  list-style-type: none;
+img {
+  object-fit: cover;
+  object-position: center;
 }
 /* 後台商品列表圖片 */
 .productImages {
@@ -32,14 +29,6 @@ ul {
   height: 100px;
   object-fit: cover;
 }
-/* 1. nav 設定 */
-nav {
-  height: 85px;
-}
-.navbar{
-  background-color: #FEF5F2;
-}
-
 h1 {
   background-image: url(../images/Logo.png);
   background-size: cover;
@@ -48,33 +37,16 @@ h1 {
   width: 297px;
 }
 
-.cart_icon {
-  position: relative;
-}
-
-.badge {
-  position: absolute;
-  top: -5px;
-  left: 30px;
-}
-
-/* 2. banner 設定 */
-.banner_block {
-  position: relative;
+header {
   width: 100%;
   height: 768px;
-  /* min-height: 85vh; */
-  background: url(../images/Home_Banner.png) center no-repeat;
+  background-repeat: no-repeat;
+  background-position: top;
   background-size: cover;
 }
-.banner-text {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 246px;
-  background-color: rgba(116, 125, 84, 0.8); /* 設定半透明背景色 */
-  color: #ffffff; /* 設定文字顏色 */
+/* header 按鈕區塊 */
+.header_block {
+  height: 700px;
 }
 /* 3. 關於我們 設定 */
 .aboutAs_card {
@@ -91,46 +63,29 @@ h1 {
 /* 4. 主打推薦 設定 */
 .menu_recommend {
   height: 954px;
-  background: rgba(116, 125, 84, 0.8);
-  color: #ffffff;
 }
 .menu_recommend_img {
   position: relative;
-  height: 648px;
-  width: 486px;
 }
 .menu_recommend_card {
   position: absolute;
-  top: 411px;
-  left: 280px;
-  color: #747d54;
+  top: 580px;
+  left: 260px;
   width: 368px;
   height: 150px;
   background-color: #ffffff;
+  color: #747d54;
 }
-/* 5. 熱門餐點 設定 */
-.hot_menu li {
-  height: 514px;
-  width: 416px;
-}
-.hot_menu img {
-  height: 416px;
-  width: 416px;
-}
-/* 6. 訂閲 設定 */
-.subscribe_image {
-  position: relative;
+/* 訂閲 設定 */
+.subscribe_card {
   height: 378px;
   width: 100%;
-  background: url(../images/Subscribe_Banner.png) right no-repeat;
+  background-repeat: no-repeat;
+  background-position: right;
   background-attachment: fixed;
   background-size: cover;
 }
 .subscribe_block {
-  position: absolute;
-  top: 100px;
-  left: 900px;
-  width: 416px;
   height: 188px;
   border: 2px solid #747d54;
   background-color: rgba(255, 255, 255, 0.87);
@@ -149,18 +104,9 @@ footer a {
   color: rgba(255, 255, 255, 0.87);
 }
 
-footer span {
-  font-size: 16px;
-}
-
 .footer_top {
   height: 86px;
 }
-
-.footer_top a {
-  line-height: 86px;
-}
-
 .footer_bottom {
   height: 86px;
 }
