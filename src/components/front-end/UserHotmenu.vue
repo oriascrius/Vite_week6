@@ -6,7 +6,10 @@
     </div>
     <ul class="row g-5 list-unstyled">
       <li class="col-md-4">
-        <div class="card" style="width: 416px">
+        <div
+          class="card"
+          style="width: 416px"
+        >
           <img
             src="../../../src/assets/images/HotMenu_001.jpg"
             height="416"
@@ -16,14 +19,23 @@
           <div class="card-body">
             <h5 class="card-title">鮭魚班尼迪克蛋</h5>
             <p class="text-muted">NT $ 220</p>
-            <router-link to="/products" class="text-decoration-none px-2">
-              <button type="button" class="btn btn-custom_btn-color text-white">查看更多</button>
+            <router-link
+              to="/products"
+              class="text-decoration-none px-2"
+            >
+              <button
+                type="button"
+                class="btn btn-custom_btn-color text-white"
+              >查看更多</button>
             </router-link>
           </div>
         </div>
       </li>
       <li class="col-md-4">
-        <div class="card" style="width: 416px">
+        <div
+          class="card"
+          style="width: 416px"
+        >
           <img
             src="../../../src/assets/images/HotMenu_002.jpg"
             height="416"
@@ -33,14 +45,23 @@
           <div class="card-body">
             <h5 class="card-title">鮭魚班尼迪克蛋</h5>
             <p class="text-muted">NT $ 220</p>
-            <router-link to="/products" class="text-decoration-none px-2">
-              <button type="button" class="btn btn-custom_btn-color text-white">查看更多</button>
+            <router-link
+              to="/products"
+              class="text-decoration-none px-2"
+            >
+              <button
+                type="button"
+                class="btn btn-custom_btn-color text-white"
+              >查看更多</button>
             </router-link>
           </div>
         </div>
       </li>
       <li class="col-md-4">
-        <div class="card" style="width: 416px">
+        <div
+          class="card"
+          style="width: 416px"
+        >
           <img
             src="../../../src/assets/images/HotMenu_003.jpg"
             height="416"
@@ -50,7 +71,10 @@
           <div class="card-body">
             <h5 class="card-title">鮭魚班尼迪克蛋</h5>
             <p class="text-muted">NT $ 220</p>
-            <button type="button" class="btn btn-custom_btn-color text-white">查看更多</button>
+            <button
+              type="button"
+              class="btn btn-custom_btn-color text-white"
+            >查看更多</button>
           </div>
         </div>
       </li>

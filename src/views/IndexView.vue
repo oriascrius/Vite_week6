@@ -1,20 +1,27 @@
 <template>
   <div>
-    <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
+    <Loading
+      v-model:active="states.isLoading"
+      :is-full-page="states.fullPage"
+    >
       <template v-slot:default>
-        <img src="../assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
+        <img
+          src="../assets/images/loading_icon.png"
+          alt="loading圖"
+          class="loadingIcon"
+        />
       </template>
     </Loading>
     <!-- 1. nav -->
     <UserNav></UserNav>
     <!-- 2. header -->
-   <IndexHeader></IndexHeader>
+    <IndexHeader></IndexHeader>
     <!-- 3. 關於我們 -->
     <IndexAboutus></IndexAboutus>
     <!-- 4. 主打推薦 -->
-   <UserRecommend></UserRecommend>
+    <UserRecommend></UserRecommend>
     <!-- 5. 熱門餐點 -->
-   <UserHotmenu></UserHotmenu>
+    <UserHotmenu></UserHotmenu>
     <!-- 6. 訂閱 -->
     <UserSubscribe></UserSubscribe>
     <!-- 7. footer -->

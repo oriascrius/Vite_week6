@@ -47,7 +47,7 @@ export default {
       }
     },
     signout() {
-      document.cookie = 'hexToken=;expires=;';
+      document.cookie = 'qoqVueDemo=;expires=;';
       this.$swal
         .fire({
           title: '確定要登出嗎？',

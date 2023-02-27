@@ -1,8 +1,15 @@
 <template>
   <div class="container">
-    <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
+    <Loading
+      v-model:active="states.isLoading"
+      :is-full-page="states.fullPage"
+    >
       <template v-slot:default>
-        <img src="../assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
+        <img
+          src="../assets/images/loading_icon.png"
+          alt="loading圖"
+          class="loadingIcon"
+        />
       </template>
     </Loading>
     <!-- 購物車 -->
@@ -30,7 +37,10 @@
           </thead>
           <tbody>
             <!-- 當 cart 有內容才呈現購物車 -->
-            <tr v-for="cartItem in cart.carts" :key="cartItem.id">
+            <tr
+              v-for="cartItem in cart.carts"
+              :key="cartItem.id"
+            >
               <td style="width: 100px">
                 <button
                   type="button"
@@ -51,7 +61,11 @@
                     @change="updateCartItem(cartItem)"
                     :disabled="cartItem.id === loadingItem"
                   >
-                    <option :value="i" v-for="i in 20" :key="i + '1233'">
+                    <option
+                      :value="i"
+                      v-for="i in 20"
+                      :key="i + '1233'"
+                    >
                       {{ i }}
                     </option>
                   </select>
@@ -84,9 +98,17 @@
     <!-- 表單驗證 -->
     <!-- is-invalid 是 bootstrap 中，Forms validation 顯示紅框 -->
     <div class="my-5 row justify-content-center">
-      <Form ref="form" class="col-md-6" v-slot="{ errors }" @submit="sendOrder">
+      <Form
+        ref="form"
+        class="col-md-6"
+        v-slot="{ errors }"
+        @submit="sendOrder"
+      >
         <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
+          <label
+            for="email"
+            class="form-label"
+          >Email</label>
           <Field
             id="email"
             name="email"
@@ -97,11 +119,17 @@
             rules="email|required"
             v-model="form.user.email"
           ></Field>
-          <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
+          <ErrorMessage
+            name="email"
+            class="invalid-feedback"
+          ></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label for="name" class="form-label">收件人姓名</label>
+          <label
+            for="name"
+            class="form-label"
+          >收件人姓名</label>
           <Field
             id="name"
             name="姓名"
@@ -112,26 +140,38 @@
             rules="required"
             v-model="form.user.name"
           ></Field>
-          <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
+          <ErrorMessage
+            name="姓名"
+            class="invalid-feedback"
+          ></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label for="tel" class="form-label">收件人電話</label>
+          <label
+            for="tel"
+            class="form-label"
+          >收件人電話</label>
           <Field
             id="tel"
             name="電話"
-            type="text"
+            type="tel"
             class="form-control"
             :class="{ 'is-invalid': errors['電話'] }"
             placeholder="請輸入電話"
-            rules="required"
+            :rules="isPhone"
             v-model="form.user.tel"
           ></Field>
-          <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+          <ErrorMessage
+            name="電話"
+            class="invalid-feedback"
+          ></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label for="address" class="form-label">收件人地址</label>
+          <label
+            for="address"
+            class="form-label"
+          >收件人地址</label>
           <Field
             id="address"
             name="地址"
@@ -142,11 +182,17 @@
             rules="required"
             v-model="form.user.address"
           ></Field>
-          <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
+          <ErrorMessage
+            name="地址"
+            class="invalid-feedback"
+          ></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label for="message" class="form-label">留言</label>
+          <label
+            for="message"
+            class="form-label"
+          >留言</label>
           <textarea
             name=""
             id="message"
@@ -157,7 +203,10 @@
           ></textarea>
         </div>
         <div class="text-end">
-          <button type="submit" class="btn btn-danger">送出訂單</button>
+          <button
+            type="submit"
+            class="btn btn-danger"
+          >送出訂單</button>
         </div>
       </Form>
     </div>
@@ -284,7 +333,7 @@ export default {
     // 自訂表單號碼規則
     isPhone(value) {
       const phoneNumber = /^(09)[0-9]{8}$/;
-      return phoneNumber.test(value) ? true : '請輸入行動電話號碼';
+      return phoneNumber.test(value) ? true : '請輸入行動電話';
     },
     // 送出訂單
     sendOrder() {

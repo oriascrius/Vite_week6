@@ -1,12 +1,18 @@
 <!-- eslint-disable max-len -->
 <template>
-  <!-- 1. nav -->
   <nav class="navbar navbar-expand-md" style="height: 85px; background-color: #fef5f2">
     <div class="container">
-      <!-- Logo -->
-      <a href="#">
-        <h1></h1>
-      </a>
+      <router-link to="/" class="navbar-brand">
+        <h1
+          style="
+            background-image: url(../../../src/assets/images/Logo.png);
+            background-size: cover;
+            background-position: center;
+            height: 62.12px;
+            width: 297px;
+          "
+        ></h1>
+      </router-link>
       <!-- 導覽 -->
       <button
         class="navbar-toggler"

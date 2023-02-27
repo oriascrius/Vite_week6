@@ -1,8 +1,15 @@
 <template>
   <div class="container mt-5">
-    <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
+    <Loading
+      v-model:active="states.isLoading"
+      :is-full-page="states.fullPage"
+    >
       <template v-slot:default>
-        <img src="../assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
+        <img
+          src="../assets/images/loading_icon.png"
+          alt="loading圖"
+          class="loadingIcon"
+        />
       </template>
     </Loading>
     <form class="row justify-content-center">
@@ -10,7 +17,10 @@
         <h2 class="h3 mb-5 font-weight-normal">後台管理系統</h2>
         <!-- Email -->
         <div class="mb-4 col-8 mx-auto">
-          <label for="inputEmail" class="sr-only mb-3">Email address</label>
+          <label
+            for="inputEmail"
+            class="sr-only mb-3"
+          >Email address</label>
           <input
             type="email"
             id="inputEmail"
@@ -22,7 +32,10 @@
         </div>
         <!-- Password -->
         <div class="mb-2 col-8 mx-auto">
-          <label for="inputPassword" class="sr-only mb-3">Password</label>
+          <label
+            for="inputPassword"
+            class="sr-only mb-3"
+          >Password</label>
           <input
             type="password"
             id="inputPassword"

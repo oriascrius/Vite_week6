@@ -31,9 +31,9 @@
           />
         </div>
         <div class="mb-3">
-          <label for="category" class="form-label">折扣百分比</label>
+          <label for="discount" class="form-label">折扣百分比</label>
           <input
-            id="category"
+            id="discount"
             v-model.number="tempCoupon.percent"
             type="number"
             class="form-control"

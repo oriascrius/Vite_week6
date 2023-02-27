@@ -7,11 +7,7 @@
       </template>
     </Loading>
     <div class="text-end mt-4 me-5">
-      <button
-        type="button"
-        class="btn btn-custom_btn-color text-white"
-        @click="openModal('new')"
-      >
+      <button type="button" class="btn btn-custom_btn-color text-white" @click="openModal('new')">
         增加新商品
       </button>
     </div>
@@ -33,7 +29,12 @@
           <td>{{ product.title }}</td>
           <td class="text-center">
             <button type="button" class="btn btn-light" @click="openModal('lightbox', product)">
-              <img :src="product.imageUrl" alt="商品圖" class="rounded productImages" />
+              <img
+                :src="product.imageUrl"
+                alt="商品圖"
+                class="rounded"
+                style="width: 100px; height: 100px; object-fit: cover"
+              />
             </button>
           </td>
           <td>{{ product.origin_price }}</td>

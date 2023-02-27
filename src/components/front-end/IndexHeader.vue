@@ -1,8 +1,16 @@
 <template>
   <header
-    class="container-fluid index-header"
+    class="container-fluid"
+    style="
+      width: 100%;
+      height: 768px;
+      background-image: url('../../../src/assets/images/Home_Banner.png');
+      background-repeat: no-repeat;
+      background-position: top;
+      background-size: cover;
+    "
   >
-    <div class="row header_block">
+    <div class="row" style="height: 700px">
       <div class="col-5"></div>
       <div class="col-7 align-self-end">
         <router-link to="/products" class="text-decoration-none px-2"

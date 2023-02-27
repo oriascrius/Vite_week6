@@ -200,9 +200,6 @@ export default {
         return {};
       },
       required: true,
-      // type: String,
-      // default: '',
-      // required: true,
     },
     isNew: {
       type: Boolean,

@@ -1,7 +1,17 @@
 <template>
   <div class="container">
     <nav class="navbar navbar-expand-md">
-      <router-link to="/" class="navbar-brand"><h1></h1></router-link>
+      <router-link to="/" class="navbar-brand">
+        <h1
+          style="
+            background-image: url(../../../src/assets/images/Logo.png);
+            background-size: cover;
+            background-position: center;
+            height: 62.12px;
+            width: 297px;
+          "
+        ></h1>
+      </router-link>
       <div class="ms-auto me-5">
         <button
           class="btn btn-custom_medium-green btn-sm rounded text-white"

@@ -1,6 +1,5 @@
 /* 控制 loading 不倒翁感覺的動畫 */
 .loadingIcon {
-  /* animation: breathe 3s ease-in-out infinite; */
   animation: wobble 1s ease-in-out infinite;
 }
 
@@ -24,42 +23,42 @@ img {
   object-position: center;
 }
 /* 後台商品列表圖片 */
-.productImages {
+/* .productImages {
   width: 100px;
   height: 100px;
   object-fit: cover;
-}
-h1 {
+} */
+/* h1 {
   background-image: url(../images/Logo.png);
   background-size: cover;
   background-position: center;
   height: 62.12px;
   width: 297px;
-}
+} */
 
-.index-header {
+/* .index-header {
   width: 100%;
   height: 768px;
   background-image: url(../images/Home_Banner.png);
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
-}
+} */
 
-.products-header {
+/* .products-header {
   width: 100%;
   height: 768px;
   background-image: url(../images/ProductsHeader_banner.png);
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
-}
+} */
 /* header 按鈕區塊 */
-.header_block {
+/* .header_block {
   height: 700px;
-}
+} */
 /* 3. 關於我們 設定 */
-.aboutAs_card {
+/* .aboutAs_card {
   position: relative;
   height: 342px;
   width: 612px;
@@ -69,9 +68,9 @@ h1 {
   position: absolute;
   top: 24px;
   right: 24px;
-}
+} */
 /* 4. 主打推薦 設定 */
-.menu_recommend {
+/* .menu_recommend {
   height: 954px;
 }
 .menu_recommend_img {
@@ -85,9 +84,9 @@ h1 {
   height: 150px;
   background-color: #ffffff;
   color: #747d54;
-}
+} */
 /* 訂閲 設定 */
-.subscribe_card {
+/* .subscribe_card {
   height: 378px;
   width: 100%;
   background-image: url(../images/Subscribe_Banner.png);
@@ -95,29 +94,18 @@ h1 {
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
-}
-.subscribe_block {
+} */
+/* .subscribe_block {
   height: 188px;
   border: 2px solid #747d54;
   background-color: rgba(255, 255, 255, 0.87);
   color: #747d54;
-}
+} */
 /* 7. footer 設定 */
-footer {
+/* footer {
   height: 357px;
   color: rgba(255, 255, 255, 0.87);
   background: #4e4d3c;
   font-size: 24px;
   font-weight: 700;
-}
-
-footer a {
-  color: rgba(255, 255, 255, 0.87);
-}
-
-.footer_top {
-  height: 86px;
-}
-.footer_bottom {
-  height: 86px;
-}
+} */

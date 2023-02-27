@@ -1,10 +1,31 @@
 <template>
-  <div class="subscribe_card mt-6">
+  <div
+    class="mt-6"
+    style="
+      height: 378px;
+      width: 100%;
+      background-image: url(../../../src/assets/images/Subscribe_Banner.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      background-size: cover;
+    "
+  >
     <div class="container">
       <div class="row">
-        <div class="col-lg-4 offset-lg-7 mt-8 text-custom_btn-color subscribe_block">
+        <div
+          class="col-lg-4 offset-lg-7 mt-8 text-custom_btn-color"
+          style="
+            height: 188px;
+            border: 2px solid #747d54;
+            background-color: rgba(255, 255, 255, 0.87);
+            color: #747d54;
+          "
+        >
           <ul class="row pt-4 list-unstyled ms-2">
-            <li><h2 class="h5 fw-bold">訂閱優惠訊息</h2></li>
+            <li>
+              <h2 class="h5 fw-bold">訂閱優惠訊息</h2>
+            </li>
             <li>
               <p class="fs-7">
                 我們會時常推出活動，告知最新消息<br />

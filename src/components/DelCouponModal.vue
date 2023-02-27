@@ -26,8 +26,10 @@ template
 export default {
   props: {
     tempCoupons: {
-      type: String,
-      default: '',
+      type: Object,
+      default() {
+        return {};
+      },
       required: true,
     },
   },

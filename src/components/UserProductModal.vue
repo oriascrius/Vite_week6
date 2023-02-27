@@ -8,16 +8,10 @@
     aria-hidden="true"
     ref="modal"
   >
-    <div
-      class="modal-dialog modal-xl"
-      role="document"
-    >
+    <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
-          <h5
-            class="modal-title"
-            id="exampleModalLabel"
-          >
+          <h5 class="modal-title" id="exampleModalLabel">
             <span>{{ tempProduct.title }}</span>
           </h5>
           <button
@@ -30,20 +24,13 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-6">
-              <img
-                class="img-fluid"
-                :src="tempProduct.imageUrl"
-                alt=""
-              />
+              <img class="img-fluid" :src="tempProduct.imageUrl" alt="" />
             </div>
             <div class="col-sm-6">
               <span class="badge bg-primary rounded-pill">{{ tempProduct.category }}</span>
               <p>商品描述：{{ tempProduct.description }}</p>
               <p>商品內容：{{ tempProduct.content }}</p>
-              <div
-                v-if="tempProduct.price === tempProduct.origin_price"
-                class="h5"
-              >
+              <div v-if="tempProduct.price === tempProduct.origin_price" class="h5">
                 {{ tempProduct.price }} 元
               </div>
               <del class="h6">原價 {{ tempProduct.origin_price }} 元</del>
@@ -51,17 +38,8 @@
               <div>
                 <div class="input-group">
                   <!-- 這裡選擇數量框給使用者選，不使用 input 框 -->
-                  <select
-                    name=""
-                    id=""
-                    class="form-select"
-                    v-model="qty"
-                  >
-                    <option
-                      :value="i"
-                      v-for="i in 20"
-                      :key="`${i}3333`"
-                    >{{ i }}</option>
+                  <select name="" id="" class="form-select" v-model="qty">
+                    <option :value="i" v-for="i in 20" :key="`${i}3333`">{{ i }}</option>
                   </select>
                   <button
                     type="button"
@@ -86,7 +64,7 @@ import Modal from 'bootstrap/js/dist/modal';
 
 export default {
   // 當 id 變動時，取得遠端資料，並呈現畫面
-  props: ['id', 'addToCart'],
+  props: ['id', 'addToCart', 'openModal'],
   data() {
     return {
       // 接收 bootstrap modal JS 方法 -> 接收 詳細商品頁面 Modal
@@ -115,14 +93,21 @@ export default {
   },
   mounted() {
     this.modal = new Modal(this.$refs.modal, {
-      keyboard: false,
-      backdrop: 'static',
+      keyboard: true,
+      backdrop: 'true',
+    });
+    // 防止按下同個詳細商品，因為沒有變換 id，導致再按第 2次 打不開
+    // 關閉 modal 時的事件
+    // 本來是 (event) 改成 =>  -> 才可用 this -> 箭頭函式沒有自己的 this,會去找外層
+    this.$refs.modal.addEventListener('hidden.bs.modal', () => {
+      // 外層 openModal() 方法丟到這裡內層使用，參數給空值
+      this.openModal('');
     });
   },
   methods: {
-    openModal() {
-      this.modal.show();
-    },
+    // openModal() {
+    //   this.modal.show();
+    // },
     hideModal() {
       this.modal.hide();
       // 詳細商品頁面選擇數量加入購物車後，要重置數量變回 1

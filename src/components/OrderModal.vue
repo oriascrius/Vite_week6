@@ -75,9 +75,7 @@
                       {{ item.product.title }}
                     </th>
                     <td>{{ item.qty }} / {{ item.product.unit }}</td>
-                    <td class="text-end">
-                     $ {{ item.final_total }}
-                    </td>
+                    <td class="text-end">$ {{ item.final_total }}</td>
                   </tr>
                 </tbody>
               </table>
