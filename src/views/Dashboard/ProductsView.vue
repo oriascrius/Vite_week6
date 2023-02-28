@@ -31,7 +31,7 @@
             <button type="button" class="btn btn-light" @click="openModal('lightbox', product)">
               <img
                 :src="product.imageUrl"
-                alt="商品圖"
+                :alt="product.title"
                 class="rounded"
                 style="width: 100px; height: 100px; object-fit: cover"
               />

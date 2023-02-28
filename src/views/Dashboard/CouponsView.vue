@@ -110,8 +110,8 @@ export default {
       page: {},
       // loading 圖示判斷
       states: {
-        isLoading: false,
-        fullPage: false,
+        isLoading: true,
+        fullPage: true,
       },
     };
   },
@@ -125,16 +125,15 @@ export default {
     // 使用管理者的 API -> 取得商品列表
     // 參數放分頁 -> page = 1 可先預設第一分頁，如果參數只有 page，會得到 undefined
     getData(page = 1) {
-      this.states = { isLoading: true, fullPage: true };
       const url = `${import.meta.env.VITE_API}api/${
         import.meta.env.VITE_PATH
       }/admin/coupons?page=${page}`;
       this.$http
         .get(url)
         .then((response) => {
-          this.states = { isLoading: false, fullPage: false };
           this.coupons = response.data.coupons;
           this.page = response.data.pagination;
+          this.states = { isLoading: false, fullPage: false };
         })
         .catch((err) => {
           alert(err.response.data.message);

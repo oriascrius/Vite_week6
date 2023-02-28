@@ -19,7 +19,11 @@
                 class="form-control mb-2"
                 placeholder="請輸入圖片連結"
               />
-              <img class="img-fluid" :src="this.$props.tempProduct.imageUrl" />
+              <img
+                class="img-fluid"
+                :src="this.$props.tempProduct.imageUrl"
+                :alt="this.$props.tempProduct.title"
+              />
               <!-- 上傳本地圖片 -->
               <input
                 type="file"

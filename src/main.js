@@ -1,10 +1,9 @@
 import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-// import { LoadingPlugin } from 'vue-loading-overlay';
-// import 'vue-loading-overlay/dist/css/index.css';
 import Loading from 'vue3-loading-overlay';
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 
@@ -34,8 +33,11 @@ configure({
 // 設定預設語系
 setLocale('zh_TW');
 
+const pinia = createPinia();
+
 createApp(App)
   .use(router)
+  .use(pinia)
   .use(VueAxios, axios)
   .use(VueSweetalert2)
   .component('Loading', Loading)

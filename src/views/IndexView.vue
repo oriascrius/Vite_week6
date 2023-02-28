@@ -1,67 +1,57 @@
 <template>
+<!-- 首頁 -->
   <div>
-    <Loading
-      v-model:active="states.isLoading"
-      :is-full-page="states.fullPage"
-    >
+    <!-- <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
       <template v-slot:default>
-        <img
-          src="../assets/images/loading_icon.png"
-          alt="loading圖"
-          class="loadingIcon"
-        />
+        <img src="../assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
       </template>
-    </Loading>
-    <!-- 1. nav -->
-    <UserNav></UserNav>
-    <!-- 2. header -->
+    </Loading> -->
     <IndexHeader></IndexHeader>
-    <!-- 3. 關於我們 -->
     <IndexAboutus></IndexAboutus>
-    <!-- 4. 主打推薦 -->
     <UserRecommend></UserRecommend>
-    <!-- 5. 熱門餐點 -->
     <UserHotmenu></UserHotmenu>
-    <!-- 6. 訂閱 -->
-    <UserSubscribe></UserSubscribe>
-    <!-- 7. footer -->
-    <UserFooter></UserFooter>
+    <RouterView></RouterView>
   </div>
 </template>
 
 <script>
-import UserNav from '@/components/front-end/UserNav.vue';
+import { RouterView } from 'vue-router';
+import { mapState, mapActions } from 'pinia';
 import IndexHeader from '@/components/front-end/IndexHeader.vue';
 import IndexAboutus from '@/components/front-end/IndexAboutus.vue';
 import UserRecommend from '@/components/front-end/UserRecommend.vue';
 import UserHotmenu from '@/components/front-end/UserHotmenu.vue';
-import UserSubscribe from '@/components/front-end/UserSubscribe.vue';
-import UserFooter from '@/components/front-end/UserFooter.vue';
+import LoadingStore from '@/stores/Loading';
 
 export default {
-  name: 'IndexView',
+  name: 'FrontLayout',
   data() {
     return {
       // loading 圖示判斷
-      states: {
-        isLoading: true,
-        fullPage: true,
-      },
+      // states: {
+      //   isLoading: true,
+      //   fullPage: true,
+      // },
     };
   },
   components: {
-    UserNav,
+    RouterView,
     IndexHeader,
     IndexAboutus,
     UserRecommend,
     UserHotmenu,
-    UserSubscribe,
-    UserFooter,
   },
   mounted() {
     setTimeout(() => {
-      this.states = { isLoading: false, fullPage: false };
+      // this.states = { isLoading: false, fullPage: false };
+      this.hideLoading();
     }, 500);
+  },
+  computed: {
+    ...mapState(LoadingStore, ['isLoading', 'fullPage']),
+  },
+  methods: {
+    ...mapActions(LoadingStore, ['hideLoading']),
   },
 };
 </script>

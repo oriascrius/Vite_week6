@@ -222,8 +222,8 @@ export default {
       cart: {},
       // loading 圖示判斷
       states: {
-        isLoading: false,
-        fullPage: false,
+        isLoading: true,
+        fullPage: true,
       },
       loadingItem: '',
       // 存放使用者輸入資料
@@ -246,7 +246,6 @@ export default {
     getCarts() {
       // 這裡可作區塊 or 全畫面 loading
       // 目前做全畫面
-      this.states = { isLoading: true, fullPage: true };
       this.$http
         .get(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart`)
         .then((res) => {

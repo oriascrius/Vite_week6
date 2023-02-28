@@ -43,13 +43,18 @@
                   <p class="card-text">{{ productsItem.price }}</p>
                 </div>
                 <div class="card-footer text-center">
-                  <button
+                  <!-- <button
                     type="button"
                     class="btn btn-outline-secondary"
                     @click="openModal(productsItem.id)"
                   >
                     查看更多
-                  </button>
+                  </button> -->
+                  <router-link :to="`/product/${productsItem.id}`"
+                    ><button type="button" class="btn btn-outline-secondary">
+                      查看更多
+                    </button></router-link
+                  >
                   <button
                     type="button"
                     class="btn btn-outline-danger"
@@ -66,17 +71,17 @@
         <!-- 分頁元件 -->
         <PaginationModal :pages="page" @change-page="getProducts"></PaginationModal>
       </div>
-      <UserFooter></UserFooter>
     </div>
+    <UserFooter></UserFooter>
     <!-- 詳細商品 -->
-    <UserProductModal
+    <!-- <UserProductModal
       :id="productId"
       :add-to-cart="addToCart"
       ref="productModal"
       :open-modal="openModal"
       :clear-qty="addToCart"
     >
-    </UserProductModal>
+    </UserProductModal> -->
   </div>
 </template>
 
@@ -84,7 +89,7 @@
 import UserNav from '@/components/front-end/UserNav.vue';
 import ProductsHeader from '@/components/front-end/ProductsHeader.vue';
 import UserFooter from '@/components/front-end/UserFooter.vue';
-import UserProductModal from '@/components/UserProductModal.vue';
+// import UserProductModal from '@/components/UserProductModal.vue';
 import PaginationModal from '@/components/PaginationModal.vue';
 
 export default {
@@ -113,7 +118,6 @@ export default {
   methods: {
     // 商品列表 - 取得商品列表 API
     getProducts(page = 1) {
-      this.states = { isLoading: true, fullPage: true };
       this.$http
         .get(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/products?page=${page}`)
         .then((res) => {
@@ -126,10 +130,10 @@ export default {
           this.states = { isLoading: false, fullPage: false };
         });
     },
-    // 單一商品細節 - HTML 上 拿到 id，從這接收後在 props 到 modal 子元件裡面 :id = productId
-    openModal(id) {
-      this.productId = id;
-    },
+    // 單一商品細節 Modal - HTML 上 拿到 id，從這接收後在 props 到 modal 子元件裡面 :id = productId
+    // openModal(id) {
+    //   this.productId = id;
+    // },
     // 加入購物車 - 將 商品 ID、數量 加入到購物車
     // eslint-disable-next-line camelcase
     addToCart(product_id, qty = 1) {
@@ -148,7 +152,7 @@ export default {
           // 最後重置存放 id 為空
           this.loadingItem = '';
           // 控制 當進入詳細商品頁面，按下加入購物車後，關閉 Modal（從內層拿到方法關閉）
-          this.$refs.productModal.hideModal();
+          // this.$refs.productModal.hideModal();
           this.$swal.fire({
             toast: true,
             position: 'top-end',
@@ -175,15 +179,16 @@ export default {
     },
   },
   components: {
-    // 詳細商品 modal
-    UserProductModal,
-    // 分頁 元件
-    PaginationModal,
     // Nav 元件
     UserNav,
     // Footer 元件
     UserFooter,
+    // header 元件
     ProductsHeader,
+    // 詳細商品 modal
+    // UserProductModal,
+    // 分頁 元件
+    PaginationModal,
   },
   mounted() {
     this.getProducts();
