@@ -1,18 +1,13 @@
 <template>
+  <!-- 單一商品 -->
   <div class="container">
-    <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
-      <template v-slot:default>
-        <img src="../assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
-      </template>
-    </Loading>
-    <UserNav></UserNav>
     <div class="row mt-3">
       <!-- 單一商品圖片 - 左 -->
-      <div class="col-5">
+      <div class="col-md-5">
         <img :src="product.imageUrl" :alt="product.title" class="w-100" height="400" />
       </div>
       <!-- 單一商品詳細資料 - 右 -->
-      <div class="col-7">
+      <div class="col-md-7">
         <ul class="row list-unstyled">
           <li class="col-md-6 mt-4">
             <h4 class="mt-3 text-custom_btn-color">{{ product.title }}</h4>
@@ -21,9 +16,14 @@
             <!-- 商品分類麵包屑 -->
             <nav aria-label="breadcrumb">
               <ul class="breadcrumb list-unstyled py-3">
-                <li class="breadcrumb-item text-muted"><a href="#">全部商品</a></li>
-                <li class="breadcrumb-item text-muted active" aria-current="page">
-                  <a href="#">{{ product.title }}</a>
+                <li class="breadcrumb-item"><router-link to="/products">全部商品</router-link></li>
+                <li class="breadcrumb-item">
+                  <router-link to="/products"> {{ product.category }}</router-link>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  <router-link :to="`/product/${this.productItemId}`">{{
+                    product.title
+                  }}</router-link>
                 </li>
               </ul>
             </nav>
@@ -57,16 +57,67 @@
         </ul>
       </div>
     </div>
+    <hr />
+    <!-- 相似商品 -->
+    <template v-if="similarProducts.length">
+      <h3 class="mt-7">相關商品</h3>
+      <div>
+        <swiper
+          :slidesPerView="1"
+          :spaceBetween="10"
+          :pagination="{
+            clickable: true,
+          }"
+          :breakpoints="{
+            425: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 10,
+            },
+          }"
+          :modules="modules"
+          class="mySwiper"
+        >
+          <swiper-slide v-for="item in similarProducts" :key="item.id">
+            <div class="card h-100 w-100">
+              <div
+                style="
+                  min-height: 200px;
+                  background-size: cover;
+                  background-position: center;
+                  cursor: pointer;
+                "
+                :style="{ backgroundImage: `url(${item.imageUrl})` }"
+                @click.prevent="toggleId(item.id)"
+              ></div>
+              <div class="card-body">
+                <h6 class="card-title">
+                  {{ item.title }}
+                </h6>
+                <div class="text-right pr-2">{{ item.price }} 元</div>
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper>
+      </div>
+    </template>
   </div>
-  <hr />
-  <UserSubscribe></UserSubscribe>
-  <UserFooter></UserFooter>
+  <router-view></router-view>
 </template>
 
 <script>
-import UserNav from '@/components/front-end/UserNav.vue';
-import UserFooter from '@/components/front-end/UserFooter.vue';
-import UserSubscribe from '@/components/front-end/UserSubscribe.vue';
+import { RouterView } from 'vue-router';
+import { mapActions, mapState } from 'pinia';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Pagination } from 'swiper';
+import LoadingStore from '@/stores/Loading';
+import cartStore from '@/stores/cart';
+// 輪播
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const { VITE_API, VITE_PATH } = import.meta.env;
 export default {
@@ -74,60 +125,126 @@ export default {
   data() {
     return {
       product: {},
-      states: {
-        isLoading: true,
-        fullPage: true,
-      },
+      similarProducts: [],
       qty: 1,
+      productItemId: '',
+      modules: [Pagination],
     };
   },
   components: {
-    UserNav,
-    UserFooter,
-    UserSubscribe,
+    RouterView,
+    Swiper,
+    SwiperSlide,
   },
   methods: {
+    ...mapActions(cartStore, ['addToCart', 'getCarts']),
+    ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
     getProducts() {
       const { id } = this.$route.params;
+      this.productItemId = id;
       this.$http
         .get(`${VITE_API}api/${VITE_PATH}/product/${id}`)
         .then((res) => {
           this.product = res.data.product;
-          this.states = { isLoading: false, fullPage: false };
+          this.getCategoryProducts();
+          this.hideLoading();
         })
         .catch((err) => {
           alert(err.response.data.message);
-          this.states = { isLoading: false, fullPage: false };
+          this.hideLoading();
         });
+    },
+    getCategoryProducts() {
+      const { category } = this.product;
+      this.$http
+        .get(`${VITE_API}api/${VITE_PATH}/products?category=${category}`)
+        .then((res) => {
+          this.similarProducts = res.data.products;
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
+    },
+    toggleId(id) {
+      this.$router.push(`/product/${id}`);
+      this.id = id;
+      this.getProducts();
     },
     // eslint-disable-next-line camelcase
-    addToCart(product_id, qty) {
-      const data = {
-        // eslint-disable-next-line camelcase
-        product_id,
-        qty,
-      };
-      this.$http
-        .post(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart`, { data })
-        .then(() => {
-          // 最後重置存放 id 為空
-          // this.loadingItem = '';
-          this.$swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'success',
-            title: '加入商品成功',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        })
-        .catch((err) => {
-          alert(err.response.data.message);
-        });
-    },
+    // addToCart(product_id, qty) {
+    //   const data = {
+    //     // eslint-disable-next-line camelcase
+    //     product_id,
+    //     qty,
+    //   };
+    //   this.$http
+    //     .post(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart`, { data })
+    //     .then(() => {
+    //       // 最後重置存放 id 為空
+    //       // this.loadingItem = '';
+    //       this.$swal.fire({
+    //         toast: true,
+    //         position: 'top-end',
+    //         icon: 'success',
+    //         title: '加入商品成功',
+    //         showConfirmButton: false,
+    //         timer: 1500,
+    //       });
+    //     })
+    //     .catch((err) => {
+    //       alert(err.response.data.message);
+    //     });
+    // },
+  },
+  computed: {
+    ...mapState(cartStore, ['cart', 'total', 'final_total']),
   },
   mounted() {
+    this.showLoading();
     this.getProducts();
   },
 };
 </script>
+
+<style scoped>
+#app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>

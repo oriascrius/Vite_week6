@@ -1,0 +1,49 @@
+<template>
+  <RouterView></RouterView>
+  <ContactHeader></ContactHeader>
+  <div class="container text-custom_dark-green">
+    <div class="row justify-content-center align-items-center">
+      <h1 class="h2 mt-5 text-center">聯絡我們</h1>
+      <hr />
+      <ul class="col-md-4 col-sm-6 list-unstyled mt-5" data-aos="fade-right">
+        <li>
+          <p class="lh-lg">
+            松柏食光<br />新北市淡水區中山北路三段 123 號<br />電話: +886 2 1234 1234
+          </p>
+        </li>
+        <li class="mt-5">
+          <p class="lh-lg">
+            營業時間：<br />星期六、星期日 09:00 AM - 17:00 PM<br />期一～星期五 08:00 AM - 16:00 PM
+          </p>
+        </li>
+      </ul>
+      <div class="col-md-4 mt-5" data-aos="fade-left">
+        <img src="../../../src/assets/images/BusinessCard_front.png" alt="名片" />
+        <img src="../../../src/assets/images/BusinessCard_reverse.png" class="mt-3" alt="名片" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { RouterView } from 'vue-router';
+import { mapActions } from 'pinia';
+import LoadingStore from '@/stores/Loading';
+import ContactHeader from '@/components/front-end/ContactHeader.vue';
+
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
+  },
+  components: { RouterView, ContactHeader },
+  mounted() {
+    this.showLoading();
+    setTimeout(() => {
+      this.hideLoading();
+    }, 500);
+  },
+};
+</script>

@@ -1,13 +1,8 @@
 <template>
   <div>
-    <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
-      <template v-slot:default>
-        <img src="../assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
-      </template>
-    </Loading>
-    <UserNav></UserNav>
+    <RouterView></RouterView>
     <ProductsHeader></ProductsHeader>
-    <!-- 3. 商品分類 -->
+    <!-- 商品分類 -->
     <ul class="nav nav-tabs m-5 p-5 justify-content-center flex-nowrap text-nowrap">
       <li class="nav-item" v-for="tabItem in productsTab" :key="tabItem">
         <a
@@ -19,7 +14,7 @@
         >
       </li>
     </ul>
-    <!-- 4. 商品列表 -->
+    <!-- 商品列表 -->
     <div class="container">
       <div class="mt-4">
         <!-- 商品列表 -->
@@ -50,6 +45,7 @@
                   >
                     查看更多
                   </button> -->
+                  <!-- :disabled="productsItem.id === loadingItem" -->
                   <router-link :to="`/product/${productsItem.id}`"
                     ><button type="button" class="btn btn-outline-secondary">
                       查看更多
@@ -57,9 +53,8 @@
                   >
                   <button
                     type="button"
-                    class="btn btn-outline-danger"
+                    class="btn btn-outline-custom_dark-green"
                     @click="addToCart(productsItem.id)"
-                    :disabled="productsItem.id === loadingItem"
                   >
                     加到購物車
                   </button>
@@ -72,7 +67,6 @@
         <PaginationModal :pages="page" @change-page="getProducts"></PaginationModal>
       </div>
     </div>
-    <UserFooter></UserFooter>
     <!-- 詳細商品 -->
     <!-- <UserProductModal
       :id="productId"
@@ -86,11 +80,14 @@
 </template>
 
 <script>
-import UserNav from '@/components/front-end/UserNav.vue';
+import { RouterView } from 'vue-router';
+import { mapActions, mapState } from 'pinia';
+import LoadingStore from '@/stores/Loading';
+import cartStore from '@/stores/cart';
 import ProductsHeader from '@/components/front-end/ProductsHeader.vue';
-import UserFooter from '@/components/front-end/UserFooter.vue';
-// import UserProductModal from '@/components/UserProductModal.vue';
 import PaginationModal from '@/components/PaginationModal.vue';
+
+const { VITE_API, VITE_PATH } = import.meta.env;
 
 export default {
   name: 'ProductsView',
@@ -103,12 +100,7 @@ export default {
       // 分頁
       page: {},
       // 防止一直觸發請求 API，給予 loading 緩衝，判斷有 id 時，先禁止按鈕
-      loadingItem: '',
-      // loading 圖示判斷
-      states: {
-        isLoading: false,
-        fullPage: false,
-      },
+      // loadingItem: '',
       // 商品品項種類
       productsTab: ['全部', '主食', '早午餐', '漢堡', '炸物', '甜點', '沙拉', '飲料'],
       // 預設頁籤在全部
@@ -116,18 +108,23 @@ export default {
     };
   },
   methods: {
+    ...mapActions(cartStore, ['addToCart', 'getCarts']),
+    ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
     // 商品列表 - 取得商品列表 API
     getProducts(page = 1) {
+      // this.showLoading();
       this.$http
-        .get(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/products?page=${page}`)
+        .get(`${VITE_API}api/${VITE_PATH}/products?page=${page}`)
         .then((res) => {
           this.products = res.data.products;
           this.page = res.data.pagination;
-          this.states = { isLoading: false, fullPage: false };
+          this.hideLoading();
+          // this.states = { isLoading: false, fullPage: false };
         })
         .catch((err) => {
           alert(err.response.data.message);
-          this.states = { isLoading: false, fullPage: false };
+          this.hideLoading();
+          // this.states = { isLoading: false, fullPage: false };
         });
     },
     // 單一商品細節 Modal - HTML 上 拿到 id，從這接收後在 props 到 modal 子元件裡面 :id = productId
@@ -136,40 +133,41 @@ export default {
     // },
     // 加入購物車 - 將 商品 ID、數量 加入到購物車
     // eslint-disable-next-line camelcase
-    addToCart(product_id, qty = 1) {
-      const data = {
-        // eslint-disable-next-line camelcase
-        product_id,
-        qty,
-      };
-      // 按下加入購物車時取得 id -> 先禁用按鈕點擊 -> 等待下方請求 API 完成
-      // 對應 商品列表中，:disabled="product.id === loadingItem"
-      // eslint-disable-next-line camelcase
-      this.loadingItem = product_id;
-      this.$http
-        .post(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart`, { data })
-        .then(() => {
-          // 最後重置存放 id 為空
-          this.loadingItem = '';
-          // 控制 當進入詳細商品頁面，按下加入購物車後，關閉 Modal（從內層拿到方法關閉）
-          // this.$refs.productModal.hideModal();
-          this.$swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'success',
-            title: '加入商品成功',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          // 按下加入購物車後 -> 取得購物車資料呈現
-          // this.getCarts();
-        })
-        .catch((err) => {
-          alert(err.response.data.message);
-        });
-    },
+    // addToCart(product_id, qty = 1) {
+    //   const data = {
+    //     // eslint-disable-next-line camelcase
+    //     product_id,
+    //     qty,
+    //   };
+    //   // 按下加入購物車時取得 id -> 先禁用按鈕點擊 -> 等待下方請求 API 完成
+    //   // 對應 商品列表中，:disabled="product.id === loadingItem"
+    //   // eslint-disable-next-line camelcase
+    //   this.loadingItem = product_id;
+    //   this.$http
+    //     .post(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart`, { data })
+    //     .then(() => {
+    //       // 最後重置存放 id 為空
+    //       this.loadingItem = '';
+    //       // 控制 當進入詳細商品頁面，按下加入購物車後，關閉 Modal（從內層拿到方法關閉）
+    //       // this.$refs.productModal.hideModal();
+    //       this.$swal.fire({
+    //         toast: true,
+    //         position: 'top-end',
+    //         icon: 'success',
+    //         title: '加入商品成功',
+    //         showConfirmButton: false,
+    //         timer: 1500,
+    //       });
+    //       // 按下加入購物車後 -> 取得購物車資料呈現
+    //       // this.getCarts();
+    //     })
+    //     .catch((err) => {
+    //       alert(err.response.data.message);
+    //     });
+    // },
   },
   computed: {
+    ...mapState(cartStore, ['cart', 'total', 'final_total']),
     // 篩選商品分類
     productsFiltered() {
       if (this.isActive === '全部') {
@@ -179,18 +177,12 @@ export default {
     },
   },
   components: {
-    // Nav 元件
-    UserNav,
-    // Footer 元件
-    UserFooter,
-    // header 元件
+    RouterView,
     ProductsHeader,
-    // 詳細商品 modal
-    // UserProductModal,
-    // 分頁 元件
     PaginationModal,
   },
   mounted() {
+    this.showLoading();
     this.getProducts();
   },
 };

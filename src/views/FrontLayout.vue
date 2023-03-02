@@ -7,6 +7,8 @@
 
 <script>
 import { RouterView } from 'vue-router';
+import { mapActions, mapState } from 'pinia';
+import cartStore from '@/stores/cart';
 import UserNav from '@/components/front-end/UserNav.vue';
 import UserSubscribe from '@/components/front-end/UserSubscribe.vue';
 import UserFooter from '@/components/front-end/UserFooter.vue';
@@ -21,6 +23,17 @@ export default {
     UserNav,
     UserSubscribe,
     UserFooter,
+  },
+  // 取值
+  computed: {
+    ...mapState(cartStore, ['cart']),
+  },
+  // 方法
+  methods: {
+    ...mapActions(cartStore, ['getCarts', 'addToCart']),
+  },
+  mounted() {
+    this.getCarts();
   },
 };
 </script>

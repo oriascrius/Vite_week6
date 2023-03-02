@@ -1,6 +1,6 @@
 <!-- eslint-disable max-len -->
 <template>
-  <nav class="navbar navbar-expand-md fixed-top" style="height: 85px; background-color: #fef5f2">
+  <nav class="navbar navbar-expand-md" style="height: 85px; background-color: #fef5f2">
     <div class="container">
       <router-link to="/" class="navbar-brand">
         <h1
@@ -28,17 +28,36 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto me-5">
           <li class="nav-item">
-            <router-link to="/products" class="text-decoration-none px-2">關於我們</router-link>
+            <router-link
+              to="/about"
+              v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
+              class="text-decoration-none px-2"
+              >關於我們</router-link
+            >
           </li>
           <li class="nav-item">
-            <router-link to="/products" class="text-decoration-none px-2">美味餐點</router-link>
+            <router-link
+              to="/products"
+              v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
+              class="text-decoration-none px-2"
+              >美味餐點</router-link
+            >
           </li>
           <li class="nav-item">
-            <router-link to="/products" class="text-decoration-none px-2">聯絡我們</router-link>
+            <router-link
+              to="/contact"
+              v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
+              class="text-decoration-none px-2"
+              >聯絡我們</router-link
+            >
           </li>
         </ul>
         <!-- 購物車 icon -->
-        <a href="#" class="cart_icon position-relative">
+        <router-link
+          to="/cart"
+          v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
+          class="cart_icon position-relative"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -53,9 +72,9 @@
           </svg>
           <span
             class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle"
-            >{{ carts.length }}</span
+            >{{ cart.carts?.length }}</span
           >
-        </a>
+        </router-link>
       </div>
     </div>
   </nav>
@@ -68,14 +87,14 @@ import cartStore from '@/stores/cart';
 export default {
   // 取值
   computed: {
-    ...mapState(cartStore, ['carts']),
+    ...mapState(cartStore, ['cart']),
   },
   // 方法
   methods: {
-    ...mapActions(cartStore, ['getCart']),
+    ...mapActions(cartStore, ['getCarts']),
   },
   mounted() {
-    this.getCart();
+    this.getCarts();
   },
 };
 </script>

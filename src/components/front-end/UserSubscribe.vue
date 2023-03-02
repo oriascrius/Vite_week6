@@ -35,6 +35,7 @@
             <li class="col-7">
               <input
                 type="email"
+                v-model="email"
                 class="form-control"
                 placeholder="請輸入信箱取得優惠"
                 aria-label="請輸入信箱取得優惠"
@@ -46,7 +47,7 @@
                 class="btn btn-custom_btn-color text-white"
                 type="button"
                 id="subscribe"
-                @click="subscribe_btn"
+                @click="subscribe()"
               >
                 Subscribe
               </button>
@@ -59,5 +60,29 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      email: '',
+    };
+  },
+  methods: {
+    subscribe() {
+      const mail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (mail.test(this.email)) {
+        this.$swal.fire({
+          icon: 'success',
+          title: '訂閱成功',
+          text: '折扣碼: avocado666',
+        });
+      } else {
+        this.$swal.fire({
+          icon: 'error',
+          title: '請輸入正確的信箱',
+        });
+      }
+      this.email = '';
+    },
+  },
+};
 </script>

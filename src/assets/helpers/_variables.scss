@@ -428,7 +428,7 @@ $body-text-align: null !default;
 // Style anchor elements.
 
 // $link-color: $primary !default;
-// 自訂 $custom_addBtn
+// 自訂
 $link-color: $custom_dark-green !default;
 $link-decoration: underline !default;
 $link-shade-percentage: 20% !default;
@@ -1143,8 +1143,8 @@ $navbar-toggler-transition: box-shadow 0.15s ease-in-out !default;
 // $navbar-light-active-color: rgba($black, 0.9) !default;
 // 自訂
 $navbar-light-color: rgba($custom_dark-green, 0.55) !default;
-$navbar-light-hover-color: rgba($custom_btn-color, 0.7) !default;
-$navbar-light-active-color: rgba($custom_btn-color, 0.9) !default;
+$navbar-light-hover-color: rgba($custom_dark-green, 0.7) !default;
+$navbar-light-active-color: rgba($custom_dark-green, 0.9) !default;
 $navbar-light-disabled-color: rgba($black, 0.3) !default;
 $navbar-light-toggler-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-light-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !default;
 $navbar-light-toggler-border-color: rgba($black, 0.1) !default;
@@ -1232,7 +1232,7 @@ $pagination-font-size: $font-size-base !default;
 
 // $pagination-color: var(--#{$prefix}link-color) !default;
 // 自訂
-$pagination-color: $custom_medium-green !default;
+$pagination-color: $custom_light-green !default;
 $pagination-bg: $white !default;
 $pagination-border-radius: $border-radius !default;
 $pagination-border-width: $border-width !default;
@@ -1251,7 +1251,7 @@ $pagination-hover-border-color: $gray-300 !default;
 $pagination-active-color: $component-active-color !default;
 // $pagination-active-bg: $component-active-bg !default;
 // 自訂
-$pagination-active-bg: $custom_medium-green !default;
+$pagination-active-bg: $custom_light-green !default;
 $pagination-active-border-color: $pagination-active-bg !default;
 
 $pagination-disabled-color: $gray-600 !default;

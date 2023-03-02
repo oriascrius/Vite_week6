@@ -1,17 +1,10 @@
 <template>
   <div class="container">
-    <Loading
-      v-model:active="states.isLoading"
-      :is-full-page="states.fullPage"
-    >
+    <!-- <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
       <template v-slot:default>
-        <img
-          src="../assets/images/loading_icon.png"
-          alt="loading圖"
-          class="loadingIcon"
-        />
+        <img src="../assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
       </template>
-    </Loading>
+    </Loading> -->
     <!-- 購物車 -->
     <div class="row justify-content-center">
       <div class="text-center my-5">
@@ -37,10 +30,7 @@
           </thead>
           <tbody>
             <!-- 當 cart 有內容才呈現購物車 -->
-            <tr
-              v-for="cartItem in cart.carts"
-              :key="cartItem.id"
-            >
+            <tr v-for="cartItem in cart.carts" :key="cartItem.id">
               <td style="width: 100px">
                 <button
                   type="button"
@@ -61,11 +51,7 @@
                     @change="updateCartItem(cartItem)"
                     :disabled="cartItem.id === loadingItem"
                   >
-                    <option
-                      :value="i"
-                      v-for="i in 20"
-                      :key="i + '1233'"
-                    >
+                    <option :value="i" v-for="i in 20" :key="i + '1233'">
                       {{ i }}
                     </option>
                   </select>
@@ -98,17 +84,9 @@
     <!-- 表單驗證 -->
     <!-- is-invalid 是 bootstrap 中，Forms validation 顯示紅框 -->
     <div class="my-5 row justify-content-center">
-      <Form
-        ref="form"
-        class="col-md-6"
-        v-slot="{ errors }"
-        @submit="sendOrder"
-      >
+      <Form ref="form" class="col-md-6" v-slot="{ errors }" @submit="sendOrder">
         <div class="mb-3">
-          <label
-            for="email"
-            class="form-label"
-          >Email</label>
+          <label for="email" class="form-label">Email</label>
           <Field
             id="email"
             name="email"
@@ -119,17 +97,11 @@
             rules="email|required"
             v-model="form.user.email"
           ></Field>
-          <ErrorMessage
-            name="email"
-            class="invalid-feedback"
-          ></ErrorMessage>
+          <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label
-            for="name"
-            class="form-label"
-          >收件人姓名</label>
+          <label for="name" class="form-label">收件人姓名</label>
           <Field
             id="name"
             name="姓名"
@@ -140,17 +112,11 @@
             rules="required"
             v-model="form.user.name"
           ></Field>
-          <ErrorMessage
-            name="姓名"
-            class="invalid-feedback"
-          ></ErrorMessage>
+          <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label
-            for="tel"
-            class="form-label"
-          >收件人電話</label>
+          <label for="tel" class="form-label">收件人電話</label>
           <Field
             id="tel"
             name="電話"
@@ -161,17 +127,11 @@
             :rules="isPhone"
             v-model="form.user.tel"
           ></Field>
-          <ErrorMessage
-            name="電話"
-            class="invalid-feedback"
-          ></ErrorMessage>
+          <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label
-            for="address"
-            class="form-label"
-          >收件人地址</label>
+          <label for="address" class="form-label">收件人地址</label>
           <Field
             id="address"
             name="地址"
@@ -182,17 +142,11 @@
             rules="required"
             v-model="form.user.address"
           ></Field>
-          <ErrorMessage
-            name="地址"
-            class="invalid-feedback"
-          ></ErrorMessage>
+          <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label
-            for="message"
-            class="form-label"
-          >留言</label>
+          <label for="message" class="form-label">留言</label>
           <textarea
             name=""
             id="message"
@@ -203,10 +157,7 @@
           ></textarea>
         </div>
         <div class="text-end">
-          <button
-            type="submit"
-            class="btn btn-danger"
-          >送出訂單</button>
+          <button type="submit" class="btn btn-danger">送出訂單</button>
         </div>
       </Form>
     </div>
@@ -214,17 +165,21 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'pinia';
+import LoadingStore from '@/stores/Loading';
+import cartStore from '@/stores/cart';
+
 export default {
   name: 'CartView',
   data() {
     return {
       // 存放 遠端 API 購物車資料
-      cart: {},
+      // cart: {},
       // loading 圖示判斷
-      states: {
-        isLoading: true,
-        fullPage: true,
-      },
+      // states: {
+      //   isLoading: true,
+      //   fullPage: true,
+      // },
       loadingItem: '',
       // 存放使用者輸入資料
       form: {
@@ -242,93 +197,102 @@ export default {
     this.getCarts();
   },
   methods: {
+    ...mapActions(cartStore, [
+      'addToCart',
+      'getCarts',
+      'updateCartItem',
+      'deleteItem',
+      'deleteCars',
+    ]),
+    ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
     // 購物車列表 - 取得購物車資料
-    getCarts() {
-      // 這裡可作區塊 or 全畫面 loading
-      // 目前做全畫面
-      this.$http
-        .get(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart`)
-        .then((res) => {
-          this.cart = res.data.data;
-          this.states = { isLoading: false, fullPage: false };
-        })
-        .catch((err) => {
-          alert(err.response.data.message);
-          this.states = { isLoading: false, fullPage: false };
-        });
-    },
+    // getCarts() {
+    //   // 這裡可作區塊 or 全畫面 loading
+    //   // 目前做全畫面
+    //   this.$http
+    //     .get(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart`)
+    //     .then((res) => {
+    //       this.cart = res.data.data;
+    //       this.states = { isLoading: false, fullPage: false };
+    //     })
+    //     .catch((err) => {
+    //       alert(err.response.data.message);
+    //       this.states = { isLoading: false, fullPage: false };
+    //     });
+    // },
     // 更改購物車中的數量 -> 連動價格
     // 從 HTML上@change="updateCartItem(item)"，item就是cart.carts
     // 裡面有兩種 id，一個是購物車 id、另個是 商品本身 id
-    updateCartItem(cartItem) {
-      const data = {
-        product_id: cartItem.product.id,
-        qty: cartItem.qty,
-      };
-      // 在購物車裡面時，變動數量時取得 id -> 先禁用按鈕點擊 -> 等待下方請求 API 完成
-      // 對應 購物車列表中， :disabled="item.id === loadingItem"
-      this.loadingItem = cartItem.id;
-      this.$http
-        .put(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart/${cartItem.id}`, {
-          data,
-        })
-        .then(() => {
-          // 控制 當進入詳細商品葉面，按下加入購物車後，關閉 Modal（從內層拿到方法關閉）
-          this.getCarts();
-          // 最後重置存放 id 為空
-          this.loadingItem = '';
-        })
-        .catch((err) => {
-          alert(err.response.data.message);
-        });
-    },
+    // updateCartItem(cartItem) {
+    //   const data = {
+    //     product_id: cartItem.product.id,
+    //     qty: cartItem.qty,
+    //   };
+    //   // 在購物車裡面時，變動數量時取得 id -> 先禁用按鈕點擊 -> 等待下方請求 API 完成
+    //   // 對應 購物車列表中， :disabled="item.id === loadingItem"
+    //   this.loadingItem = cartItem.id;
+    //   this.$http
+    //     .put(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart/${cartItem.id}`, {
+    //       data,
+    //     })
+    //     .then(() => {
+    //       // 控制 當進入詳細商品葉面，按下加入購物車後，關閉 Modal（從內層拿到方法關閉）
+    //       this.getCarts();
+    //       // 最後重置存放 id 為空
+    //       this.loadingItem = '';
+    //     })
+    //     .catch((err) => {
+    //       alert(err.response.data.message);
+    //     });
+    // },
     // 刪除購物車項目（單一） - 刪除購物車內商品品項
-    deleteItem(cartItem) {
-      // 在購物車裡面時，刪除時取得 id -> 先禁用按鈕點擊 -> 等待下方請求 API 完成
-      // 對應 購物車列表中， :disabled="cartItem.id === loadingItem"
-      this.loadingItem = cartItem.id;
-      this.$http
-        .delete(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart/${cartItem.id}`)
-        .then(() => {
-          // SweetAlert 2
-          this.$swal.fire({
-            toast: true,
-            position: 'top-end',
-            type: 'success',
-            title: '刪除商品成功',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          // 控制 當進入詳細商品葉面，按下加入購物車後，關閉 Modal（從內層拿到方法關閉）
-          this.getCarts();
-          // 最後重置存放 id 為空
-          this.loadingItem = '';
-        })
-        .catch((err) => {
-          alert(err.response.data.message);
-        });
-    },
+    // deleteItem(cartItem) {
+    //   // 在購物車裡面時，刪除時取得 id -> 先禁用按鈕點擊 -> 等待下方請求 API 完成
+    //   // 對應 購物車列表中， :disabled="cartItem.id === loadingItem"
+    //   this.loadingItem = cartItem.id;
+    //   this.$http
+    //     .delete(`${import.meta.env.VITE_API}
+    // api/${import.meta.env.VITE_PATH}/cart/${cartItem.id}`)
+    //     .then(() => {
+    //       // SweetAlert 2
+    //       this.$swal.fire({
+    //         toast: true,
+    //         position: 'top-end',
+    //         type: 'success',
+    //         title: '刪除商品成功',
+    //         showConfirmButton: false,
+    //         timer: 1500,
+    //       });
+    //       // 控制 當進入詳細商品葉面，按下加入購物車後，關閉 Modal（從內層拿到方法關閉）
+    //       this.getCarts();
+    //       // 最後重置存放 id 為空
+    //       this.loadingItem = '';
+    //     })
+    //     .catch((err) => {
+    //       alert(err.response.data.message);
+    //     });
+    // },
     // 刪除購物車項目（全部）
-    deleteCars() {
-      this.$http
-        .delete(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/carts`)
-        .then(() => {
-          // SweetAlert 2
-          this.$swal.fire({
-            toast: true,
-            position: 'top-end',
-            type: 'success',
-            title: '購物車已清空',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          this.getCarts();
-          this.loadingItem = '';
-        })
-        .catch((err) => {
-          alert(err.response.data.message);
-        });
-    },
+    // deleteCars() {
+    //   this.$http
+    //     .delete(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/carts`)
+    //     .then(() => {
+    //       // SweetAlert 2
+    //       this.$swal.fire({
+    //         toast: true,
+    //         position: 'top-end',
+    //         type: 'success',
+    //         title: '購物車已清空',
+    //         showConfirmButton: false,
+    //         timer: 1500,
+    //       });
+    //       this.getCarts();
+    //       this.loadingItem = '';
+    //     })
+    //     .catch((err) => {
+    //       alert(err.response.data.message);
+    //     });
+    // },
     // 自訂表單號碼規則
     isPhone(value) {
       const phoneNumber = /^(09)[0-9]{8}$/;
@@ -366,6 +330,9 @@ export default {
           });
         });
     },
+  },
+  computed: {
+    ...mapState(cartStore, ['cart', 'total', 'final_total']),
   },
 };
 </script>

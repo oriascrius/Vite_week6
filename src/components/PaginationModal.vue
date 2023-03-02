@@ -1,10 +1,7 @@
 <template>
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-      <li
-        class="page-item"
-        :class="{ disabled: !pages.has_pre }"
-      >
+      <li class="page-item" :class="{ disabled: !pages.has_pre }">
         <a
           class="page-link"
           href="#"
@@ -17,21 +14,17 @@
 
       <li
         class="page-item"
-        :class="{ active: page === pages.current_page }"
+        :class="{
+          'active disabled': page === pages.current_page,
+        }"
+        style="opacity: 1; cursor: not-allowed"
         v-for="page in pages.total_pages"
         :key="page + 'page'"
       >
-        <a
-          class="page-link"
-          href="#"
-          @click.prevent="$emit('change-page', page)"
-        >{{ page }}</a>
+        <a class="page-link" href="#" @click.prevent="$emit('change-page', page)">{{ page }}</a>
       </li>
 
-      <li
-        class="page-item"
-        :class="{ disabled: !pages.has_next }"
-      >
+      <li class="page-item" :class="{ disabled: !pages.has_next }">
         <a
           class="page-link"
           href="#"

@@ -3,11 +3,24 @@
     <div class="container text-center pt-5">
       <div class="row border border-1 align-items-center text-white" style="height: 86px">
         <div class="col-6 h5">
-          <router-link to="/products" class="text-decoration-none p-2" style=""
+          <router-link
+            to="/about"
+            v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
+            class="text-decoration-none p-2"
             >關於我們</router-link
           >
-          <router-link to="/products" class="text-decoration-none p-2">美味餐點</router-link>
-          <router-link to="/products" class="text-decoration-none p-2">聯絡我們</router-link>
+          <router-link
+            to="/products"
+            v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
+            class="text-decoration-none p-2"
+            >美味餐點</router-link
+          >
+          <router-link
+            to="/contact"
+            v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
+            class="text-decoration-none p-2"
+            >聯絡我們</router-link
+          >
         </div>
         <div class="col-6">
           <router-link to="/products" class="text-decoration-none"
