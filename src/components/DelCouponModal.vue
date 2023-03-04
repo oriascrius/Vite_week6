@@ -1,4 +1,3 @@
-template
 <template>
   <div class="modal-dialog">
     <div class="modal-content border-0">

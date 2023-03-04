@@ -1,16 +1,11 @@
 <template>
   <div class="container-fluid">
-    <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
-      <template v-slot:default>
-        <img src="@/assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
-      </template>
-    </Loading>
     <table class="table mt-4">
       <thead>
         <tr>
           <th>購買時間</th>
           <th>訂單編號</th>
-          <th class="text-center">購買款項</th>
+          <th>購買款項</th>
           <th>應付金額</th>
           <th>是否付款</th>
           <th class="text-center">編輯</th>
@@ -20,7 +15,7 @@
         <tr v-for="order in orders" :key="order.id">
           <td>{{ new Date(order.create_at * 1000).toLocaleDateString() }}</td>
           <td>{{ order.id }}</td>
-          <td class="text-center pe-4">
+          <td>
             <ul class="list-unstyled">
               <li v-for="item in order.products" :key="item.id">
                 {{ item.product.title }} ： {{ item.qty }}
@@ -85,11 +80,15 @@
 
 <script>
 import Modal from 'bootstrap/js/dist/modal';
+import { mapActions } from 'pinia';
 import Pagination from '@/components/PaginationModal.vue';
 // 引入 新增、編輯商品 Modal 元件
 import OrderModal from '@/components/OrderModal.vue';
 // 引入 刪除商品 Modal 元件
 import DelorderModal from '@/components/DelorderModal.vue';
+import LoadingStore from '@/stores/Loading';
+
+const { VITE_API, VITE_PATH } = import.meta.env;
 
 export default {
   name: 'OrdersView',
@@ -102,11 +101,6 @@ export default {
       tempOrders: {},
       // 商品分頁
       page: {},
-      // loading 圖示判斷
-      states: {
-        isLoading: true,
-        fullPage: true,
-      },
       isNew: false,
     };
   },
@@ -117,22 +111,21 @@ export default {
     DelorderModal,
   },
   methods: {
+    ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
     // 使用管理者的 API -> 取得商品列表
     // 參數放分頁 -> page = 1 可先預設第一分頁，如果參數只有 page，會得到 undefined
     getData(page = 1) {
-      const url = `${import.meta.env.VITE_API}api/${
-        import.meta.env.VITE_PATH
-      }/admin/orders?page=${page}`;
+      const url = `${VITE_API}api/${VITE_PATH}/admin/orders?page=${page}`;
       this.$http
         .get(url)
         .then((response) => {
           this.orders = response.data.orders;
           this.page = response.data.pagination;
-          this.states = { isLoading: false, fullPage: false };
+          this.hideLoading();
         })
         .catch((err) => {
           alert(err.response.data.message);
-          this.states = { isLoading: false, fullPage: false };
+          this.hideLoading();
         });
     },
     // 按下按鈕後的動作（渲染，不是 API 動作）
@@ -161,9 +154,7 @@ export default {
     },
     // 編輯 API 動作
     updateOrders() {
-      const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/order/${
-        this.tempOrders.id
-      }`;
+      const url = `${VITE_API}api/${VITE_PATH}/admin/order/${this.tempOrders.id}`;
       // 要夾帶更改的資料
       this.$http
         .put(url, { data: this.tempOrders })
@@ -191,9 +182,7 @@ export default {
     },
     // 刪除 API 動作
     delOrders() {
-      const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/order/${
-        this.tempOrders.id
-      }`;
+      const url = `${VITE_API}api/${VITE_PATH}/admin/order/${this.tempOrders.id}`;
       this.$http
         .delete(url)
         // 成功

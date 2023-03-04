@@ -1,10 +1,5 @@
 <template>
   <div class="container-fluid">
-    <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
-      <template v-slot:default>
-        <img src="@/assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
-      </template>
-    </Loading>
     <div class="text-end mt-4 me-5">
       <button type="button" class="btn btn-custom_btn-color text-white" @click="openModal('new')">
         增加新優惠券
@@ -89,11 +84,15 @@
 
 <script>
 import Modal from 'bootstrap/js/dist/modal';
+import { mapActions } from 'pinia';
 import Pagination from '@/components/PaginationModal.vue';
 // 引入 新增、編輯商品 Modal 元件
 import MealModal from '@/components/CouponModal.vue';
 // 引入 刪除商品 Modal 元件
 import DelmealModal from '@/components/DelCouponModal.vue';
+import LoadingStore from '@/stores/Loading';
+
+const { VITE_API, VITE_PATH } = import.meta.env;
 
 export default {
   name: 'CouponView',
@@ -108,11 +107,6 @@ export default {
       isNew: false,
       // 優惠券分頁
       page: {},
-      // loading 圖示判斷
-      states: {
-        isLoading: true,
-        fullPage: true,
-      },
     };
   },
   components: {
@@ -122,22 +116,21 @@ export default {
     DelmealModal,
   },
   methods: {
+    ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
     // 使用管理者的 API -> 取得商品列表
     // 參數放分頁 -> page = 1 可先預設第一分頁，如果參數只有 page，會得到 undefined
     getData(page = 1) {
-      const url = `${import.meta.env.VITE_API}api/${
-        import.meta.env.VITE_PATH
-      }/admin/coupons?page=${page}`;
+      const url = `${VITE_API}api/${VITE_PATH}/admin/coupons?page=${page}`;
       this.$http
         .get(url)
         .then((response) => {
           this.coupons = response.data.coupons;
           this.page = response.data.pagination;
-          this.states = { isLoading: false, fullPage: false };
+          this.hideLoading();
         })
         .catch((err) => {
           alert(err.response.data.message);
-          this.states = { isLoading: false, fullPage: false };
+          this.hideLoading();
         });
     },
     // 按下按鈕後的動作（渲染，不是 API 動作）
@@ -183,16 +176,14 @@ export default {
     // 新建、編輯 API 動作
     updateCoupons() {
       // 新建 API
-      let url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/coupon`;
+      let url = `${VITE_API}api/${VITE_PATH}/admin/coupon`;
       let http = 'post';
 
       //  編輯 API
       // !this.isNew -> 判斷邏輯 -> 因為 if(這裡要true) 後續才會執行，而裡面要做編輯動作
       // 所以 if(!false) -> 可以接下去執行也可以接續 -> false = 做編輯動作
       if (!this.isNew) {
-        url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/coupon/${
-          this.tempCoupons.id
-        }`;
+        url = `${VITE_API}api/${VITE_PATH}/admin/coupon/${this.tempCoupons.id}`;
         http = 'put';
       }
       // 要夾帶更改的資料
@@ -231,9 +222,7 @@ export default {
     },
     // 刪除 API 動作
     delCoupons() {
-      const url = `${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/coupon/${
-        this.tempCoupons.id
-      }`;
+      const url = `${VITE_API}api/${VITE_PATH}/admin/coupon/${this.tempCoupons.id}`;
       this.$http
         .delete(url)
         // 成功

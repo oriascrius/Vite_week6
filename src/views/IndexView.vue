@@ -34,9 +34,6 @@ export default {
       this.hideLoading();
     }, 500);
   },
-  // computed: {
-  //   ...mapState(LoadingStore, ['isLoading', 'fullPage']),
-  // },
   methods: {
     ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
   },

@@ -196,6 +196,7 @@
 </template>
 
 <script>
+const { VITE_API, VITE_PATH } = import.meta.env;
 export default {
   props: {
     tempProduct: {
@@ -222,7 +223,7 @@ export default {
       formData.append('file-to-upload', file);
       // 上傳
       this.$http
-        .post(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/admin/upload`, formData)
+        .post(`${VITE_API}api/${VITE_PATH}/admin/upload`, formData)
         .then((res) => {
           this.$props.tempProduct.imageUrl = res.data.imageUrl;
         })

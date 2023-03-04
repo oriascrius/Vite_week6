@@ -23,7 +23,6 @@ export default {
     RouterView,
   },
   mounted() {
-    // this.showLoading();
     AOS.init({
       offset: 120,
       delay: 0,

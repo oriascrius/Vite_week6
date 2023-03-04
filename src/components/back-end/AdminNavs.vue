@@ -30,19 +30,15 @@ export default {
     return {};
   },
   methods: {
-    logout() {
-      document.cookie = 'hexToken=; expires=; path=/';
-      this.$router.push('/');
-    },
     signout() {
-      document.cookie = 'hexToken=;expires=;';
+      document.cookie = 'qoqVueDemo=;expires=; path=/';
       this.$swal
         .fire({
           title: '確定要登出嗎？',
           icon: 'warning',
           showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
+          confirmButtonColor: '#9CA57C',
+          cancelButtonColor: '#FE7264',
           confirmButtonText: '確定',
           cancelButtonText: '取消',
         })
