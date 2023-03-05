@@ -22,7 +22,22 @@ const routes = [
       {
         path: '/cart',
         name: '購物車',
-        component: () => import('../views/CartView.vue'),
+        component: () => import('../views/OrderView.vue'),
+      },
+      {
+        path: '/orderForm',
+        name: '訂單表單',
+        component: () => import('../views/OrderFormView.vue'),
+      },
+      {
+        path: '/orderPay/:orderId',
+        name: '訂單付款',
+        component: () => import('../views/OrderPayView.vue'),
+      },
+      {
+        path: '/orderSuccess',
+        name: '訂單成功',
+        component: () => import('../views/OrderSuccessView.vue'),
       },
       {
         path: '/about',

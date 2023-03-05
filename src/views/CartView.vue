@@ -1,11 +1,5 @@
 <template>
   <div class="container">
-    <!-- <Loading v-model:active="states.isLoading" :is-full-page="states.fullPage">
-      <template v-slot:default>
-        <img src="../assets/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
-      </template>
-    </Loading> -->
-    <!-- 購物車 -->
     <div class="row justify-content-center">
       <div class="text-center my-5">
         <button
@@ -332,7 +326,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(cartStore, ['cart', 'total', 'final_total']),
+    ...mapState(cartStore, ['cart']),
   },
 };
 </script>

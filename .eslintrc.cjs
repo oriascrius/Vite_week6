@@ -23,5 +23,7 @@ module.exports = {
   rules: {
     // eslint alert 關閉警報
     'no-alert': 'off',
+    // 字數限制、排列
+    // 'max-len': ['error', { code: 100, ignoreUrls: true, wrap: 'always' }],
   },
 };
