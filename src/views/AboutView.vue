@@ -38,7 +38,7 @@
           "
         >
           <img
-            src="@/assets/images/AboutUs_Banner_001.png"
+            :src="AboutUs"
             alt="關於我們"
             width="612"
             height="342"
@@ -124,10 +124,11 @@ import { RouterView } from 'vue-router';
 import { mapActions } from 'pinia';
 import LoadingStore from '@/stores/Loading';
 import AboutHeader from '@/components/front-end/AboutHeader.vue';
+import AboutUs from '@/assets/images/AboutUs_Banner_001.png';
 
 export default {
   data() {
-    return {};
+    return { AboutUs };
   },
   methods: {
     ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
