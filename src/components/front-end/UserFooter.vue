@@ -23,18 +23,15 @@
           >
         </div>
         <div class="col-6">
-          <router-link to="/products" class="text-decoration-none"
-            ><i class="bi bi-facebook ms-4 p-3"></i
-          ></router-link>
-          <router-link to="/products" class="text-decoration-none"
-            ><i class="bi bi-instagram p-3"></i
-          ></router-link>
+          <a href="https://www.facebook.com/CedarBrunchCafe">
+            <i class="bi bi-facebook ms-4 p-3"></i
+          ></a>
+          <a href="https://instagram.com/cedarbrunchcafe"> <i class="bi bi-instagram p-3"></i
+          ></a>
           <router-link to="/products" class="text-decoration-none"
             ><i class="bi bi-twitter p-3"></i
           ></router-link>
-          <router-link to="/products" class="text-decoration-none"
-            ><i class="bi bi-github p-3"></i
-          ></router-link>
+          <a href="http://line.me/ti/p/~@850amggy"> <i class="bi bi-line p-3"></i></a>
         </div>
       </div>
       <div class="row border border-top-0 align-items-end" style="height: 86px">

@@ -13,7 +13,6 @@
           "
         ></h1>
       </router-link>
-      <!-- 導覽 -->
       <button
         class="navbar-toggler"
         type="button"
@@ -52,7 +51,6 @@
             >
           </li>
         </ul>
-        <!-- 購物車 icon -->
         <router-link
           to="/cart"
           v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"

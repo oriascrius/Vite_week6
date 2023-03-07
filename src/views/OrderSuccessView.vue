@@ -4,20 +4,13 @@
       class="container d-flex flex-column"
       style="min-height: 100vh;"
     >
-      <nav class="navbar navbar-expand-lg navbar-light px-0">
-        <a
-          class="navbar-brand"
-          href="./index.html"
-        >Navbar</a>
-      </nav>
       <div class="row my-auto pb-7">
         <div class="col-md-4 d-flex flex-column">
           <div class="my-auto">
-            <h2>Checkout Success</h2>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p>
+            <h2>訂購成功</h2>
             <router-link to="/"><button
                 type="button"
-                class="btn btn-dark mt-4 px-5"
+                class="btn btn-custom_btn-color text-white mt-4 px-5"
               >回到首頁</button></router-link>
           </div>
         </div>

@@ -1,10 +1,13 @@
 <template>
-  <div class="container">
+  <div class="container text-custom_dark-green">
     <div class="row justify-content-center">
       <div class="col-md-10">
         <nav class="navbar navbar-expand-lg navbar-light px-0">
-          <ul class="list-unstyled mb-0 ms-md-auto d-flex
-              align-items-center justify-content-between justify-content-md-end w-100 mt-md-0 mt-4">
+          <ul
+            class="list-unstyled mb-0 ms-md-auto
+            d-flex align-items-center justify-content-between
+            justify-content-md-end w-100 mt-md-0 mt-4"
+          >
             <li class="me-md-6 me-3 position-relative custom-step-line">
               <i class="fas fa-check-circle d-md-inline d-block text-center"></i>
               <span class="text-nowrap">購物車</span>
@@ -21,19 +24,97 @@
         </nav>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-md-10">
-        <h3 class="fw-bold mb-4 pt-3">表單確認</h3>
-      </div>
-    </div>
-    <div class="row flex-row-reverse justify-content-center pb-5">
+    <h3 class="py-3">訂購表單</h3>
+    <div class="row pb-5 g-6">
+      <Form ref="form" class="col-md-6" v-slot="{ errors }" @submit="sendOrder">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <Field
+            id="email"
+            name="email"
+            type="email"
+            class="form-control"
+            :class="{ 'is-invalid': errors['email'] }"
+            placeholder="請輸入 Email"
+            rules="email|required"
+            v-model="form.user.email"
+          ></Field>
+          <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
+        </div>
+
+        <div class="mb-3">
+          <label for="name" class="form-label">收件人姓名</label>
+          <Field
+            id="name"
+            name="姓名"
+            type="text"
+            class="form-control"
+            :class="{ 'is-invalid': errors['姓名'] }"
+            placeholder="請輸入姓名"
+            rules="required"
+            v-model="form.user.name"
+          ></Field>
+          <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
+        </div>
+
+        <div class="mb-3">
+          <label for="tel" class="form-label">收件人電話</label>
+          <Field
+            id="tel"
+            name="電話"
+            type="tel"
+            class="form-control"
+            :class="{ 'is-invalid': errors['電話'] }"
+            placeholder="請輸入電話"
+            :rules="isPhone"
+            v-model="form.user.tel"
+          ></Field>
+          <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+        </div>
+
+        <div class="mb-3">
+          <label for="address" class="form-label">收件人地址</label>
+          <Field
+            id="address"
+            name="地址"
+            type="text"
+            class="form-control"
+            :class="{ 'is-invalid': errors['地址'] }"
+            placeholder="請輸入地址"
+            rules="required"
+            v-model="form.user.address"
+          ></Field>
+          <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
+        </div>
+
+        <div class="mb-3">
+          <label for="message" class="form-label">留言</label>
+          <textarea
+            name=""
+            id="message"
+            class="form-control"
+            cols="30"
+            rows="10"
+            v-model="form.message"
+          ></textarea>
+        </div>
+        <div class="row text-center">
+          <div class="col-6">
+            <router-link to="/cart">
+              <button type="button" class="btn btn-custom_btn-color text-white mt-4">
+                回購物車
+              </button>
+            </router-link>
+          </div>
+          <div class="col-6">
+            <button type="submit" class="btn btn-custom_btn-color text-white mt-4">送出訂單</button>
+          </div>
+        </div>
+      </Form>
+
       <div class="col-md-6">
-        <div class="border p-4 mb-4">
-          <div
-            class="d-flex py-2"
-            v-for="cartItem in cart.carts"
-            :key="cartItem.id"
-          >
+        <div class="border border-custom_medium-green p-4 mb-4">
+          <div class="d-flex py-2" v-for="cartItem in cart.carts" :key="cartItem.id">
             <img
               :src="cartItem.product.imageUrl"
               :alt="cartItem.total"
@@ -48,13 +129,10 @@
               <p class="mb-0 fw-bold">x{{ cartItem.qty }}</p>
             </div>
           </div>
-          <table class="table mt-4 p-2 border-top border-bottom text-muted">
+          <table class="table mt-4 p-2 border-top border-bottom text-custom_dark-green">
             <tbody>
               <tr>
-                <th
-                  scope="row"
-                  class="border-0 px-0 pt-4 font-weight-normal"
-                >總計</th>
+                <th scope="row" class="border-0 px-0 pt-4">總計</th>
                 <td class="text-end border-0 px-0 pt-4">NT${{ cart.total }}</td>
               </tr>
             </tbody>
@@ -86,127 +164,6 @@
           </ul>
         </div>
       </div>
-      <Form
-        ref="form"
-        class="col-md-6"
-        v-slot="{ errors }"
-        @submit="sendOrder"
-      >
-        <div class="mb-3">
-          <label
-            for="email"
-            class="form-label"
-          >Email</label>
-          <Field
-            id="email"
-            name="email"
-            type="email"
-            class="form-control"
-            :class="{ 'is-invalid': errors['email'] }"
-            placeholder="請輸入 Email"
-            rules="email|required"
-            v-model="form.user.email"
-          ></Field>
-          <ErrorMessage
-            name="email"
-            class="invalid-feedback"
-          ></ErrorMessage>
-        </div>
-
-        <div class="mb-3">
-          <label
-            for="name"
-            class="form-label"
-          >收件人姓名</label>
-          <Field
-            id="name"
-            name="姓名"
-            type="text"
-            class="form-control"
-            :class="{ 'is-invalid': errors['姓名'] }"
-            placeholder="請輸入姓名"
-            rules="required"
-            v-model="form.user.name"
-          ></Field>
-          <ErrorMessage
-            name="姓名"
-            class="invalid-feedback"
-          ></ErrorMessage>
-        </div>
-
-        <div class="mb-3">
-          <label
-            for="tel"
-            class="form-label"
-          >收件人電話</label>
-          <Field
-            id="tel"
-            name="電話"
-            type="tel"
-            class="form-control"
-            :class="{ 'is-invalid': errors['電話'] }"
-            placeholder="請輸入電話"
-            :rules="isPhone"
-            v-model="form.user.tel"
-          ></Field>
-          <ErrorMessage
-            name="電話"
-            class="invalid-feedback"
-          ></ErrorMessage>
-        </div>
-
-        <div class="mb-3">
-          <label
-            for="address"
-            class="form-label"
-          >收件人地址</label>
-          <Field
-            id="address"
-            name="地址"
-            type="text"
-            class="form-control"
-            :class="{ 'is-invalid': errors['地址'] }"
-            placeholder="請輸入地址"
-            rules="required"
-            v-model="form.user.address"
-          ></Field>
-          <ErrorMessage
-            name="地址"
-            class="invalid-feedback"
-          ></ErrorMessage>
-        </div>
-
-        <div class="mb-3">
-          <label
-            for="message"
-            class="form-label"
-          >留言</label>
-          <textarea
-            name=""
-            id="message"
-            class="form-control"
-            cols="30"
-            rows="10"
-            v-model="form.message"
-          ></textarea>
-        </div>
-        <div class="row text-center">
-          <div class="col-6">
-            <router-link to="/cart">
-              <button
-                type="button"
-                class="btn btn-dark mt-4"
-              >回購物車</button>
-            </router-link>
-          </div>
-          <div class="col-6">
-            <button
-              type="submit"
-              class="btn btn-dark mt-4"
-            >送出訂單</button>
-          </div>
-        </div>
-      </Form>
     </div>
   </div>
 </template>
