@@ -8,7 +8,7 @@
       <li class="col-md-4">
         <div class="card" style="width: 416px">
           <img
-            src="@/assets/images/HotMenu_001.jpg"
+            src="../public/images/HotMenu_001.jpg"
             height="416"
             class="card-img-top"
             alt="熱門餐點"
@@ -29,7 +29,7 @@
       <li class="col-md-4">
         <div class="card" style="width: 416px">
           <img
-            src="@/assets/images/HotMenu_002.jpg"
+            src="../public/images/HotMenu_002.jpg"
             height="416"
             class="card-img-top"
             alt="熱門餐點"
@@ -50,7 +50,7 @@
       <li class="col-md-4">
         <div class="card" style="width: 416px">
           <img
-            src="@/assets/images/HotMenu_003.jpg"
+            src="../public/images/HotMenu_003.jpg"
             height="416"
             class="card-img-top"
             alt="熱門餐點"
@@ -63,7 +63,7 @@
               v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
               class="text-decoration-none px-2"
             >
-              <button type="button" class="btn btn-custom_btn-color text-white">查看更多</button>
+              <button type="button" class="btn btn-custom_btn-color text-white">探索更多</button>
             </router-link>
           </div>
         </div>

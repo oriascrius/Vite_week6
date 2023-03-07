@@ -5,7 +5,7 @@
       <router-link to="/" class="navbar-brand">
         <h1
           style="
-            background-image: url(./src/assets/images/Logo.png);
+            background-image: url(./public/images/Logo.png);
             background-size: cover;
             background-position: center;
             height: 62.12px;
@@ -31,7 +31,7 @@
               to="/about"
               v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
               class="text-decoration-none px-2"
-              >關於我們</router-link
+              >ABOUT</router-link
             >
           </li>
           <li class="nav-item">
@@ -39,7 +39,7 @@
               to="/products"
               v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
               class="text-decoration-none px-2"
-              >美味餐點</router-link
+              >MENU</router-link
             >
           </li>
           <li class="nav-item">
@@ -47,7 +47,7 @@
               to="/contact"
               v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
               class="text-decoration-none px-2"
-              >聯絡我們</router-link
+              >CONTACT</router-link
             >
           </li>
         </ul>

@@ -8,7 +8,7 @@
         </div>
         <li class="col-md-6" style="position: relative">
           <img
-            src="@/assets/images/HotMenu_001.jpg"
+            src="../public/images/HotMenu_001.jpg"
             width="100%"
             height="648"
             alt="主打推薦"
@@ -32,7 +32,7 @@
         </li>
         <li class="col-md-6" style="position: relative">
           <img
-            src="@/assets/images/HotMenu_002.jpg"
+            src="../public/images/HotMenu_002.jpg"
             width="100%"
             height="648"
             alt="主打推薦"

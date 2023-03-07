@@ -4,7 +4,7 @@
     style="
       width: 100%;
       height: 768px;
-      background-image: url('./src/assets/images/AboutUs_Banner_001.png');
+      background-image: url('../public/images/AboutUs_Banner_001.png');
       background-repeat: no-repeat;
       background-position: top;
       background-size: cover;
@@ -18,7 +18,7 @@
           v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
           class="text-decoration-none px-2"
           ><button type="button" class="btn btn-custom_btn-color btn-lg text-white">
-            前往商品
+            享用時光
           </button>
         </router-link>
       </div>

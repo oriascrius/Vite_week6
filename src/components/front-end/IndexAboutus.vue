@@ -21,7 +21,7 @@
           </li>
           <router-link to="/about">
             <button type="button" class="btn btn-custom_btn-color w-25 text-white mt-4">
-              查看更多
+              探索更多
             </button>
           </router-link>
         </ul>
@@ -36,7 +36,7 @@
           "
         >
           <img
-            src="@/assets/images/AboutUs_Banner_001.png"
+            src="./images/AboutUs_Banner_001.png"
             alt="關於我們"
             width="612"
             height="342"
@@ -55,7 +55,7 @@
           </li>
           <router-link to="/about">
             <button type="button" class="btn btn-custom_btn-color w-25 text-white mt-4">
-              查看更多
+              探索更多
             </button>
           </router-link>
         </ul>
@@ -70,7 +70,7 @@
           "
         >
           <img
-            src="@/assets/images/AboutUs_Banner_002.png"
+            src="../public/images/AboutUs_Banner_002.png"
             alt="關於我們"
             width="612"
             height="342"
@@ -90,7 +90,7 @@
           </li>
           <router-link to="/about" v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }">
             <button type="button" class="btn btn-custom_btn-color w-25 text-white mt-4">
-              查看更多
+              探索更多
             </button>
           </router-link>
         </ul>
@@ -105,7 +105,7 @@
           "
         >
           <img
-            src="@/assets/images/AboutUs_Banner_003.png"
+            src="../public/images/AboutUs_Banner_003.png"
             alt="關於我們"
             width="612"
             height="342"
