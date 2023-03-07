@@ -4,8 +4,8 @@
       <div class="col-md-10">
         <nav class="navbar navbar-expand-lg navbar-light px-0">
           <ul
-            class="list-unstyled mb-0 ms-md-auto
-            d-flex align-items-center justify-content-between
+            class="list-unstyled mb-0 ms-md-auto d-flex
+            align-items-center justify-content-between
             justify-content-md-end w-100 mt-md-0 mt-4"
           >
             <li class="me-md-6 me-3 position-relative custom-step-line">
@@ -169,9 +169,8 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'pinia';
+import { mapActions, mapState, mapWritableState } from 'pinia';
 import LoadingStore from '@/stores/Loading';
-// import orderStore from '@/stores/order';
 import cartStore from '@/stores/cart';
 
 const { VITE_API, VITE_PATH } = import.meta.env;
@@ -233,11 +232,11 @@ export default {
         });
     },
     ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
-    ...mapActions(cartStore, ['getCarts']),
+    ...mapActions(cartStore, ['getCarts', 'addCouponCode']),
   },
   computed: {
-    // ...mapState(orderStore, ['form']),
     ...mapState(cartStore, ['cart']),
+    ...mapWritableState(cartStore, ['couponCode']),
   },
   mounted() {
     this.getCarts();

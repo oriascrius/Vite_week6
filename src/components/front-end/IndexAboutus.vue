@@ -36,7 +36,7 @@
           "
         >
           <img
-            src="../../../src/assets/images/AboutUs_Banner_001.png"
+            src="@/assets/images/AboutUs_Banner_001.png"
             alt="關於我們"
             width="612"
             height="342"
@@ -70,7 +70,7 @@
           "
         >
           <img
-            src="../../../src/assets/images/AboutUs_Banner_002.png"
+            src="@/assets/images/AboutUs_Banner_002.png"
             alt="關於我們"
             width="612"
             height="342"
@@ -105,7 +105,7 @@
           "
         >
           <img
-            src="../../../src/assets/images/AboutUs_Banner_003.png"
+            src="@/assets/images/AboutUs_Banner_003.png"
             alt="關於我們"
             width="612"
             height="342"

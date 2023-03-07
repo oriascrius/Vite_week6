@@ -72,7 +72,7 @@
           "
         >
           <img
-            src="@/assets/images/AboutUs_Banner_002.png"
+            src="./src/assets/images/AboutUs_Banner_002.png"
             alt="關於我們"
             width="612"
             height="342"
@@ -107,7 +107,7 @@
           "
         >
           <img
-            src="@/assets/images/AboutUs_Banner_003.png"
+            src="./src/assets/images/AboutUs_Banner_003.png"
             alt="關於我們"
             width="612"
             height="342"

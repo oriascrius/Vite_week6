@@ -4,7 +4,7 @@
     style="
       height: 378px;
       width: 100%;
-      background-image: url(../../../src/assets/images/Subscribe_Banner.png);
+      background-image: url(./src/assets/images/Subscribe_Banner.png);
       background-repeat: no-repeat;
       background-position: center;
       background-attachment: fixed;

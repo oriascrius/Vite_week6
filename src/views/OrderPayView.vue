@@ -43,36 +43,6 @@
             </div>
           </div>
         </form>
-        <!-- <div class="card rounded-0 py-4">
-          <table class="table">
-            <tbody>
-              <tr>
-                <th width="100">Email</th>
-                <td>{{ order.user.email }}</td>
-              </tr>
-              <tr>
-                <th>姓名</th>
-                <td>{{ order.user.name }}</td>
-              </tr>
-              <tr>
-                <th>收件人電話</th>
-                <td>{{ order.user.tel }}</td>
-              </tr>
-              <tr>
-                <th>收件人地址</th>
-                <td>{{ order.user.address }}</td>
-              </tr>
-              <tr>
-                <th>付款狀態</th>
-                <td>
-                  <span :class="{ 'text-success': order.is_paid }">
-                    {{ order.is_paid ? '付款完成' : '尚未付款' }}
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div> -->
       </div>
       <div class="col-md-6">
         <form @submit.prevent="payOrder">

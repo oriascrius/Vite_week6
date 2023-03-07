@@ -9,6 +9,7 @@ const cartStore = defineStore('cart', {
   // state 概念同「data」，在此可以使用箭頭函式
   state: () => ({
     cart: [],
+    couponCode: '',
     loadingItem: '',
   }),
   // actions 概念同「methods」

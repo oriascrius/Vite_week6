@@ -4,7 +4,7 @@
     style="
       width: 100%;
       height: 768px;
-      background-image: url('../../../src/assets/images/AboutUs_Banner_001.png');
+      background-image: url('./src/assets/images/AboutUs_Banner_001.png');
       background-repeat: no-repeat;
       background-position: top;
       background-size: cover;

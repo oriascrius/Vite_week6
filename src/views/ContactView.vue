@@ -18,8 +18,8 @@
         </li>
       </ul>
       <div class="col-md-4 mt-5" data-aos="fade-left">
-        <img src="@/assets/images/BusinessCard_front.png" alt="名片" />
-        <img src="@/assets/images/BusinessCard_reverse.png" class="mt-3" alt="名片" />
+        <img src="./src/assets/images/BusinessCard_front.png" alt="名片" />
+        <img src="./src/assets/images/BusinessCard_reverse.png" class="mt-3" alt="名片" />
       </div>
     </div>
   </div>
