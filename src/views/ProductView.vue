@@ -1,6 +1,6 @@
 <template>
   <!-- 單一商品 -->
-  <div class="container">
+  <div class="container text-custom_medium-green">
     <div class="row mt-3">
       <!-- 單一商品圖片 - 左 -->
       <div class="col-md-5">
@@ -10,7 +10,7 @@
       <div class="col-md-7">
         <ul class="row list-unstyled">
           <li class="col-md-6 mt-4">
-            <h4 class="mt-3 text-custom_btn-color">{{ product.title }}</h4>
+            <h4 class="mt-3 fw-bold">{{ product.title }}</h4>
           </li>
           <li class="col-md-6">
             <!-- 商品分類麵包屑 -->
@@ -38,7 +38,7 @@
             <p>內容：{{ product.content }}</p>
           </li>
           <li>
-            <h5>$ {{ product.price }} 元</h5>
+            <h5>NT$ {{ product.price }}</h5>
           </li>
           <div class="input-group mt-5 w-75">
             <select class="form-select" v-model="qty">
@@ -51,7 +51,7 @@
               class="btn btn-custom_btn-color text-white"
               @click="addToCart(product.id, qty)"
             >
-              加到購物車
+              加入商品
             </button>
           </div>
         </ul>
@@ -97,7 +97,7 @@
                 <h6 class="card-title">
                   {{ item.title }}
                 </h6>
-                <div class="text-right pr-2">{{ item.price }} 元</div>
+                <div class="text-right pr-2">NT$ {{ item.price }}</div>
               </div>
             </div>
           </swiper-slide>

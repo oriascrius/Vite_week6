@@ -4,7 +4,7 @@
     style="
       width: 100%;
       height: 768px;
-      background-image: url(../public/images/ProductsHeader_banner.png);
+      background-image: url(/images/ProductsHeader_banner.png);
       background-repeat: no-repeat;
       background-position: top;
       background-size: cover;

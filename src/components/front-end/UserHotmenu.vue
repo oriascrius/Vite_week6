@@ -4,11 +4,11 @@
       <h4 class="h5">DISHES</h4>
       <h2 class="h3">熱門餐點</h2>
     </div>
-    <ul class="row g-5 list-unstyled">
+    <ul class="row g-5 list-unstyled" data-aos="fade-down">
       <li class="col-md-4">
         <div class="card" style="width: 416px">
           <img
-            src="../public/images/HotMenu_001.jpg"
+            src="/images/HotMenu_001.jpg"
             height="416"
             class="card-img-top"
             alt="熱門餐點"
@@ -29,7 +29,7 @@
       <li class="col-md-4">
         <div class="card" style="width: 416px">
           <img
-            src="../public/images/HotMenu_002.jpg"
+            src="/images/HotMenu_002.jpg"
             height="416"
             class="card-img-top"
             alt="熱門餐點"
@@ -50,7 +50,7 @@
       <li class="col-md-4">
         <div class="card" style="width: 416px">
           <img
-            src="../public/images/HotMenu_003.jpg"
+            src="/images/HotMenu_003.jpg"
             height="416"
             class="card-img-top"
             alt="熱門餐點"

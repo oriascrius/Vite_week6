@@ -1,10 +1,10 @@
 <template>
   <RouterView></RouterView>
   <ContactHeader></ContactHeader>
-  <div class="container text-custom_dark-green">
+  <div class="container text-custom_medium-green">
     <div class="row justify-content-center align-items-center">
-      <h1 class="h2 mt-5 text-center">聯絡我們</h1>
-      <hr />
+      <h1 class="h2 mt-5 text-center fw-bold">聯絡我們</h1>
+      <hr class="mt-4" />
       <ul class="col-md-4 col-sm-6 list-unstyled mt-5" data-aos="fade-right">
         <li>
           <p class="lh-lg">
@@ -18,8 +18,8 @@
         </li>
       </ul>
       <div class="col-md-4 mt-5" data-aos="fade-left">
-        <img src="../public/images/BusinessCard_front.png" alt="名片" />
-        <img src="../public/images/BusinessCard_reverse.png" class="mt-3" alt="名片" />
+        <img src="/images/BusinessCard_front.png" alt="名片" />
+        <img src="/images/BusinessCard_reverse.png" class="mt-3" alt="名片" />
       </div>
     </div>
   </div>

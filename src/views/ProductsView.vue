@@ -15,27 +15,29 @@
       </li>
     </ul>
     <!-- 商品列表 -->
-    <div class="container">
+    <div class="container text-custom_medium-green">
       <div class="mt-4">
         <!-- 商品列表 -->
-        <div class="container">
+        <div>
           <div class="row">
             <div
-              class="col-md-4 g-5"
+              class="col-md-4 g-4"
               v-for="productsItem in productsFiltered"
               :key="productsItem.id"
             >
-              <div class="card">
-                <img
-                  :src="productsItem.imageUrl"
-                  class="card-img-top"
-                  :alt="productsItem.title"
-                  width="500"
-                  height="300"
-                />
+              <div class="card rounded-3">
+                <router-link :to="`/product/${productsItem.id}`">
+                  <img
+                    :src="productsItem.imageUrl"
+                    class="card-img-top rounded-3"
+                    :alt="productsItem.title"
+                    width="200"
+                    height="300"
+                  />
+                </router-link>
                 <div class="card-body">
                   <h5 class="card-title">{{ productsItem.title }}</h5>
-                  <p class="card-text">{{ productsItem.price }}</p>
+                  <p class="card-text">NT$ {{ productsItem.price }}</p>
                 </div>
                 <div class="card-footer text-center">
                   <!-- <button
@@ -47,16 +49,16 @@
                   </button> -->
                   <!-- :disabled="productsItem.id === loadingItem" -->
                   <router-link :to="`/product/${productsItem.id}`"
-                    ><button type="button" class="btn btn-outline-secondary">
+                    ><button type="button" class="btn btn-outline-secondary mx-4">
                       查看更多
                     </button></router-link
                   >
                   <button
                     type="button"
-                    class="btn btn-outline-custom_dark-green"
+                    class="btn btn-outline-custom_dark-green mx-4"
                     @click="addToCart(productsItem.id)"
                   >
-                    加到購物車
+                    加入商品
                   </button>
                 </div>
               </div>
@@ -167,7 +169,7 @@ export default {
     // },
   },
   computed: {
-    ...mapState(cartStore, ['cart', 'total', 'final_total']),
+    ...mapState(cartStore, ['cart']),
     // 篩選商品分類
     productsFiltered() {
       if (this.isActive === '全部') {

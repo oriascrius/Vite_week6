@@ -4,7 +4,7 @@
       <router-link to="/" class="navbar-brand">
         <h1
           style="
-            background-image: url(../public/images/Logo.png);
+            background-image: url('/images/Logo.png');
             background-size: cover;
             background-position: center;
             height: 62.12px;

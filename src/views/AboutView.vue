@@ -1,7 +1,7 @@
 <template>
   <RouterView></RouterView>
   <AboutHeader></AboutHeader>
-  <div class="container mt-7 py-5 text-custom_btn-color">
+  <div class="container mt-7 py-5 text-custom_btn-color" data-aos="fade-up">
     <div class="row justify-content-around" data-aos="fade-up">
       <div class="col-md-5">
         <ul class="list-unstyled">
@@ -38,7 +38,7 @@
           "
         >
           <img
-            :src="AboutUs"
+            src="/images/AboutUs_Banner_001.png"
             alt="關於我們"
             width="612"
             height="342"
@@ -72,7 +72,7 @@
           "
         >
           <img
-            src="../public/images/AboutUs_Banner_002.png"
+            src="/images/AboutUs_Banner_002.png"
             alt="關於我們"
             width="612"
             height="342"
@@ -107,7 +107,7 @@
           "
         >
           <img
-            src="../public/images/AboutUs_Banner_003.png"
+            src="/images/AboutUs_Banner_003.png"
             alt="關於我們"
             width="612"
             height="342"

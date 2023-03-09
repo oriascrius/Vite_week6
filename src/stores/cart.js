@@ -21,6 +21,7 @@ const cartStore = defineStore('cart', {
       axios
         .get(`${VITE_API}api/${VITE_PATH}/cart`)
         .then((res) => {
+          this.showLoading();
           this.cart = res.data.data;
           this.hideLoading();
         })
@@ -74,6 +75,7 @@ const cartStore = defineStore('cart', {
           // });
           // 控制 當進入詳細商品葉面，按下加入購物車後，關閉 Modal（從內層拿到方法關閉）
           this.getCarts();
+
           // 最後重置存放 id 為空
           this.loadingItem = '';
         })
@@ -103,7 +105,7 @@ const cartStore = defineStore('cart', {
       axios
         .delete(`${VITE_API}api/${VITE_PATH}/carts`)
         .then(() => {
-          // Swal.fire({
+          // this.$swal.fire({
           //   toast: true,
           //   position: 'top-end',
           //   type: 'success',
@@ -133,8 +135,6 @@ const cartStore = defineStore('cart', {
         });
     },
   },
-  // getters 概念同「computed」
-  getters: {},
 });
 
 export default cartStore;

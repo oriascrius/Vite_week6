@@ -4,25 +4,25 @@
     style="
       width: 100%;
       height: 768px;
-      background-image: url('../public/images/Contact_header.png');
+      background-image: url('/images/Contact_header.png');
       background-repeat: no-repeat;
       background-position: top;
       background-size: cover;
+      position: relative;
     "
   >
-    <div class="row" style="height: 700px">
-      <div class="col-5"></div>
-      <div class="col-7 align-self-end">
-        <router-link
-          to="/products"
-          v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
-          class="text-decoration-none px-2"
-          ><button type="button" class="btn btn-custom_btn-color btn-lg text-white">
-            享用時光
-          </button>
-        </router-link>
-      </div>
-    </div>
+    <router-link
+      to="/products"
+      style="
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%) translateY(50%);
+        bottom: 60px;
+      "
+      v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
+      class="text-decoration-none"
+      ><button type="button" class="btn btn-custom_btn-color btn-lg text-white">享用時光</button>
+    </router-link>
   </header>
 </template>
 

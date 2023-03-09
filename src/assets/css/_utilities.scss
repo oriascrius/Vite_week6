@@ -1,4 +1,4 @@
-/* 控制 loading 不倒翁感覺的動畫 */
+/* 控制 loading 不倒購物車清單翁感覺的動畫 */
 .loadingIcon {
   animation: wobble 1s ease-in-out infinite;
 }
@@ -16,7 +16,7 @@
 }
 body {
   font-family: 'Noto Serif TC', serif, 'Dancing Script', cursive !important;
-  // font-family: 'Dancing Script', cursive !important;
+  letter-spacing: 2px;
 }
 img {
   object-fit: cover;

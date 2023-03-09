@@ -6,9 +6,9 @@
           <h4 class="h5">MENU</h4>
           <h2 class="h3">松柏主打推薦</h2>
         </div>
-        <li class="col-md-6" style="position: relative">
+        <li class="col-md-6" style="position: relative" data-aos="fade-right">
           <img
-            src="../public/images/HotMenu_001.jpg"
+            src="/images/HotMenu_001.jpg"
             width="100%"
             height="648"
             alt="主打推薦"
@@ -30,9 +30,9 @@
             <button type="button" class="btn btn-outline-custom_btn-color">餐點詳情</button>
           </div>
         </li>
-        <li class="col-md-6" style="position: relative">
+        <li class="col-md-6" style="position: relative" data-aos="fade-left">
           <img
-            src="../public/images/HotMenu_002.jpg"
+            src="/images/HotMenu_002.jpg"
             width="100%"
             height="648"
             alt="主打推薦"
