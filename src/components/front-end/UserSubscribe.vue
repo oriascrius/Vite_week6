@@ -12,27 +12,28 @@
     "
   >
     <div class="container">
+      <!-- d-flex justify-content-center align-items-center -->
       <div class="row">
         <div
-          class="col-lg-4 offset-lg-7 mt-8 text-custom_btn-color"
+          class="col-lg-5 offset-lg-7 mt-7 text-custom_btn-color"
           style="
-            height: 188px;
+            height: 210px;
             border: 2px solid #747d54;
             background-color: rgba(255, 255, 255, 0.87);
             color: #747d54;
           "
         >
-          <ul class="row pt-4 list-unstyled ms-2">
-            <li>
-              <h2 class="h5 fw-bold">訂閱優惠訊息</h2>
+          <ul class="row list-unstyled p-4 ms-4">
+            <li class="">
+              <h3 class=" h4 fw-bold">訂閱優惠</h3>
             </li>
-            <li>
-              <p class="fs-7">
+            <li  class="fs-7">
+              <p>
                 我們會時常推出活動，告知最新消息<br />
                 按下訂閱，就可以取得折扣優惠碼唷
               </p>
             </li>
-            <li class="col-7">
+            <li class="col-8">
               <input
                 type="email"
                 v-model="email"
@@ -73,7 +74,7 @@ export default {
         this.$swal.fire({
           icon: 'success',
           title: '訂閱成功',
-          text: '折扣碼: avocado666',
+          text: '優惠碼: avocado666',
         });
       } else {
         this.$swal.fire({

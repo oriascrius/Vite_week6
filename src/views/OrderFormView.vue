@@ -1,5 +1,5 @@
 <template>
-  <div class="container text-custom_dark-green">
+  <div class="container text-custom_medium-green">
     <div class="row justify-content-center">
       <div class="col-md-10">
         <nav class="navbar navbar-expand-lg navbar-light px-0">
@@ -24,7 +24,7 @@
         </nav>
       </div>
     </div>
-    <h3 class="py-3">訂購表單</h3>
+    <h3 class="py-3 h4 fw-bold">訂購表單</h3>
     <div class="row pb-5 g-6">
       <Form ref="form" class="col-md-6" v-slot="{ errors }" @submit="sendOrder">
         <div class="mb-3">
@@ -129,11 +129,11 @@
               <p class="mb-0 fw-bold">x{{ cartItem.qty }}</p>
             </div>
           </div>
-          <table class="table mt-4 p-2 border-top border-bottom text-custom_dark-green">
+          <table class="table mt-4 p-2 border-top border-bottom">
             <tbody>
-              <tr>
-                <th scope="row" class="border-0 px-0 pt-4">總計</th>
-                <td class="text-end border-0 px-0 pt-4">NT${{ cart.total }}</td>
+              <tr class="text-custom_medium-green">
+                <th scope="row" class="border-0 px-0 pt-4">小計</th>
+                <td class="text-end border-0 px-0 pt-4">NT$ {{ cart.total }}</td>
               </tr>
             </tbody>
           </table>
@@ -155,12 +155,14 @@
                 </button>
               </div>
             </li>
-            <div class="w-100">
-              <div class="d-flex mt-4 justify-content-between">
-                <h4 class="d-inline-block">折扣價</h4>
-                <p class="d-inline-block text-end">NT$ {{ cart.final_total }}</p>
-              </div>
-            </div>
+            <table class="table mt-4 p-2">
+               <tbody>
+                <tr class="text-custom_medium-green">
+                  <th scope="row" class="border-0 px-0 pt-4 h4">總計</th>
+                  <td class="text-end border-0 px-0 pt-4">NT$ {{ messages.data?.final_total }}</td>
+                </tr>
+              </tbody>
+            </table>
           </ul>
         </div>
       </div>
@@ -190,7 +192,6 @@ export default {
     };
   },
   methods: {
-    // ...mapActions(orderStore, ['isPhone', 'sendOrder']),
     isPhone(value) {
       const phoneNumber = /^(09)[0-9]{8}$/;
       return phoneNumber.test(value) ? true : '請輸入行動電話';
@@ -206,7 +207,7 @@ export default {
           const { orderId } = res.data;
           this.$swal.fire({
             toast: true,
-            position: 'top-end',
+            position: 'top',
             icon: 'success',
             title: '送出訂單成功',
             showConfirmButton: false,
@@ -223,7 +224,7 @@ export default {
           this.hideLoading();
           this.$swal.fire({
             toast: true,
-            position: 'center',
+            position: 'top',
             icon: 'error',
             title: '購物車沒東西唷!',
             showConfirmButton: false,
@@ -235,7 +236,7 @@ export default {
     ...mapActions(cartStore, ['getCarts', 'addCouponCode']),
   },
   computed: {
-    ...mapState(cartStore, ['cart']),
+    ...mapState(cartStore, ['cart', 'messages']),
     ...mapWritableState(cartStore, ['couponCode']),
   },
   mounted() {

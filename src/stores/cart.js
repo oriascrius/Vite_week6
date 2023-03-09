@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import { defineStore, mapActions } from 'pinia';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import LoadingStore from '@/stores/Loading';
 
 const { VITE_API, VITE_PATH } = import.meta.env;
@@ -10,6 +11,7 @@ const cartStore = defineStore('cart', {
   state: () => ({
     cart: [],
     couponCode: '',
+    messages: '',
     loadingItem: '',
   }),
   // actions 概念同「methods」
@@ -38,14 +40,14 @@ const cartStore = defineStore('cart', {
       axios
         .post(`${VITE_API}api/${VITE_PATH}/cart`, { data })
         .then(() => {
-          // this.$swal.fire({
-          //   toast: true,
-          //   position: 'top-center',
-          //   icon: 'success',
-          //   title: '加入商品成功',
-          //   showConfirmButton: false,
-          //   timer: 1500,
-          // });
+          Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: 'success',
+            title: '加入商品成功',
+            showConfirmButton: false,
+            timer: 1500,
+          });
           this.getCarts();
         })
         .catch((err) => {
@@ -65,14 +67,14 @@ const cartStore = defineStore('cart', {
           data,
         })
         .then(() => {
-          // this.$swal.fire({
-          //   toast: true,
-          //   position: 'top-center',
-          //   icon: 'success',
-          //   title: '修改數量成功',
-          //   showConfirmButton: false,
-          //   timer: 1500,
-          // });
+          Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: 'success',
+            title: '修改數量成功',
+            showConfirmButton: false,
+            timer: 1500,
+          });
           // 控制 當進入詳細商品葉面，按下加入購物車後，關閉 Modal（從內層拿到方法關閉）
           this.getCarts();
 
@@ -91,6 +93,14 @@ const cartStore = defineStore('cart', {
       axios
         .delete(`${VITE_API}api/${VITE_PATH}/cart/${cartItem.id}`)
         .then(() => {
+          Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: 'success',
+            title: '刪除商品成功',
+            showConfirmButton: false,
+            timer: 1500,
+          });
           // 控制 當進入詳細商品葉面，按下加入購物車後，關閉 Modal（從內層拿到方法關閉）
           this.getCarts();
           // 最後重置存放 id 為空
@@ -105,14 +115,14 @@ const cartStore = defineStore('cart', {
       axios
         .delete(`${VITE_API}api/${VITE_PATH}/carts`)
         .then(() => {
-          // this.$swal.fire({
-          //   toast: true,
-          //   position: 'top-end',
-          //   type: 'success',
-          //   title: '購物車已清空',
-          //   showConfirmButton: false,
-          //   timer: 1500,
-          // });
+          Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: 'success',
+            title: '購物車已清空',
+            showConfirmButton: false,
+            timer: 1500,
+          });
           this.getCarts();
           this.loadingItem = '';
         })
@@ -126,11 +136,27 @@ const cartStore = defineStore('cart', {
       };
       axios
         .post(`${VITE_API}api/${VITE_PATH}/coupon`, { data: coupon })
-        .then(() => {
-          // const { message } = res.data;
+        .then((res) => {
+          this.messages = res.data;
+          Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: 'success',
+            title: '優惠成功',
+            showConfirmButton: false,
+            timer: 1500,
+          });
           this.getCarts();
         })
         .catch(() => {
+          Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: 'error',
+            title: '優惠碼錯誤',
+            showConfirmButton: false,
+            timer: 1500,
+          });
           // const errMessage = err.response?.data?.message || '資料錯誤';
         });
     },

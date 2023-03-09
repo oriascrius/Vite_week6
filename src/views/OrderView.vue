@@ -1,7 +1,7 @@
 <template>
   <div class="container text-custom_medium-green">
     <div class="row" v-if="cart.carts?.length">
-      <h2 class="mt-3 h3 fw-bold">購物車清單</h2>
+      <h3 class="mt-3 h4 fw-bold">購物車清單</h3>
       <div class="col-md-8 mt-3">
         <table class="table text-custom_medium-green">
           <thead>
@@ -51,7 +51,7 @@
                   class="btn btn-sm btn-outline-custom_red"
                   @click="deleteItem(cartItem)"
                 >
-                  X<!-- <i class="bi bi-x-lg"></i> -->
+                  X
                 </button>
               </td>
             </tr>
@@ -60,7 +60,7 @@
       </div>
       <div class="col-md-4">
         <div class="border p-4 mb-4">
-          <h4 class="fw-bold mb-4">訂單細節</h4>
+          <h3 class="h4 fw-bold mb-4">訂單細節</h3>
           <table class="table text-custom_medium-green border-bottom">
             <tbody>
               <tr>
