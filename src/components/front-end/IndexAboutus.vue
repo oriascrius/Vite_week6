@@ -8,7 +8,7 @@
       <div class="col-md-5 align-self-end">
         <ul class="list-unstyled">
           <li>
-            <h4 class="h5">ABOUT US</h4>
+            <h4 class="h5 fw-bold">ABOUT US</h4>
           </li>
           <li>
             <h2 class="h3 fw-bold">關於我們</h2>

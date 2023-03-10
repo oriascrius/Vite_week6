@@ -6,7 +6,7 @@
       width: 100%;
       background-image: url(./images/Subscribe_Banner.png);
       background-repeat: no-repeat;
-      background-position: center;
+      background-position: right;
       background-attachment: fixed;
       background-size: cover;
     "

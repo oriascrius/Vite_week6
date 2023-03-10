@@ -1,8 +1,8 @@
 <template>
-  <div class="container text-custom_btn-color mt-4 ps-5">
+  <div class="container text-custom_medium-green mt-4 ps-5">
     <div class="p-5 ms-5">
-      <h4 class="h5">DISHES</h4>
-      <h2 class="h3">熱門餐點</h2>
+      <h4 class="h5 fw-bold">DISHES</h4>
+      <h2 class="h3 fw-bold">熱門餐點</h2>
     </div>
     <ul class="row g-5 list-unstyled" data-aos="fade-down">
       <li class="col-md-4">
@@ -21,7 +21,7 @@
               v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
               class="text-decoration-none px-2"
             >
-              <button type="button" class="btn btn-custom_btn-color text-white">查看更多</button>
+              <button type="button" class="btn btn-custom_btn-color text-white">探索更多</button>
             </router-link>
           </div>
         </div>
@@ -42,7 +42,7 @@
               v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
               class="text-decoration-none px-2"
             >
-              <button type="button" class="btn btn-custom_btn-color text-white">查看更多</button>
+              <button type="button" class="btn btn-custom_btn-color text-white">探索更多</button>
             </router-link>
           </div>
         </div>
