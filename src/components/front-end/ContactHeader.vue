@@ -4,7 +4,7 @@
     style="
       width: 100%;
       height: 768px;
-      background-image: url('/images/Contact_header.png');
+      background-image: url(./images/Contact_header.png);
       background-repeat: no-repeat;
       background-position: top;
       background-size: cover;
