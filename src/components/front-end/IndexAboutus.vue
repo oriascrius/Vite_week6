@@ -5,7 +5,7 @@
         <h4 class="h5 fw-bold">ABOUT US</h4>
         <h2 class="h3 fw-bold">關於我們</h2>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 align-self-end">
         <ul class="list-unstyled">
           <li class="pt-7">
             <h4 class="h5">＂允許自己放慢步調，享受悠閒食光＂</h4>
@@ -24,23 +24,7 @@
         </ul>
       </div>
       <div class="col-md-6 mt-5">
-        <div
-          style="
-            position: relative;
-            height: 342px;
-            width: 612px;
-            background: rgba(116, 125, 84, 0.8);
-          "
-        >
-          <img
-            src="/images/AboutUs_Banner_001.jpg"
-            alt="關於我們"
-            width="612"
-            height="342"
-            style="position: absolute; top: 24px; right: 24px"
-            class="img-fluid"
-          />
-        </div>
+        <img src="/images/AboutUs_Banner_001.jpg" alt="關於我們" class="img-fluid rounded-3" />
       </div>
     </div>
     <div class="row mt-7 justify-content-between flex-row-reverse" data-aos="fade-down">
@@ -59,23 +43,7 @@
         </ul>
       </div>
       <div class="col-md-6 mt-5">
-        <div
-          style="
-            position: relative;
-            height: 342px;
-            width: 612px;
-            background: rgba(116, 125, 84, 0.8);
-          "
-        >
-          <img
-            src="/images/AboutUs_Banner_002.jpg"
-            alt="關於我們"
-            width="612"
-            height="342"
-            style="position: absolute; top: 24px; right: 24px"
-            class="img-fluid"
-          />
-        </div>
+        <img src="/images/AboutUs_Banner_002.jpg" alt="關於我們" class="img-fluid rounded-3" />
       </div>
     </div>
     <div class="row mt-7 justify-content-between" data-aos="fade-down">
@@ -95,23 +63,7 @@
         </ul>
       </div>
       <div class="col-md-6 mt-5">
-        <div
-          style="
-            position: relative;
-            height: 342px;
-            width: 612px;
-            background: rgba(116, 125, 84, 0.8);
-          "
-        >
-          <img
-            src="/images/AboutUs_Banner_003.jpg"
-            alt="關於我們"
-            width="612"
-            height="342"
-            style="position: absolute; top: 24px; right: 24px"
-            class="img-fluid"
-          />
-        </div>
+        <img src="/images/AboutUs_Banner_003.jpg" alt="關於我們" class="img-fluid rounded-3" />
       </div>
     </div>
   </div>

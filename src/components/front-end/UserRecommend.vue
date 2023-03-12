@@ -58,6 +58,7 @@ export default {};
 <style scoped>
 .HotMenuBg {
   height: 954px;
+  max-width: 100%;
 }
 .HotMenuCard {
   top: 580px;
@@ -70,17 +71,15 @@ export default {};
 }
 @media (max-width: 991.98px) {
   .HotMenuImages {
-    width: 100%;
-    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
   }
   .HotMenuBg {
     height: 1700px;
+    width: 700px;
   }
   .HotMenuCard {
-    /* top: 580px; */
-    left: 160px;
-    /* width: 368px; */
-    /* height: 150px; */
+    left: 50px;
   }
   .HotMenuBottom {
     padding-top: 100px;
