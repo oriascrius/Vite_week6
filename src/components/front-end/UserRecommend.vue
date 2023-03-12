@@ -22,7 +22,9 @@
             <div class="HotMenuCard border border-2 p-3">
               <h5>＂鮭魚班尼迪克蛋＂</h5>
               <p>每一天的早起都值得吃個班尼迪克蛋！</p>
-              <button type="button" class="btn btn-outline-custom_btn-color">餐點詳情</button>
+              <router-link to="/product/-NQMwp2XllOm2B1b51Wp">
+                <button type="button" class="btn btn-outline-custom_btn-color">餐點詳情</button>
+              </router-link>
             </div>
           </div>
         </div>
@@ -42,7 +44,11 @@
             <div class="HotMenuCard border border-2 p-3">
               <h5>＂水果鮮奶油鬆餅＂</h5>
               <p>充滿活力的周末，從精緻的點心開始。</p>
-              <button type="button" class="btn btn-outline-custom_btn-color">餐點詳情</button>
+              <router-link to="/product/-NQMxd5Ep1pxqDTv0Gw0">
+                <button type="button" class="btn btn-outline-custom_btn-color">
+                  餐點詳情
+                </button></router-link
+              >
             </div>
           </div>
         </div>

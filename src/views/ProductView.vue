@@ -32,7 +32,7 @@
             <span class="badge bg-custom_dark-green rounded-pill">{{ product.category }}</span>
           </li>
           <li>
-            <p class="mt-5">材料：{{ product.content }}</p>
+            <p class="mt-5">描述：{{ product.description }}</p>
           </li>
           <li>
             <p>內容：{{ product.content }}</p>
@@ -83,8 +83,7 @@
             <div class="card">
               <div
                 style="
-                  min-height: 300px;
-                  background-size: cover;
+                  min-height: 300p,                 background-size: cover;
                   background-position: center;
                   cursor: pointer;
                   position: relative;

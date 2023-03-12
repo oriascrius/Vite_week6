@@ -36,18 +36,15 @@
                   />
                 </router-link>
                 <div class="card-body">
-                  <h5 class="card-title">{{ productsItem.title }}</h5>
+                  <div>
+                    <h5 class="card-title">{{ productsItem.title }}</h5>
+                    <span class="badge bg-custom_dark-green rounded-pill">{{
+                      productsItem.category
+                    }}</span>
+                  </div>
                   <p class="card-text">NT$ {{ productsItem.price }}</p>
                 </div>
                 <div class="card-footer text-center">
-                  <!-- <button
-                    type="button"
-                    class="btn btn-outline-secondary"
-                    @click="openModal(productsItem.id)"
-                  >
-                    查看更多
-                  </button> -->
-                  <!-- :disabled="productsItem.id === loadingItem" -->
                   <router-link :to="`/product/${productsItem.id}`"
                     ><button type="button" class="btn btn-outline-secondary mx-4">
                       查看更多
