@@ -1,8 +1,8 @@
 <template>
-  <div class="container text-custom_medium-green mt-4 ps-5">
+  <div class="container text-custom_medium-green">
     <div class="row">
       <div class="col">
-        <div class="p-5 ms-5">
+        <div class="p-5 ms-5 mt-6">
           <h4 class="h5 fw-bold">DISHES</h4>
           <h2 class="h3 fw-bold">熱門餐點</h2>
         </div>
@@ -15,20 +15,24 @@
           :autoplay="{ delay: 6000, disableOnInteraction: true }"
           :modules="modules"
           :breakpoints="{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
             640: {
               slidesPerView: 1,
-              spaceBetween: 30,
+              spaceBetween: 10,
             },
             768: {
               slidesPerView: 2,
-              spaceBetween: 30,
+              spaceBetween: 10,
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 30,
+              spaceBetween: 10,
             },
           }"
-          class="mySwiper"
+          class="mySwiper ms-4"
         >
           <swiper-slide v-for="product in products" :key="product.id">
             <div class="card" style="width: 416px; height: 100%">

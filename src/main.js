@@ -23,6 +23,8 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 // bootstrap5 icon
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
+import 'bootstrap/dist/js/bootstrap';
+
 import App from './App.vue';
 import router from './router';
 
