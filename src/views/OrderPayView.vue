@@ -88,7 +88,10 @@
           </div>
           <router-link to="/orderSuccess">
             <div class="text-end mt-4">
-              <button type="button" class="btn btn-custom_btn-color text-white">確認付款</button>
+              <button
+                type="button"
+                class="btn btn-custom_btn-color text-white"
+              >確認付款</button>
             </div>
           </router-link>
         </form>

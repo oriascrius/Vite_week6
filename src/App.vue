@@ -1,8 +1,15 @@
 <template>
   <!-- 最外層，可放 Loading 全部都能使用到 -->
-  <Loading v-model:active="isLoading" :is-full-page="fullPage">
+  <Loading
+    v-model:active="isLoading"
+    :is-full-page="fullPage"
+  >
     <template v-slot:default>
-      <img src="/images/loading_icon.png" alt="loading圖" class="loadingIcon" />
+      <img
+        src="/images/loading_icon.png"
+        alt="loading圖"
+        class="loadingIcon"
+      />
     </template>
   </Loading>
   <RouterView />

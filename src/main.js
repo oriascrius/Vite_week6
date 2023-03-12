@@ -8,9 +8,6 @@ import VueAxios from 'vue-axios';
 import Loading from 'vue3-loading-overlay';
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 
-// 滾動位置
-import VueScrollTo from 'vue-scrollto';
-
 // 驗證
 import {
   Form, Field, ErrorMessage, defineRule, configure,
@@ -42,6 +39,12 @@ configure({
 // 證設定預設語系
 setLocale('zh_TW');
 
+// router-link 跳轉頁面後回到頁面頂部
+router.afterEach(() => {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+});
+
 const pinia = createPinia();
 
 createApp(App)
@@ -49,7 +52,6 @@ createApp(App)
   .use(pinia)
   .use(VueAxios, axios)
   .use(VueSweetalert2)
-  .use(VueScrollTo)
   .component('Loading', Loading)
   .component('Form', Form)
   .component('Field', Field)

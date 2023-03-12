@@ -4,7 +4,7 @@
     style="
       width: 100%;
       height: 768px;
-      background-image: url(./images/AboutUs_Banner_001.png);
+      background-image: url(./images/AboutUs_Banner_001.jpg);
       background-repeat: no-repeat;
       background-position: top;
       background-size: cover;
@@ -19,8 +19,6 @@
         transform: translateX(-50%) translateY(50%);
         bottom: 60px;
       "
-      v-scroll-to="{ el: 'body', duration: 500, easing: 'ease' }"
-      class="text-decoration-none"
       ><button type="button" class="btn btn-custom_btn-color btn-lg text-white">享用時光</button>
     </router-link>
   </header>

@@ -4,18 +4,23 @@
     style="
       width: 100%;
       height: 768px;
-      background-image: url(./images/ProductsHeader_banner.png);
+      background-image: url(./images/ProductsHeader_banner.jpg);
       background-repeat: no-repeat;
       background-position: top;
       background-size: cover;
+      position: relative;
     "
   >
-    <div class="row" style="height: 700px">
-      <div class="col-5"></div>
-      <div class="col-7 align-self-end">
-        <button type="button" class="btn btn-custom_btn-color btn-lg text-white">享用時光</button>
-      </div>
-    </div>
+    <router-link
+      to="/products"
+      style="
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%) translateY(50%);
+        bottom: 60px;
+      "
+      ><button type="button" class="btn btn-custom_btn-color btn-lg text-white">享用時光</button>
+    </router-link>
   </header>
 </template>
 

@@ -114,59 +114,18 @@ export default {
     ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
     // 商品列表 - 取得商品列表 API
     getProducts(page = 1) {
-      // this.showLoading();
       this.$http
         .get(`${VITE_API}api/${VITE_PATH}/products?page=${page}`)
         .then((res) => {
           this.products = res.data.products;
           this.page = res.data.pagination;
           this.hideLoading();
-          // this.states = { isLoading: false, fullPage: false };
         })
         .catch((err) => {
           alert(err.response.data.message);
           this.hideLoading();
-          // this.states = { isLoading: false, fullPage: false };
         });
     },
-    // 單一商品細節 Modal - HTML 上 拿到 id，從這接收後在 props 到 modal 子元件裡面 :id = productId
-    // openModal(id) {
-    //   this.productId = id;
-    // },
-    // 加入購物車 - 將 商品 ID、數量 加入到購物車
-    // eslint-disable-next-line camelcase
-    // addToCart(product_id, qty = 1) {
-    //   const data = {
-    //     // eslint-disable-next-line camelcase
-    //     product_id,
-    //     qty,
-    //   };
-    //   // 按下加入購物車時取得 id -> 先禁用按鈕點擊 -> 等待下方請求 API 完成
-    //   // 對應 商品列表中，:disabled="product.id === loadingItem"
-    //   // eslint-disable-next-line camelcase
-    //   this.loadingItem = product_id;
-    //   this.$http
-    //     .post(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart`, { data })
-    //     .then(() => {
-    //       // 最後重置存放 id 為空
-    //       this.loadingItem = '';
-    //       // 控制 當進入詳細商品頁面，按下加入購物車後，關閉 Modal（從內層拿到方法關閉）
-    //       // this.$refs.productModal.hideModal();
-    //       this.$swal.fire({
-    //         toast: true,
-    //         position: 'top-end',
-    //         icon: 'success',
-    //         title: '加入商品成功',
-    //         showConfirmButton: false,
-    //         timer: 1500,
-    //       });
-    //       // 按下加入購物車後 -> 取得購物車資料呈現
-    //       // this.getCarts();
-    //     })
-    //     .catch((err) => {
-    //       alert(err.response.data.message);
-    //     });
-    // },
   },
   computed: {
     ...mapState(cartStore, ['cart']),

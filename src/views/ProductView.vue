@@ -65,9 +65,7 @@
         <swiper
           :slidesPerView="1"
           :spaceBetween="10"
-          :pagination="{
-            clickable: true,
-          }"
+          :navigation="navigation"
           :breakpoints="{
             425: {
               slidesPerView: 1,
@@ -81,23 +79,26 @@
           :modules="modules"
           class="mySwiper"
         >
-          <swiper-slide v-for="item in similarProducts" :key="item.id">
-            <div class="card h-100 w-100">
+          <swiper-slide v-for="productItem in similarProducts" :key="productItem.id">
+            <div class="card">
               <div
                 style="
-                  min-height: 200px;
+                  min-height: 300px;
                   background-size: cover;
                   background-position: center;
                   cursor: pointer;
+                  position: relative;
                 "
-                :style="{ backgroundImage: `url(${item.imageUrl})` }"
-                @click.prevent="toggleId(item.id)"
-              ></div>
+                :style="{ backgroundImage: `url(${productItem.imageUrl})` }"
+                @click.prevent="toggleId(productItem.id)"
+              >
+                <div class="overlay"></div>
+              </div>
               <div class="card-body">
                 <h6 class="card-title">
-                  {{ item.title }}
+                  {{ productItem.title }}
                 </h6>
-                <div class="text-right pr-2">NT$ {{ item.price }}</div>
+                <div class="text-right pr-2">NT$ {{ productItem.price }}</div>
               </div>
             </div>
           </swiper-slide>
@@ -112,12 +113,11 @@
 import { RouterView } from 'vue-router';
 import { mapActions, mapState } from 'pinia';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Pagination } from 'swiper';
+import { Autoplay, Navigation } from 'swiper';
 import LoadingStore from '@/stores/Loading';
 import cartStore from '@/stores/cart';
-// 輪播
 import 'swiper/css';
-import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 const { VITE_API, VITE_PATH } = import.meta.env;
 export default {
@@ -128,7 +128,11 @@ export default {
       similarProducts: [],
       qty: 1,
       productItemId: '',
-      modules: [Pagination],
+      modules: [Autoplay, Navigation],
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
     };
   },
   components: {
@@ -207,9 +211,24 @@ export default {
 </script>
 
 <style scoped>
-#app {
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 半遮蓋陰影的顏色和透明度 */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.swiper-slide:hover .overlay {
+  opacity: 1;
+}
+/* #app {
   height: 100%;
 }
+
 html,
 body {
   position: relative;
@@ -234,17 +253,14 @@ body {
   text-align: center;
   font-size: 18px;
   background: #fff;
-
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
+} */
 </style>

@@ -3,11 +3,9 @@
     <div class="row justify-content-center">
       <div class="col-md-10">
         <nav class="navbar navbar-expand-lg navbar-light px-0">
-          <ul
-            class="list-unstyled mb-0 ms-md-auto d-flex
-            align-items-center justify-content-between
-            justify-content-md-end w-100 mt-md-0 mt-4"
-          >
+          <ul class="list-unstyled mb-0 ms-md-auto d-flex
+                align-items-center justify-content-between
+                justify-content-md-end w-100 mt-md-0 mt-4">
             <li class="me-md-6 me-3 position-relative custom-step-line">
               <i class="fas fa-check-circle d-md-inline d-block text-center"></i>
               <span class="text-nowrap">購物車</span>
@@ -26,9 +24,17 @@
     </div>
     <h3 class="py-3 h4 fw-bold">訂購表單</h3>
     <div class="row pb-5 g-6">
-      <Form ref="form" class="col-md-6" v-slot="{ errors }" @submit="sendOrder">
+      <Form
+        ref="form"
+        class="col-md-6"
+        v-slot="{ errors }"
+        @submit="sendOrder"
+      >
         <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
+          <label
+            for="email"
+            class="form-label"
+          >Email</label>
           <Field
             id="email"
             name="email"
@@ -39,11 +45,17 @@
             rules="email|required"
             v-model="form.user.email"
           ></Field>
-          <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
+          <ErrorMessage
+            name="email"
+            class="invalid-feedback"
+          ></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label for="name" class="form-label">訂購姓名</label>
+          <label
+            for="name"
+            class="form-label"
+          >訂購姓名</label>
           <Field
             id="name"
             name="姓名"
@@ -54,11 +66,17 @@
             rules="required"
             v-model="form.user.name"
           ></Field>
-          <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
+          <ErrorMessage
+            name="姓名"
+            class="invalid-feedback"
+          ></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label for="tel" class="form-label">訂購電話</label>
+          <label
+            for="tel"
+            class="form-label"
+          >訂購電話</label>
           <Field
             id="tel"
             name="電話"
@@ -69,11 +87,17 @@
             :rules="isPhone"
             v-model="form.user.tel"
           ></Field>
-          <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+          <ErrorMessage
+            name="電話"
+            class="invalid-feedback"
+          ></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label for="address" class="form-label">訂購地址</label>
+          <label
+            for="address"
+            class="form-label"
+          >訂購地址</label>
           <Field
             id="address"
             name="地址"
@@ -84,11 +108,17 @@
             rules="required"
             v-model="form.user.address"
           ></Field>
-          <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
+          <ErrorMessage
+            name="地址"
+            class="invalid-feedback"
+          ></ErrorMessage>
         </div>
 
         <div class="mb-3">
-          <label for="message" class="form-label">想告訴我們</label>
+          <label
+            for="message"
+            class="form-label"
+          >想告訴我們</label>
           <textarea
             name=""
             id="message"
@@ -101,20 +131,30 @@
         <div class="row text-center">
           <div class="col-6">
             <router-link to="/cart">
-              <button type="button" class="btn btn-custom_btn-color text-white mt-4">
+              <button
+                type="button"
+                class="btn btn-custom_btn-color text-white mt-4"
+              >
                 回購物車
               </button>
             </router-link>
           </div>
           <div class="col-6">
-            <button type="submit" class="btn btn-custom_btn-color text-white mt-4">送出訂單</button>
+            <button
+              type="submit"
+              class="btn btn-custom_btn-color text-white mt-4"
+            >送出訂單</button>
           </div>
         </div>
       </Form>
 
       <div class="col-md-6">
         <div class="border border-custom_medium-green p-4 mb-4">
-          <div class="d-flex py-2" v-for="cartItem in cart.carts" :key="cartItem.id">
+          <div
+            class="d-flex py-2"
+            v-for="cartItem in cart.carts"
+            :key="cartItem.id"
+          >
             <img
               :src="cartItem.product.imageUrl"
               :alt="cartItem.total"
@@ -132,7 +172,10 @@
           <table class="table mt-4 p-2 border-top border-bottom">
             <tbody>
               <tr class="text-custom_medium-green">
-                <th scope="row" class="border-0 px-0 pt-4">小計</th>
+                <th
+                  scope="row"
+                  class="border-0 px-0 pt-4"
+                >小計</th>
                 <td class="text-end border-0 px-0 pt-4">NT$ {{ cart.total }}</td>
               </tr>
             </tbody>
@@ -156,9 +199,12 @@
               </div>
             </li>
             <table class="table mt-4 p-2">
-               <tbody>
+              <tbody>
                 <tr class="text-custom_medium-green">
-                  <th scope="row" class="border-0 px-0 pt-4 h4">總計</th>
+                  <th
+                    scope="row"
+                    class="border-0 px-0 pt-4 h4"
+                  >總計</th>
                   <td class="text-end border-0 px-0 pt-4">NT$ {{ messages.data?.final_total }}</td>
                 </tr>
               </tbody>
