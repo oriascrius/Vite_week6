@@ -9,6 +9,7 @@
       background-size: cover;
       position: relative;
     "
+    class="vh-100"
   >
     <div class="container">
       <div class="row">

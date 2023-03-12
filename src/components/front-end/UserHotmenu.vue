@@ -44,6 +44,7 @@
                   :src="product.imageUrl"
                   :alt="product.title"
                   style="width: 416px; height: 416px; cursor: pointer"
+                  class="img-fluid"
                 />
               </router-link>
               <ul class="mt-3 list-unstyled">

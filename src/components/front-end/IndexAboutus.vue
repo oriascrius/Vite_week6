@@ -7,8 +7,6 @@
       </div>
       <div class="col-md-6">
         <ul class="list-unstyled">
-          <!-- <li><h4 class="h5 fw-bold">ABOUT US</h4></li>
-          <li><h2 class="h3 fw-bold">關於我們</h2></li> -->
           <li class="pt-7">
             <h4 class="h5">＂允許自己放慢步調，享受悠閒食光＂</h4>
           </li>
@@ -40,6 +38,7 @@
             width="612"
             height="342"
             style="position: absolute; top: 24px; right: 24px"
+            class="img-fluid"
           />
         </div>
       </div>
@@ -74,6 +73,7 @@
             width="612"
             height="342"
             style="position: absolute; top: 24px; right: 24px"
+            class="img-fluid"
           />
         </div>
       </div>
@@ -109,6 +109,7 @@
             width="612"
             height="342"
             style="position: absolute; top: 24px; right: 24px"
+            class="img-fluid"
           />
         </div>
       </div>
