@@ -28,12 +28,6 @@ export default {
     UserRecommend,
     UserHotmenu,
   },
-  mounted() {
-    this.showLoading();
-    setTimeout(() => {
-      this.hideLoading();
-    }, 500);
-  },
   methods: {
     ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
   },

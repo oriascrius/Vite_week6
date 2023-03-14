@@ -6,7 +6,7 @@
           <h4 class="h5 fw-bold text-center">MENU</h4>
           <h2 class="h3 fw-bold text-center">松柏主打推薦</h2>
         </div>
-        <div class="col-lg-6 col-md-12 g-0" data-aos="flip-up">
+        <div class="col-lg-6 col-md-12 g-0">
           <div
             style="
               width: 648px;
@@ -28,7 +28,7 @@
             </div>
           </div>
         </div>
-        <div class="HotMenuBottom col-lg-6 col-md-12 g-0" data-aos="flip-down">
+        <div class="HotMenuBottom col-lg-6 col-md-12 g-0">
           <div
             style="
               width: 648px;
@@ -91,7 +91,7 @@ export default {};
   }
 }
 @media (max-width: 770px) {
-   .HotMenuImages {
+  .HotMenuImages {
     max-width: 100%;
   }
   .HotMenuBg {

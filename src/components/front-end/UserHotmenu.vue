@@ -17,13 +17,13 @@
       :autoplay="{ delay: 6000, disableOnInteraction: true }"
       :modules="modules"
       :breakpoints="{
-         320: {
+        320: {
           slidesPerView: 1,
-          spaceBetween:10,
+          spaceBetween: 10,
         },
         640: {
           slidesPerView: 1,
-          spaceBetween:10,
+          spaceBetween: 10,
         },
         768: {
           slidesPerView: 2,
@@ -37,15 +37,15 @@
       class="mySwiper"
     >
       <swiper-slide v-for="product in products" :key="product.id">
-        <div class="card" style="width: 100%; height: 100%;">
+        <div class="card" style="width: 100%; height: 100%">
           <router-link
             :to="`/product/${product.id}`"
-            style=" width: 100%; height: 416px; overflow: hidden;"
+            style="width: 100%; height: 416px; overflow: hidden"
           >
             <img
               :src="product.imageUrl"
               :alt="product.title"
-              style=" width: 100%; height: 416px;  cursor: pointer"
+              style="width: 100%; height: 416px; cursor: pointer"
             />
           </router-link>
           <ul class="mt-3 list-unstyled">
