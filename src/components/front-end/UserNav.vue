@@ -37,6 +37,9 @@
           <li class="nav-item py-4 mx-auto">
             <router-link to="/contact" class="text-decoration-none p-4">CONTACT</router-link>
           </li>
+           <li class="nav-item py-4 mx-auto">
+            <router-link to="/question" class="text-decoration-none p-4">FAQ</router-link>
+          </li>
           <li class="nav-item py-2  mx-auto">
             <router-link to="/cart" class="cart_icon position-relative p-1">
               <img src="/images/cart_icon.png" alt="" style="width: 50px" />

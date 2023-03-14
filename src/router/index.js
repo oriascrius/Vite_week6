@@ -49,6 +49,11 @@ const routes = [
         name: '聯絡我們',
         component: () => import('../views/ContactView.vue'),
       },
+      {
+        path: '/question',
+        name: '常見問題',
+        component: () => import('../views/QuestionView.vue'),
+      },
     ],
   },
   {
