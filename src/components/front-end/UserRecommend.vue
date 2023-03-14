@@ -91,8 +91,18 @@ export default {};
   }
 }
 @media (max-width: 770px) {
+   .HotMenuImages {
+    max-width: 100%;
+  }
+  .HotMenuBg {
+    height: 1700px;
+    width: 100%;
+  }
   .HotMenuCard {
     left: 90px;
+  }
+  .HotMenuBottom {
+    padding-top: 100px;
   }
 }
 </style>
