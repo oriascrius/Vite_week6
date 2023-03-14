@@ -81,11 +81,11 @@ export default {};
     width: 100%;
   }
   .RecommendUpCard {
-    left: 12px;
+    left: 15px;
     bottom: 670px;
   }
   .RecommendDownCard {
-    left: 12px;
+    left: 15px;
     bottom: 670px;
   }
 }

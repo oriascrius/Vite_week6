@@ -31,16 +31,16 @@
               >ABOUT</router-link
             >
           </li>
-          <li class="nav-item py-4">
+          <li class="nav-item py-4 mx-auto">
             <router-link to="/products" class="text-decoration-none p-3">MENU</router-link>
           </li>
-          <li class="nav-item py-4">
+          <li class="nav-item py-4 mx-auto">
             <router-link to="/contact" class="text-decoration-none p-3">CONTACT</router-link>
           </li>
-          <li class="nav-item py-4">
+          <li class="nav-item py-4 mx-auto">
             <router-link to="/question" class="text-decoration-none p-3">FAQ</router-link>
           </li>
-          <li class="nav-item py-2">
+          <li class="nav-item py-2 mx-auto">
             <router-link to="/cart" class="cart_icon position-relative p-2">
               <img src="/images/ICON_CedarCafe_001.png" alt="購物車圖標" style="width: 50px" />
               <span
