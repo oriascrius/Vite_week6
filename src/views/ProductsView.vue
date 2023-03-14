@@ -3,7 +3,7 @@
     <RouterView></RouterView>
     <ProductsHeader></ProductsHeader>
     <!-- 商品分類 -->
-    <ul class="nav nav-tabs m-5 p-5 justify-content-center flex-nowrap text-nowrap">
+    <ul class="nav nav-tabs m-5 p-3 justify-content-center flex-nowrap">
       <li class="nav-item" v-for="tabItem in productsTab" :key="tabItem">
         <a
           href="#"
@@ -68,7 +68,7 @@
           </div>
         </div>
         <!-- 分頁元件 -->
-        <PaginationModal :pages="page" @change-page="getProducts"></PaginationModal>
+        <PaginationModal class="mt-5" :pages="page" @change-page="getProducts"></PaginationModal>
       </div>
     </div>
     <!-- 詳細商品 -->

@@ -74,12 +74,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-@media (max-width: 991px) {
-h1{
-  /* height: 62px;
-  position: absolute; */
-}
-}
-</style>
