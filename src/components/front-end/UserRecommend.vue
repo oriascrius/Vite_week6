@@ -75,7 +75,7 @@ export default {};
   position: absolute;
   color: #747d54;
 }
-@media (max-width: 770px) {
+/* @media (max-width: 991.98px) {
   .HotMenuImages {
     max-width: 100%;
   }
@@ -89,10 +89,9 @@ export default {};
   .HotMenuBottom {
     padding-top: 100px;
   }
-}
-@media (max-width: 991.98px) {
+} */
+@media (max-width: 991px) {
   .HotMenuImages {
-    /* max-height: 100%; */
     max-width: 100%;
   }
   .HotMenuBg {
@@ -101,6 +100,21 @@ export default {};
   }
   .HotMenuCard {
     left: 150px;
+  }
+  .HotMenuBottom {
+    padding-top: 100px;
+  }
+}
+@media (max-width: 770px) {
+  .HotMenuImages {
+    max-width: 100%;
+  }
+  .HotMenuBg {
+    height: 1700px;
+    width: 100%;
+  }
+  .HotMenuCard {
+    left: 90px;
   }
   .HotMenuBottom {
     padding-top: 100px;
