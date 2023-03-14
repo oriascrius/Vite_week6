@@ -75,21 +75,6 @@ export default {};
   position: absolute;
   color: #747d54;
 }
-/* @media (max-width: 991.98px) {
-  .HotMenuImages {
-    max-width: 100%;
-  }
-  .HotMenuBg {
-    height: 1700px;
-    width: 100%;
-  }
-  .HotMenuCard {
-    left: 300px;
-  }
-  .HotMenuBottom {
-    padding-top: 100px;
-  }
-} */
 @media (max-width: 991px) {
   .HotMenuImages {
     max-width: 100%;
@@ -106,18 +91,8 @@ export default {};
   }
 }
 @media (max-width: 770px) {
-  .HotMenuImages {
-    max-width: 100%;
-  }
-  .HotMenuBg {
-    height: 1700px;
-    width: 100%;
-  }
   .HotMenuCard {
     left: 90px;
-  }
-  .HotMenuBottom {
-    padding-top: 100px;
   }
 }
 </style>
