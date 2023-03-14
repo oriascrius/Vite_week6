@@ -1,216 +1,139 @@
 <template>
   <RouterView></RouterView>
   <AboutHeader></AboutHeader>
-  <!-- <div class="container text-custom_medium-green">
-    <div class="row">
-      <div class="col-lg-8 mx-auto">
-        <h1 class="h2 mt-5 fw-bold  text-center">Q & A</h1>
-        <hr class="mt-4" />
-        <div class="accordion mt-5" id="accordionExample">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-              <button
-                class="accordion-button"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseOne"
-                aria-expanded="true"
-                aria-controls="collapseOne"
-              >
-                Accordion Item #1
-              </button>
-            </h2>
-            <div
-              id="collapseOne"
-              class="accordion-collapse collapse show"
-              aria-labelledby="headingOne"
-              data-bs-parent="#accordionExample"
-            >
-              <div class="accordion-body">
-                <strong>This is the first item's accordion body.</strong> It is shown by default,
-                until the collapse plugin adds the appropriate classes that we use to style each
-                element. These classes control the overall appearance, as well as the showing and
-                hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                our default variables. It's also worth noting that just about any HTML can go within
-                the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo"
-                aria-expanded="false"
-                aria-controls="collapseTwo"
-              >
-                Accordion Item #2
-              </button>
-            </h2>
-            <div
-              id="collapseTwo"
-              class="accordion-collapse collapse"
-              aria-labelledby="headingTwo"
-              data-bs-parent="#accordionExample"
-            >
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default,
-                until the collapse plugin adds the appropriate classes that we use to style each
-                element. These classes control the overall appearance, as well as the showing and
-                hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                our default variables. It's also worth noting that just about any HTML can go within
-                the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseThree"
-                aria-expanded="false"
-                aria-controls="collapseThree"
-              >
-                Accordion Item #3
-              </button>
-            </h2>
-            <div
-              id="collapseThree"
-              class="accordion-collapse collapse"
-              aria-labelledby="headingThree"
-              data-bs-parent="#accordionExample"
-            >
-              <div class="accordion-body">
-                <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                until the collapse plugin adds the appropriate classes that we use to style each
-                element. These classes control the overall appearance, as well as the showing and
-                hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                our default variables. It's also worth noting that just about any HTML can go within
-                the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="container text-custom_medium-green">
+    <div class="row justify-content-center align-items-center">
+      <h5 class="mt-7 fw-bold text-center">STORY OF US</h5>
+      <h1 class="h2 fw-bold text-center">品牌故事</h1>
+      <hr class="mt-4" />
+      <p class="fs-4" style="line-height: 2">
+        我和女友一開始就發現我們的名字中都有 「松」 和「柏」
+        這兩個字，這令我們感到驚訝和開心。我們總是會在每個重要的節日和紀念日裡慶祝彼此的愛情。
+        在一個特別的年份，我們決定一起創建一個餐廳，並把它取名為「CEDAR」。這個名字代表了我們從開始就共享的
+        「松」 和 「柏」
+        這兩個字詞，也象徵了我們一起成長和緊密連接的經歷。我們希望這個餐廳能成為一個溫馨而浪漫的場所，讓每一對情侶都能夠在這裡享受美食和愛情，就像我們一樣。
+      </p>
     </div>
-  </div> -->
-  <div class="container mt-7 py-5 text-custom_btn-color" data-aos="fade-up">
-    <div class="row justify-content-around" data-aos="fade-up">
-      <div class="col-md-5">
-        <ul class="list-unstyled">
+  </div>
+  <div class="container text-custom_btn-color">
+    <h4 class="h5 mt-7">ABOUT US</h4>
+    <h2 class="h3 fw-bold">關於我們</h2>
+    <div class="row justify-content-between" data-aos="fade-up">
+      <div class="col-lg-5 mb-5 mb-md-0">
+        <ul class="list-unstyled h-100 d-flex flex-column justify-content-center">
+          <li class="mt-5">
+            <p>歡迎來到我們的餐廳！我們以輕食和早午餐為主題，並以美味的酪梨作為主要食材。</p>
+          </li>
           <li>
-            <h4 class="h5">ABOUT US</h4>
+            <p>我們採用新鮮的食材和高品質的配料，讓您享受到一種與眾不同的用餐體驗。</p>
           </li>
-          <li class="">
-            <h2 class="h3 fw-bold">關於我們</h2>
+          <li class="mt-5">
+            <router-link to="/about"
+              ><button type="button" class="btn btn-custom_btn-color w-25 text-white">
+                查看更多
+              </button>
+            </router-link>
           </li>
-          <li class="pt-7">
-            <h4 class="h5">＂允許自己放慢步調，享受悠閒食光＂</h4>
-          </li>
-          <li class="pt-2">
-            <p>
-              晨曦的陽光淌進窗戶，向你送出我的祝福，打開手機查看，溫馨，一點點<br />
-              爬上你的笑臉，你是快樂的，我就是幸福的，早安！與你相遇，在 Cedar<br />
-              Brunch & Cafe。
-            </p>
-          </li>
-          <router-link to="/about"
-            ><button type="button" class="btn btn-custom_btn-color text-white mt-4">
-              查看更多
-            </button>
-          </router-link>
         </ul>
       </div>
-      <div class="col-md-5">
+      <div class="col-lg-6 position-relative">
+        <img
+          src="/images/About_001.jpg"
+          alt="關於我們"
+          class="img-fluid rounded-3"
+          style="height: 100%; object-fit: cover"
+        />
         <div
+          class="rounded-3"
           style="
-            position: relative;
-            height: 342px;
-            width: 612px;
+            position: absolute;
+            content: '';
+            width: 96%;
+            height: 100%;
+            top: -20px;
+            right: -8px;
             background: rgba(116, 125, 84, 0.8);
+            z-index: -1;
           "
-        >
-          <img
-            src="/images/AboutUs_Banner_001.jpg"
-            alt="關於我們"
-            width="612"
-            height="342"
-            style="position: absolute; top: 24px; right: 24px"
-          />
-        </div>
+        ></div>
       </div>
     </div>
-    <div class="row mt-7 flex-row-reverse justify-content-around" data-aos="fade-up">
-      <div class="col-md-5 align-self-end">
-        <ul class="list-unstyled">
-          <li>
+    <div class="row mt-7 flex-row-reverse justify-content-between" data-aos="fade-up">
+      <div class="col-lg-5 mb-5 mb-md-0">
+        <ul class="list-unstyled h-100 d-flex flex-column justify-content-end">
+          <li class="py-5">
             <p>
-              從香煎鮭魚的誘人香氣到背景中咖啡豆研磨機的嗡嗡聲，再到每天準備的<br />西式風格輕食菜單的迷人香味，我們不僅僅是間普通的早午餐店。
+              我們的菜單提供健康的輕食和早午餐選擇，結合環保和可持續性理念，為您帶來健康、美味的用餐體驗。快來我們的餐廳，品嚐一份獨特的美味！
             </p>
           </li>
-          <router-link to="/about"
-            ><button type="button" class="btn btn-custom_btn-color text-white mt-4">
-              查看更多
-            </button>
-          </router-link>
+          <li>
+            <router-link to="/about"
+              ><button type="button" class="btn btn-custom_btn-color w-25 text-white">
+                查看更多
+              </button>
+            </router-link>
+          </li>
         </ul>
       </div>
-      <div class="col-md-5">
+      <div class="col-lg-6 position-relative">
+        <img
+          src="/images/About_002.jpg"
+          alt="關於我們"
+          class="img-fluid rounded-3"
+          style="height: 100%; object-fit: cover"
+        />
         <div
+          class="rounded-3"
           style="
-            position: relative;
-            height: 342px;
-            width: 612px;
+            position: absolute;
+            content: '';
+            width: 96%;
+            height: 100%;
+            top: -20px;
+            right: -8px;
             background: rgba(116, 125, 84, 0.8);
+            z-index: -1;
           "
-        >
-          <img
-            src="/images/AboutUs_Banner_002.jpg"
-            alt="關於我們"
-            width="612"
-            height="342"
-            style="position: absolute; top: 24px; right: 24px"
-          />
-        </div>
+        ></div>
       </div>
     </div>
-    <div class="row mt-7 justify-content-around" data-aos="fade-up">
-      <div class="col-md-5 align-self-end">
-        <ul class="list-unstyled">
-          <li>
+    <div class="row mt-7 justify-content-between" data-aos="fade-up">
+      <div class="col-lg-5 mb-5 mb-md-0">
+        <ul class="list-unstyled h-100 d-flex flex-column justify-content-end">
+          <li class="py-5">
             <p>
-              我們在這裡尋找咖啡和烹飪愛好者。我們希望 Cedar Brunch & Cafe 成為<br />
-              您的歸宿，您可以在這裡為自己充電，並在咖啡、美食和熟悉的面孔中尋<br />求安慰。
+              無論您是在早上享用一份豐盛的早餐，還是在午後來一杯營養豐富的飲料，我們都能滿足您的需要。請來到我們的餐廳，讓我們為您帶來一個健康、美味、舒適的用餐體驗。
             </p>
           </li>
-          <router-link to="/about"
-            ><button type="button" class="btn btn-custom_btn-color text-white mt-4">
-              查看更多
-            </button>
-          </router-link>
+          <li>
+            <router-link to="/about"
+              ><button type="button" class="btn btn-custom_btn-color w-25 text-white">
+                查看更多
+              </button>
+            </router-link>
+          </li>
         </ul>
       </div>
-      <div class="col-md-5">
+      <div class="col-lg-6 position-relative">
+        <img
+          src="/images/About_003.jpg"
+          alt="關於我們"
+          class="img-fluid rounded-3"
+          style="height: 100%; object-fit: cover"
+        />
         <div
+          class="rounded-3"
           style="
-            position: relative;
-            height: 342px;
-            width: 612px;
+            position: absolute;
+            content: '';
+            width: 96%;
+            height: 100%;
+            top: -20px;
+            right: -8px;
             background: rgba(116, 125, 84, 0.8);
+            z-index: -1;
           "
-        >
-          <img
-            src="/images/AboutUs_Banner_003.jpg"
-            alt="關於我們"
-            width="612"
-            height="342"
-            style="position: absolute; top: 24px; right: 24px"
-          />
-        </div>
+        ></div>
       </div>
     </div>
   </div>

@@ -5,12 +5,13 @@
         class="row border border-1 align-items-center justify-content-between text-white"
         style="height: 86px"
       >
-        <div class="col-md-5 h6 text-white py-4">
+        <div class="col-lg-6  h6 text-white py-4">
           <router-link to="/about" class="text-decoration-none p-4">ABOUT</router-link>
-          <router-link to="/products" class="text-decoration-none  p-4">MENU</router-link>
-          <router-link to="/contact" class="text-decoration-none  p-4">CONTACT</router-link>
+          <router-link to="/products" class="text-decoration-none p-4">MENU</router-link>
+          <router-link to="/contact" class="text-decoration-none p-4">CONTACT</router-link>
+          <router-link to="/question" class="text-decoration-none p-4">FAQ</router-link>
         </div>
-        <div class="col-md-5 py-4">
+        <div class="col-lg-5 py-4">
           <a href="https://www.facebook.com/CedarBrunchCafe" class="p-4">
             <i class="bi bi-facebook"></i>
           </a>

@@ -7,12 +7,10 @@
       background-image: url(./images/Subscribe_Banner.jpg);
       background-repeat: no-repeat;
       background-position: center;
-      background-attachment: fixed;
       background-size: cover;
     "
   >
     <div class="container">
-      <!-- d-flex justify-content-center align-items-center -->
       <div class="row">
         <div
           class="col-lg-5 offset-lg-7 mt-7 text-custom_btn-color"

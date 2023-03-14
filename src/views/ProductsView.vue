@@ -37,10 +37,15 @@
                 </router-link>
                 <div class="card-body">
                   <div>
-                    <h5 class="card-title">{{ productsItem.title }}</h5>
-                    <span class="badge bg-custom_dark-green rounded-pill">{{
+                    <h5 class="card-title">
+                      {{ productsItem.title }}
+                      <span class="badge bg-custom_medium-green rounded-pill fs-8">{{
+                        productsItem.category
+                      }}</span>
+                    </h5>
+                    <!-- <span class="badge bg-custom_medium-green rounded-pill">{{
                       productsItem.category
-                    }}</span>
+                    }}</span> -->
                   </div>
                   <p class="card-text">NT$ {{ productsItem.price }}</p>
                 </div>

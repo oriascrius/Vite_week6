@@ -3,7 +3,7 @@
     style="
       width: 100%;
       height: 768px;
-      background-image: url(./images/ssuccess_header.jpg);
+      background-image: url(./images/Success_Banner.jpg);
       background-repeat: no-repeat;
       background-position: left top;
       background-size: cover;
@@ -20,7 +20,7 @@
         <router-link to="/" class="btn btn-outline-custom_btn-color mt-3">Back To Home</router-link>
       </div>
       <div class="col-md-6">
-        <img src="/images/BusinessCard_reverse.jpg" alt="名片圖" />
+        <img src="/images/BusinessCard_Reverse.jpg" alt="名片圖" />
       </div>
     </div>
   </div>

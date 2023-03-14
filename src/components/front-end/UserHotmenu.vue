@@ -2,7 +2,7 @@
   <div class="container text-custom_medium-green">
     <div class="row">
       <div class="col">
-        <div class="p-5 ms-5 mt-6">
+        <div class="mt-7">
           <h4 class="h5 fw-bold">DISHES</h4>
           <h2 class="h3 fw-bold">熱門餐點</h2>
         </div>
@@ -34,7 +34,7 @@
           spaceBetween: 20,
         },
       }"
-      class="mySwiper"
+      class="mySwiper mt-3"
     >
       <swiper-slide v-for="product in products" :key="product.id">
         <div class="card" style="width: 100%; height: 100%">
