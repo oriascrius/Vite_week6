@@ -20,7 +20,7 @@
         <router-link to="/" class="btn btn-outline-custom_btn-color mt-3">Back To Home</router-link>
       </div>
       <div class="col-md-6">
-        <img src="/images/BusinessCard_Reverse.jpg" alt="名片圖" />
+        <img src="/images/BusinessCard_Reverse.png" alt="名片圖" />
       </div>
     </div>
   </div>

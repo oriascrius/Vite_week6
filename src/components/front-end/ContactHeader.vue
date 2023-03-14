@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="position-relative">
-      <img src="/images/Contact_Header.jpg" alt="關於我們圖片" class="img-fluid" />
+      <img src="/images/Contact_Header.png" alt="關於我們圖片" class="img-fluid" />
       <router-link
         to="/products"
         style="

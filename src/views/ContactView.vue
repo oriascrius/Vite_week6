@@ -20,8 +20,8 @@
         </li>
       </ul>
       <div class="col-md-4 mt-5" data-aos="fade-left">
-        <img src="/images/BusinessCard_Front.jpg" class="img-fluid" alt="名片" />
-        <img src="/images/BusinessCard_Reverse.jpg" class="mt-3 img-fluid" alt="名片" />
+        <img src="/images/BusinessCard_Front.png" class="img-fluid" alt="名片" />
+        <img src="/images/BusinessCard_Reverse.png" class="mt-3 img-fluid" alt="名片" />
       </div>
     </div>
   </div>
