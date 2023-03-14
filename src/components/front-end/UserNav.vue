@@ -42,7 +42,7 @@
           </li>
           <li class="nav-item py-2  mx-auto">
             <router-link to="/cart" class="cart_icon position-relative p-1">
-              <img src="/images/Cart_Icon.png" alt="" style="width: 50px" />
+              <img src="/images/Cart_Icon.png" alt="購物車圖標" style="width: 50px" />
               <span
                 class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle"
                 >{{ cart.carts?.length }}</span

@@ -6,7 +6,7 @@
       <h5 class="mt-7 fw-bold text-center">STORY OF US</h5>
       <h1 class="h2 fw-bold text-center">品牌故事</h1>
       <hr class="mt-4" />
-      <p class="fs-4" style="line-height: 2">
+      <p class="fs-5" style="line-height: 2">
         我和女友一開始就發現我們的名字中都有 「松」 和「柏」
         這兩個字，這令我們感到驚訝和開心。我們總是會在每個重要的節日和紀念日裡慶祝彼此的愛情。
         在一個特別的年份，我們決定一起創建一個餐廳，並把它取名為「CEDAR」。這個名字代表了我們從開始就共享的
@@ -28,7 +28,7 @@
             <p>我們採用新鮮的食材和高品質的配料，讓您享受到一種與眾不同的用餐體驗。</p>
           </li>
           <li class="mt-5">
-            <router-link to="/about"
+            <router-link to="/products"
               ><button type="button" class="btn btn-custom_btn-color w-25 text-white">
                 查看更多
               </button>
@@ -66,7 +66,7 @@
             </p>
           </li>
           <li>
-            <router-link to="/about"
+            <router-link to="/products"
               ><button type="button" class="btn btn-custom_btn-color w-25 text-white">
                 查看更多
               </button>
@@ -104,7 +104,7 @@
             </p>
           </li>
           <li>
-            <router-link to="/about"
+            <router-link to="/products"
               ><button type="button" class="btn btn-custom_btn-color w-25 text-white">
                 查看更多
               </button>

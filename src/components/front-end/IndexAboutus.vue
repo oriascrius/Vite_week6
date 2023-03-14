@@ -10,12 +10,11 @@
           </li>
           <li class="mt-2">
             <p>
-              晨曦的陽光淌進窗戶，向你送出我的祝福，打開手機查看，溫馨，一點點
-              爬上你的笑臉，你是快樂的，我就是幸福的，早安！與你相遇，在 Cedar Brunch & Cafe。
+              晨曦的陽光淌進窗戶，向你送出我的祝福，打開手機查看，溫馨，一點點爬上你的笑臉，你是快樂的，我就是幸福的，早安！與你相遇，在 Cedar Brunch & Cafe。
             </p>
           </li>
           <li class="mt-5">
-            <router-link to="/about"
+            <router-link to="/products"
               ><button type="button" class="btn btn-custom_btn-color w-25 text-white">
                 查看更多
               </button>
@@ -54,7 +53,7 @@
             </p>
           </li>
           <li>
-            <router-link to="/about"
+            <router-link to="/products"
               ><button type="button" class="btn btn-custom_btn-color w-25 text-white">
                 查看更多
               </button>
@@ -93,7 +92,7 @@
             </p>
           </li>
           <li>
-            <router-link to="/about"
+            <router-link to="/products"
               ><button type="button" class="btn btn-custom_btn-color w-25 text-white">
                 查看更多
               </button>
