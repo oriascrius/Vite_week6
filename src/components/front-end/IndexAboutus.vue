@@ -28,7 +28,6 @@
           src="/images/Index_AboutUs_001.jpg"
           alt="關於我們"
           class="img-fluid rounded-3"
-          style="height: 100%"
         />
         <div
           class="rounded-3"
@@ -68,7 +67,6 @@
           src="/images/Index_AboutUs_002.jpg"
           alt="關於我們"
           class="img-fluid rounded-3"
-          style="height: 100%"
         />
         <div
           class="rounded-3"
@@ -108,7 +106,6 @@
           src="/images/Index_AboutUs_003.jpg"
           alt="關於我們"
           class="img-fluid rounded-3"
-          style="height: 100%"
         />
         <div
           class="rounded-3"

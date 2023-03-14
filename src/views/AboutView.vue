@@ -41,7 +41,6 @@
           src="/images/About_001.jpg"
           alt="關於我們"
           class="img-fluid rounded-3"
-          style="height: 100%; object-fit: cover"
         />
         <div
           class="rounded-3"
@@ -80,7 +79,6 @@
           src="/images/About_002.jpg"
           alt="關於我們"
           class="img-fluid rounded-3"
-          style="height: 100%; object-fit: cover"
         />
         <div
           class="rounded-3"
@@ -119,7 +117,6 @@
           src="/images/About_003.jpg"
           alt="關於我們"
           class="img-fluid rounded-3"
-          style="height: 100%; object-fit: cover"
         />
         <div
           class="rounded-3"
