@@ -14,7 +14,7 @@
         ></h1>
       </router-link>
       <button
-        class="navbar-toggler"
+        class="navbar-toggler custom-toggler"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarNav"
@@ -25,33 +25,21 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto me-7">
-          <li class="nav-item py-4">
+        <ul class="navbar-nav ms-auto me-8 ps-8">
+          <li class="nav-item py-4 mx-auto">
             <router-link to="/about" aria-current="page" class="text-decoration-none p-4"
               >ABOUT</router-link
             >
           </li>
-          <li class="nav-item py-4">
+          <li class="nav-item py-4 mx-auto">
             <router-link to="/products" class="text-decoration-none p-4">MENU</router-link>
           </li>
-          <li class="nav-item py-4">
+          <li class="nav-item py-4 mx-auto">
             <router-link to="/contact" class="text-decoration-none p-4">CONTACT</router-link>
           </li>
-          <li  class="nav-item py-2">
+          <li class="nav-item py-2  mx-auto">
             <router-link to="/cart" class="cart_icon position-relative p-1">
-              <!-- <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="30"
-            fill="currentColor"
-            class="bi bi-cart2"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
-            />
-          </svg> -->
-              <img src="/images/cart_icon.png" alt="" style="width: 50px;" />
+              <img src="/images/cart_icon.png" alt="" style="width: 50px" />
               <span
                 class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle"
                 >{{ cart.carts?.length }}</span
@@ -83,3 +71,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@media (max-width: 991px) {
+h1{
+  /* height: 62px;
+  position: absolute; */
+}
+}
+</style>
