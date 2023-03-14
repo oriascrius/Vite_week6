@@ -1,12 +1,12 @@
 <template>
-  <div class="HotMenuBg" style="background: rgba(116, 125, 84, 0.8)">
+  <div class="HotMenuBg" style="background: rgba(116, 125, 84, 0.8);">
     <div class="container mt-4">
       <div class="row justify-content-around mt-7">
         <div class="p-5 text-white">
           <h4 class="h5 fw-bold text-center">MENU</h4>
           <h2 class="h3 fw-bold text-center">松柏主打推薦</h2>
         </div>
-        <div class="col-lg-6 col-md-12" data-aos="slide-left">
+        <div class="col-lg-6 col-md-12 g-0" data-aos="flip-up">
           <div
             style="
               width: 648px;
@@ -28,7 +28,7 @@
             </div>
           </div>
         </div>
-        <div class="HotMenuBottom col-lg-6 col-md-12" data-aos="slide-right">
+        <div class="HotMenuBottom col-lg-6 col-md-12 g-0" data-aos="flip-down">
           <div
             style="
               width: 648px;
@@ -75,17 +75,32 @@ export default {};
   position: absolute;
   color: #747d54;
 }
-@media (max-width: 991.98px) {
+@media (max-width: 770px) {
   .HotMenuImages {
-    max-height: 100%;
     max-width: 100%;
   }
   .HotMenuBg {
     height: 1700px;
-    width: 700px;
+    width: 100%;
   }
   .HotMenuCard {
-    left: 50px;
+    left: 300px;
+  }
+  .HotMenuBottom {
+    padding-top: 100px;
+  }
+}
+@media (max-width: 991.98px) {
+  .HotMenuImages {
+    /* max-height: 100%; */
+    max-width: 100%;
+  }
+  .HotMenuBg {
+    height: 1700px;
+    width: 100%;
+  }
+  .HotMenuCard {
+    left: 150px;
   }
   .HotMenuBottom {
     padding-top: 100px;

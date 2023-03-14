@@ -8,7 +8,7 @@
             background-image: url(./images/Logo.png);
             background-size: cover;
             background-position: center;
-            height: 62.12px;
+            height: 62px;
             width: 297px;
           "
         ></h1>
@@ -25,21 +25,21 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto me-3">
-          <li class="nav-item">
-            <router-link to="/about" aria-current="page" class="text-decoration-none px-3"
+        <ul class="navbar-nav ms-auto me-7">
+          <li class="nav-item py-4">
+            <router-link to="/about" aria-current="page" class="text-decoration-none p-4"
               >ABOUT</router-link
             >
           </li>
-          <li class="nav-item">
-            <router-link to="/products" class="text-decoration-none px-3">MENU</router-link>
+          <li class="nav-item py-4">
+            <router-link to="/products" class="text-decoration-none p-4">MENU</router-link>
           </li>
-          <li class="nav-item">
-            <router-link to="/contact" class="text-decoration-none px-3">CONTACT</router-link>
+          <li class="nav-item py-4">
+            <router-link to="/contact" class="text-decoration-none p-4">CONTACT</router-link>
           </li>
-        </ul>
-        <router-link to="/cart" class="cart_icon position-relative me-7">
-          <svg
+          <li  class="nav-item py-2">
+            <router-link to="/cart" class="cart_icon position-relative p-1">
+              <!-- <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
             height="30"
@@ -50,12 +50,15 @@
             <path
               d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
             />
-          </svg>
-          <span
-            class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle"
-            >{{ cart.carts?.length }}</span
-          >
-        </router-link>
+          </svg> -->
+              <img src="/images/cart_icon.png" alt="" style="width: 50px;" />
+              <span
+                class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle"
+                >{{ cart.carts?.length }}</span
+              >
+            </router-link>
+          </li>
+        </ul>
       </div>
     </nav>
   </div>

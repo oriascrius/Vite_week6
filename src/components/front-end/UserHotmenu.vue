@@ -6,9 +6,9 @@
           <h4 class="h5 fw-bold">DISHES</h4>
           <h2 class="h3 fw-bold">熱門餐點</h2>
         </div>
-        <swiper
+        <!-- <swiper
           :slidesPerView="3"
-          :spaceBetween="30"
+          :spaceBetween="40"
           :loop="true"
           :speed="1000"
           :navigation="navigation"
@@ -17,22 +17,22 @@
           :breakpoints="{
             320: {
               slidesPerView: 1,
-              spaceBetween: 10,
+              spaceBetween: 30,
             },
             640: {
               slidesPerView: 1,
-              spaceBetween: 10,
+              spaceBetween: 30,
             },
             768: {
               slidesPerView: 2,
-              spaceBetween: 10,
+              spaceBetween: 30,
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 10,
+              spaceBetween: 30,
             },
           }"
-          class="mySwiper ms-4"
+          class="mySwiper ms-5"
         >
           <swiper-slide v-for="product in products" :key="product.id">
             <div class="card" style="width: 416px; height: 100%">
@@ -64,9 +64,65 @@
               </ul>
             </div>
           </swiper-slide>
-        </swiper>
+        </swiper> -->
       </div>
     </div>
+    <swiper
+      :slidesPerView="3"
+      :spaceBetween="20"
+      :loop="true"
+      :speed="1000"
+      :navigation="navigation"
+      :autoplay="{ delay: 6000, disableOnInteraction: true }"
+      :modules="modules"
+      :breakpoints="{
+         320: {
+          slidesPerView: 1,
+          spaceBetween:10,
+        },
+        640: {
+          slidesPerView: 1,
+          spaceBetween:10,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+      }"
+      class="mySwiper"
+    >
+      <swiper-slide v-for="product in products" :key="product.id">
+        <div class="card" style="width: 100%; height: 100% overflow: hidden">
+          <router-link
+            :to="`/product/${product.id}`"
+            style=" width: 100%; height: 416px;"
+          >
+            <img
+              :src="product.imageUrl"
+              :alt="product.title"
+              style=" width: 100%; height: 416px;  cursor: pointer"
+            />
+          </router-link>
+          <ul class="mt-3 list-unstyled">
+            <li class="ms-4">
+              <h5>{{ product.title }}</h5>
+            </li>
+            <li class="ms-4">
+              <p class="text-custom_medium-green">NT$ {{ product.price }}</p>
+            </li>
+            <li class="ms-4">
+              <router-link to="/products">
+                <button type="button" class="btn btn-custom_btn-color text-white">探索更多</button>
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </swiper-slide>
+    </swiper>
   </div>
 </template>
 

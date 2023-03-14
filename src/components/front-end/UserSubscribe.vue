@@ -23,7 +23,7 @@
             color: #747d54;
           "
         >
-          <ul class="row list-unstyled p-4 ms-4">
+          <ul class="row list-unstyled p-4">
             <li class="">
               <h3 class="h4 fw-bold">訂閱優惠</h3>
             </li>

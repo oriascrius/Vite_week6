@@ -1,11 +1,10 @@
 <template>
   <div class="container mt-7 text-custom_medium-green">
     <div class="row mt-7 justify-content-between" data-aos="fade-down">
-      <div class="ms-7">
-        <h4 class="h5 fw-bold">ABOUT US</h4>
-        <h2 class="h3 fw-bold">關於我們</h2>
-      </div>
-      <div class="col-md-6 align-self-end">
+      <h4 class="h5 fw-bold">ABOUT US</h4>
+      <h2 class="h3 fw-bold">關於我們</h2>
+
+      <div class="col-lg-6 align-self-end">
         <ul class="list-unstyled">
           <li class="pt-7">
             <h4 class="h5">＂允許自己放慢步調，享受悠閒食光＂</h4>
@@ -23,12 +22,12 @@
           </router-link>
         </ul>
       </div>
-      <div class="col-md-6 mt-5">
+      <div class="col-lg-6  mt-5">
         <img src="/images/AboutUs_Banner_001.jpg" alt="關於我們" class="img-fluid rounded-3" />
       </div>
     </div>
     <div class="row mt-7 justify-content-between flex-row-reverse" data-aos="fade-down">
-      <div class="col-md-6 align-self-end">
+      <div class="col-lg-6 align-self-end">
         <ul class="list-unstyled">
           <li>
             <p>
@@ -42,12 +41,12 @@
           </router-link>
         </ul>
       </div>
-      <div class="col-md-6 mt-5">
+      <div class="col-lg-6 mt-5">
         <img src="/images/AboutUs_Banner_002.jpg" alt="關於我們" class="img-fluid rounded-3" />
       </div>
     </div>
     <div class="row mt-7 justify-content-between" data-aos="fade-down">
-      <div class="col-md-6 align-self-end">
+      <div class="col-lg-6 align-self-end">
         <ul class="list-unstyled">
           <li>
             <p>
@@ -62,7 +61,7 @@
           </router-link>
         </ul>
       </div>
-      <div class="col-md-6 mt-5">
+      <div class="col-lg-6 mt-5">
         <img src="/images/AboutUs_Banner_003.jpg" alt="關於我們" class="img-fluid rounded-3" />
       </div>
     </div>
