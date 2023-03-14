@@ -3,6 +3,7 @@
   <RouterView />
   <UserSubscribe></UserSubscribe>
   <UserFooter></UserFooter>
+  <BackTop></BackTop>
 </template>
 
 <script>
@@ -12,6 +13,7 @@ import cartStore from '@/stores/cart';
 import UserNav from '@/components/front-end/UserNav.vue';
 import UserSubscribe from '@/components/front-end/UserSubscribe.vue';
 import UserFooter from '@/components/front-end/UserFooter.vue';
+import BackTop from '@/components/front-end/BackTop.vue';
 
 export default {
   name: 'FrontLayout',
@@ -23,6 +25,7 @@ export default {
     UserNav,
     UserSubscribe,
     UserFooter,
+    BackTop,
   },
   // 取值
   computed: {

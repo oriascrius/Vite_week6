@@ -7,7 +7,7 @@
       <h1 class="h2 fw-bold text-center">品牌故事</h1>
       <hr class="mt-4" />
       <p class="fs-5" style="line-height: 2">
-        我和女友一開始就發現我們的名字中都有 「松」 和「柏」
+        我和女友一開始就發現我們的名字中都有 「松」 和 「柏」
         這兩個字，這令我們感到驚訝和開心。我們總是會在每個重要的節日和紀念日裡慶祝彼此的愛情。
         在一個特別的年份，我們決定一起創建一個餐廳，並把它取名為「CEDAR」。這個名字代表了我們從開始就共享的
         「松」 和 「柏」
@@ -138,23 +138,12 @@
 
 <script>
 import { RouterView } from 'vue-router';
-import { mapActions } from 'pinia';
-import LoadingStore from '@/stores/Loading';
 import AboutHeader from '@/components/front-end/AboutHeader.vue';
 
 export default {
   data() {
     return {};
   },
-  methods: {
-    ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
-  },
   components: { RouterView, AboutHeader },
-  mounted() {
-    this.showLoading();
-    setTimeout(() => {
-      this.hideLoading();
-    }, 500);
-  },
 };
 </script>

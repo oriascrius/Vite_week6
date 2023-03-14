@@ -37,13 +37,14 @@
           <li class="nav-item py-4 mx-auto">
             <router-link to="/contact" class="text-decoration-none p-4">CONTACT</router-link>
           </li>
-           <li class="nav-item py-4 mx-auto">
+          <li class="nav-item py-4 mx-auto">
             <router-link to="/question" class="text-decoration-none p-4">FAQ</router-link>
           </li>
-          <li class="nav-item py-2  mx-auto">
+          <li class="nav-item py-2 mx-auto">
             <router-link to="/cart" class="cart_icon position-relative p-1">
-              <img src="/images/Cart_Icon.png" alt="購物車圖標" style="width: 50px" />
+              <img src="/images/Cart_icon.png" alt="購物車圖標" style="width: 50px" />
               <span
+                 v-if="cart.carts?.length"
                 class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle"
                 >{{ cart.carts?.length }}</span
               >

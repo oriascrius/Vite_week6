@@ -29,23 +29,12 @@
 
 <script>
 import { RouterView } from 'vue-router';
-import { mapActions } from 'pinia';
-import LoadingStore from '@/stores/Loading';
 import ContactHeader from '@/components/front-end/ContactHeader.vue';
 
 export default {
   data() {
     return {};
   },
-  methods: {
-    ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
-  },
   components: { RouterView, ContactHeader },
-  mounted() {
-    this.showLoading();
-    setTimeout(() => {
-      this.hideLoading();
-    }, 500);
-  },
 };
 </script>

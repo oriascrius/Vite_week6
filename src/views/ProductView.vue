@@ -3,11 +3,11 @@
   <div class="container text-custom_medium-green">
     <div class="row mt-3">
       <!-- 單一商品圖片 - 左 -->
-      <div class="col-md-5">
+      <div class="col-lg-5">
         <img :src="product.imageUrl" :alt="product.title" class="w-100" height="400" />
       </div>
       <!-- 單一商品詳細資料 - 右 -->
-      <div class="col-md-7">
+      <div class="col-lg-7">
         <ul class="row list-unstyled">
           <li class="col-md-6 mt-4">
             <h4 class="mt-3 fw-bold">{{ product.title }}</h4>
@@ -17,13 +17,8 @@
             <nav aria-label="breadcrumb">
               <ul class="breadcrumb list-unstyled py-3">
                 <li class="breadcrumb-item"><router-link to="/products">全部商品</router-link></li>
-                <li class="breadcrumb-item">
-                  <router-link to="/products"> {{ product.category }}</router-link>
-                </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                  <router-link :to="`/product/${this.productItemId}`">{{
-                    product.title
-                  }}</router-link>
+                  {{ product.title }}
                 </li>
               </ul>
             </nav>
@@ -60,7 +55,7 @@
     <hr />
     <!-- 相似商品 -->
     <template v-if="similarProducts.length">
-      <h3 class="mt-7">相關商品</h3>
+      <h3 class="mt-7">類似商品</h3>
       <div>
         <swiper
           :slidesPerView="1"
@@ -83,7 +78,8 @@
             <div class="card">
               <div
                 style="
-                  min-height: 300p,                 background-size: cover;
+                  height: 300px;
+                  background-size: cover;
                   background-position: center;
                   cursor: pointer;
                   position: relative;
@@ -124,14 +120,15 @@ export default {
   data() {
     return {
       product: {},
+      products: [],
       similarProducts: [],
       qty: 1,
-      productItemId: '',
       modules: [Autoplay, Navigation],
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
+      id: '',
     };
   },
   components: {
@@ -143,67 +140,60 @@ export default {
     ...mapActions(cartStore, ['addToCart', 'getCarts']),
     ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
     getProducts() {
-      const { id } = this.$route.params;
-      this.productItemId = id;
+      this.showLoading();
       this.$http
-        .get(`${VITE_API}api/${VITE_PATH}/product/${id}`)
+        .get(`${VITE_API}api/${VITE_PATH}/product/${this.id}`)
         .then((res) => {
           this.product = res.data.product;
+          // const { product } = res.data;
+          // this.product = product;
           this.getCategoryProducts();
           this.hideLoading();
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          // alert(err.response.data.message);
+          const errMessage = err.response?.data?.message || '資料錯誤';
           this.hideLoading();
+          this.$swal.fire({
+            toast: true,
+            position: 'top',
+            icon: 'error',
+            title: `${errMessage}`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
         });
     },
     getCategoryProducts() {
-      const { category } = this.product;
+      const { category, id } = this.product;
       this.$http
-        .get(`${VITE_API}api/${VITE_PATH}/products?category=${category}`)
+        .get(`${VITE_API}api/${VITE_PATH}/products/all`)
         .then((res) => {
-          this.similarProducts = res.data.products;
+          const { products } = res.data;
+          this.products = products;
         })
         .catch((err) => {
           alert(err.response.data.message);
         });
+      this.similarProducts = this.products.filter(
+        (item) => item.category === category && item.id !== id,
+      );
     },
     toggleId(id) {
       this.$router.push(`/product/${id}`);
       this.id = id;
       this.getProducts();
     },
-    // eslint-disable-next-line camelcase
-    // addToCart(product_id, qty) {
-    //   const data = {
-    //     // eslint-disable-next-line camelcase
-    //     product_id,
-    //     qty,
-    //   };
-    //   this.$http
-    //     .post(`${import.meta.env.VITE_API}api/${import.meta.env.VITE_PATH}/cart`, { data })
-    //     .then(() => {
-    //       // 最後重置存放 id 為空
-    //       // this.loadingItem = '';
-    //       this.$swal.fire({
-    //         toast: true,
-    //         position: 'top-end',
-    //         icon: 'success',
-    //         title: '加入商品成功',
-    //         showConfirmButton: false,
-    //         timer: 1500,
-    //       });
-    //     })
-    //     .catch((err) => {
-    //       alert(err.response.data.message);
-    //     });
-    // },
   },
   computed: {
-    ...mapState(cartStore, ['cart', 'total', 'final_total']),
+    ...mapState(cartStore, ['cart']),
+  },
+  created() {
+    const { id } = this.$route.params;
+    this.id = id;
+    this.getProducts();
   },
   mounted() {
-    this.showLoading();
     this.getProducts();
   },
 };
@@ -224,42 +214,4 @@ export default {
 .swiper-slide:hover .overlay {
   opacity: 1;
 }
-/* #app {
-  height: 100%;
-}
-
-html,
-body {
-  position: relative;
-  height: 100%;
-}
-
-body {
-  background: #eee;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-  padding: 0;
-}
-
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-} */
 </style>

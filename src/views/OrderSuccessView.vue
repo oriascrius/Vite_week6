@@ -2,8 +2,8 @@
   <header
     style="
       width: 100%;
-      height: 768px;
-      background-image: url(./images/Success_Banner.jpg);
+      height: 300px;
+      background-image: url(./images/OrderSuccess.jpg);
       background-repeat: no-repeat;
       background-position: left top;
       background-size: cover;

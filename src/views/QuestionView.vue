@@ -89,23 +89,12 @@
 
 <script>
 import { RouterView } from 'vue-router';
-import { mapActions } from 'pinia';
-import LoadingStore from '@/stores/Loading';
 import QuestionHeader from '@/components/front-end/QuestionHeader.vue';
 
 export default {
   data() {
     return {};
   },
-  methods: {
-    ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
-  },
   components: { RouterView, QuestionHeader },
-  mounted() {
-    this.showLoading();
-    setTimeout(() => {
-      this.hideLoading();
-    }, 500);
-  },
 };
 </script>

@@ -111,7 +111,8 @@ const cartStore = defineStore('cart', {
         });
     },
     // 刪除購物車項目（全部）
-    deleteCars() {
+    deleteCars(cartItem) {
+      this.loadingItem = cartItem.id;
       axios
         .delete(`${VITE_API}api/${VITE_PATH}/carts`)
         .then(() => {

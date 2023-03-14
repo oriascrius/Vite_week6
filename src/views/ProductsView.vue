@@ -25,7 +25,7 @@
               v-for="productsItem in productsFiltered"
               :key="productsItem.id"
             >
-              <div class="card rounded-3">
+              <div class="card rounded-3 productsList">
                 <router-link :to="`/product/${productsItem.id}`">
                   <img
                     :src="productsItem.imageUrl"
@@ -43,9 +43,6 @@
                         productsItem.category
                       }}</span>
                     </h5>
-                    <!-- <span class="badge bg-custom_medium-green rounded-pill">{{
-                      productsItem.category
-                    }}</span> -->
                   </div>
                   <p class="card-text">NT$ {{ productsItem.price }}</p>
                 </div>
@@ -68,7 +65,8 @@
           </div>
         </div>
         <!-- 分頁元件 -->
-        <PaginationModal class="mt-5" :pages="page" @change-page="getProducts"></PaginationModal>
+        <!-- <PaginationModal class="mt-5" :pages="page"
+        @change-page="getProducts"></PaginationModal> -->
       </div>
     </div>
     <!-- 詳細商品 -->
@@ -89,7 +87,7 @@ import { mapActions, mapState } from 'pinia';
 import LoadingStore from '@/stores/Loading';
 import cartStore from '@/stores/cart';
 import ProductsHeader from '@/components/front-end/ProductsHeader.vue';
-import PaginationModal from '@/components/PaginationModal.vue';
+// import PaginationModal from '@/components/PaginationModal.vue';
 
 const { VITE_API, VITE_PATH } = import.meta.env;
 
@@ -115,9 +113,9 @@ export default {
     ...mapActions(cartStore, ['addToCart', 'getCarts']),
     ...mapActions(LoadingStore, ['showLoading', 'hideLoading']),
     // 商品列表 - 取得商品列表 API
-    getProducts(page = 1) {
+    getProducts() {
       this.$http
-        .get(`${VITE_API}api/${VITE_PATH}/products?page=${page}`)
+        .get(`${VITE_API}api/${VITE_PATH}/products/all`)
         .then((res) => {
           this.products = res.data.products;
           this.page = res.data.pagination;
@@ -142,7 +140,7 @@ export default {
   components: {
     RouterView,
     ProductsHeader,
-    PaginationModal,
+    // PaginationModal,
   },
   mounted() {
     this.showLoading();
@@ -150,3 +148,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.productsList {
+  transition: transform 0.2s ease;
+}
+.productsList:hover {
+   transform: translateY(-5px)
+}
+</style>
