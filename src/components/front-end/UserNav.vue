@@ -31,18 +31,18 @@
               >ABOUT</router-link
             >
           </li>
-          <li class="nav-item py-4 mx-auto">
-            <router-link to="/products" class="text-decoration-none p-4">MENU</router-link>
+          <li class="nav-item py-4">
+            <router-link to="/products" class="text-decoration-none p-3">MENU</router-link>
           </li>
-          <li class="nav-item py-4 mx-auto">
-            <router-link to="/contact" class="text-decoration-none p-4">CONTACT</router-link>
+          <li class="nav-item py-4">
+            <router-link to="/contact" class="text-decoration-none p-3">CONTACT</router-link>
           </li>
-          <li class="nav-item py-4 mx-auto">
-            <router-link to="/question" class="text-decoration-none p-4">FAQ</router-link>
+          <li class="nav-item py-4">
+            <router-link to="/question" class="text-decoration-none p-3">FAQ</router-link>
           </li>
-          <li class="nav-item py-2 mx-auto">
-            <router-link to="/cart" class="cart_icon position-relative p-1">
-              <img src="/images/CartIcon.png" alt="購物車圖標" style="width: 50px" />
+          <li class="nav-item py-2">
+            <router-link to="/cart" class="cart_icon position-relative p-2">
+              <img src="/images/ICON_CedarCafe_001.png" alt="購物車圖標" style="width: 50px" />
               <span
                  v-if="cart.carts?.length"
                 class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle"
